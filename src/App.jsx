@@ -14,6 +14,7 @@ function App() {
     <>
       <Header state={cambiarEstado} />
       {activarInicio ? <Inicio /> : <Eventos />}
+      {/* SINCRONIZZAR CLICK PARA CAMBIAR DE SECCION */}
     </>
   );
 }
