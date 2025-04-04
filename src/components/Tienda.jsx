@@ -1,4 +1,4 @@
-function Inicio() {
+function Tienda() {
   return (
     <section className="w-[900px] border">
       <h1 className="text-4xl font-bold text-gray-800">Tienda</h1>
@@ -38,4 +38,4 @@ function Inicio() {
   );
 }
 
-export default Inicio;
+export default Tienda;

@@ -1,12 +1,12 @@
-function Header({ state }) {
+function Header() {
   return (
     <header className="flex justify-center items-center bg-gray-800 text-white p-4 mb-4">
       <ul className="flex space-x-4">
         <li>
-          <button onClick={state}>INICIO</button>
+          <button>INICIO</button>
         </li>
         <li>
-          <button onClick={state}>EVENTOS</button>
+          <button>EVENTOS</button>
         </li>
         <li>
           <button>REUNIONES</button>

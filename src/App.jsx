@@ -1,20 +1,11 @@
-import { useState } from "react";
-
 import Header from "./Header.jsx";
-import Inicio from "./Inicio";
-import Eventos from "./Eventos";
+import Tienda from "./components/Tienda";
 
 function App() {
-  const [activarInicio, setActivarInicio] = useState(true);
-
-  function cambiarEstado() {
-    setActivarInicio(!activarInicio);
-  }
   return (
     <>
-      <Header state={cambiarEstado} />
-      {activarInicio ? <Inicio /> : <Eventos />}
-      {/* SINCRONIZZAR CLICK PARA CAMBIAR DE SECCION */}
+      <Header />
+      <Tienda />
     </>
   );
 }
