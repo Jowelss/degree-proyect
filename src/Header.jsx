@@ -1,22 +1,12 @@
-import { useState } from "react";
-
-function Header() {
-  const [active, setActive] = useState("block");
-
-  const coso = active ? "hidden" : "block";
-
-  const handleClick = () => {
-    setActive(!active);
-  };
-
+function Header({ state }) {
   return (
-    <header className="flex justify-center items-center bg-gray-800 text-white p-4">
+    <header className="flex justify-center items-center bg-gray-800 text-white p-4 mb-4">
       <ul className="flex space-x-4">
         <li>
-          <button onClick={handleClick}>{coso}</button>
+          <button onClick={state}>INICIO</button>
         </li>
         <li>
-          <button>EVENTOS</button>
+          <button onClick={state}>EVENTOS</button>
         </li>
         <li>
           <button>REUNIONES</button>
