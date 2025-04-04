@@ -1,9 +1,11 @@
-function App({ text }) {
-  //   const arrButton = ["PrimerBoton", "SegundoBoton", "TercerBoton"];
+import Header from "./Header.jsx";
+import Inicio from "./Inicio.jsx";
 
+function App() {
   return (
     <>
-      <button className="p-3 bg-blue-400 border">{text}</button>
+      <Header />
+      <Inicio />
     </>
   );
 }
