@@ -1,17 +1,23 @@
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
-    <header className="flex justify-center items-center bg-gray-800 text-white p-4 mb-4">
+    <header className="flex justify-between items-center bg-gray-800 text-white p-4 mb-4">
+      <h1>AUTENTICA</h1>
+
       <ul className="flex space-x-4">
         <li>
-          <button>INICIO</button>
+          <Link to={"/tienda"}>Tienda</Link>
         </li>
         <li>
-          <button>EVENTOS</button>
+          <Link to={"/eventos"}>Eventos</Link>
         </li>
         <li>
-          <button>REUNIONES</button>
+          <Link to={"/reuniones"}>Reuniones</Link>
         </li>
       </ul>
+
+      <a href="#">Inicion Sesiada</a>
     </header>
   );
 }
