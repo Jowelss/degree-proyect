@@ -1,4 +1,4 @@
-function Modal() {
+export function Modal() {
   return (
     <div>
       <button>Cerrar</button>
@@ -36,5 +36,3 @@ function Modal() {
     </div>
   );
 }
-
-export default Modal;
