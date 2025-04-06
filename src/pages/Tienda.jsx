@@ -1,11 +1,13 @@
 import { useState } from "react";
 
+import { Modal } from "../Modal";
+
 import Libro from "../Libro";
 
-function Tienda({ stateModal }) {
+function Tienda() {
   const [modalOff, setModal] = useState(false);
 
-  const modal = modalOff ? stateModal : console.log("Sexo");
+  const modal = modalOff ? <Modal /> : console.log("Sexo");
 
   const handleModal = () => {
     setModal(!modalOff);
