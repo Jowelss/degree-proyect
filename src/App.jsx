@@ -14,10 +14,7 @@ function App() {
       <Header /> {/* Este header es estatico */}
       <div className="flex justify-center bg-gray-300">
         <Routes>
-          <Route
-            path="/tienda"
-            element={<Tienda modalAgregarBook={<Modal />} />}
-          />
+          <Route path="/tienda" element={<Tienda stateModal={<Modal />} />} />
           <Route path="/eventos" element={<Eventos />} />
           <Route path="/reuniones" element={<Reuniones />} />
         </Routes>
