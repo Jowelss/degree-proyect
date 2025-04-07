@@ -1,6 +1,6 @@
 export function Modal() {
   return (
-    <div>
+    <article className="border">
       <button>Cerrar</button>
       <form>
         <h1 className="text-4xl font-bold text-gray-800">Tienda</h1>
@@ -33,6 +33,6 @@ export function Modal() {
           Agregar a tienda
         </button>
       </form>
-    </div>
+    </article>
   );
 }
