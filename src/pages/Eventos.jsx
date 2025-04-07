@@ -1,26 +1,38 @@
+import { useState } from 'react';
+import { Modal } from '../Modal';
+
 function Eventos() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const state = isOpen ? 'block' : 'hidden';
+
   return (
-    <section className="w-[900px] border">
-      <h1 className="text-4xl font-bold text-gray-800">Eventos</h1>
-      <div>
+    <section className='w-[900px] border'>
+      <div className='flex justify-end items-center bg-gray-800 text-white p-4 mb-4'>
+        <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
+      </div>
+
+      <Modal classState={state} onClosed={() => setIsOpen(false)}>
         <form>
-          <label htmlFor="">Imagen del Evento</label>
-          <input type="file" />
+          <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
 
-          <label htmlFor="">Nombre del Evento</label>
-          <input type="text" />
+          <label>Imagen del Evento</label>
+          <input type='file' />
 
-          <label htmlFor="">Fecha del evento</label>
-          <input type="text" />
+          <label>Nombre del Evento</label>
+          <input type='text' />
 
-          <label htmlFor="">Cantidad de paginas</label>
-          <input type="number" />
+          <label>Lugar del evento</label>
+          <input type='text' />
 
-          <button className="block p-2 bg-blue-500 mt-2 cursor-pointer">
+          <label>Cantidad de integrantes</label>
+          <input type='text' />
+
+          <button className='block p-2 bg-blue-500 mt-2 cursor-pointer'>
             Agregar Evento
           </button>
         </form>
-      </div>
+      </Modal>
     </section>
   );
 }
