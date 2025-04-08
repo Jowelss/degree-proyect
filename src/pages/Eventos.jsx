@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal } from '../Modal';
+import { Formulario } from '../components/Formulario.jsx';
 
 function Eventos() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,7 @@ function Eventos() {
         <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
       </div>
 
-      <Modal classState={state} onClosed={() => setIsOpen(false)}>
+      <Formulario classState={state} onClosed={() => setIsOpen(false)}>
         <form>
           <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
 
@@ -32,7 +32,7 @@ function Eventos() {
             Agregar Evento
           </button>
         </form>
-      </Modal>
+      </Formulario>
     </section>
   );
 }
