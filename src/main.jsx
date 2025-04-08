@@ -1,10 +1,10 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css"; //IMPORTACION DEL CSS
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './css/index.css'; //IMPORTACION DEL CSS
 
-import App from "./App.jsx"; //IMPORTACION DEL PRIMER COMPONENTE POR DEFECTO
+import App from './App.jsx'; //IMPORTACION DEL PRIMER COMPONENTE POR DEFECTO
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById('root'));
 
 root.render(
   <StrictMode>
