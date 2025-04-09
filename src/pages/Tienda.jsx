@@ -6,6 +6,10 @@ function Tienda() {
   // Metodo para abrir y cerrar el modal
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
+
+  function handleClick() {
+    setIsOpen(!isOpen);
+  }
   // end
 
   // enviar datos del formulario
@@ -26,10 +30,10 @@ function Tienda() {
   return (
     <section className='w-[900px] border relative'>
       <div className='flex justify-end items-center bg-gray-800 text-white p-4 mb-4'>
-        <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
+        <button onClick={handleClick}>Abrir Modal</button>
       </div>
 
-      <Formulario classState={state} onClosed={() => setIsOpen(false)}>
+      <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
 
