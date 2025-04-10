@@ -1,29 +1,66 @@
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Formulario } from '../components/Formulario';
+
 function Reuniones() {
+  const [isOpen, setIsOpen] = useState(false);
+  const state = isOpen ? 'block' : 'hidden';
+
+  function handleClick() {
+    setIsOpen(!isOpen);
+  }
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
+
   return (
-    <section className="w-[900px] border">
-      <h1 className="text-4xl font-bold text-gray-800">Reuniones</h1>
-      <div>
-        <form>
-          <label htmlFor="">Imagen de la Reunion</label>
-          <input type="file" />
+    <section className='w-[900px] border'>
+      <div className='flex justify-end items-center bg-gray-800 text-white p-4 mb-4'>
+        <button onClick={handleClick}>Abrir Modal</button>
+      </div>
 
-          <label htmlFor="">Nombre de la Reunion</label>
-          <input type="text" />
+      <h1 className='text-4xl font-bold text-gray-800'>Reuniones</h1>
 
-          <label htmlFor="">Motivo de la reunion</label>
-          <input type="text" />
+      <Formulario classState={state} onClosed={handleClick}>
+        <form onSubmit={onSubmit}>
+          <ul>
+            <li>
+              <label>Nombre</label>
+              <input type='text' {...register('nombre')} />
+            </li>
 
-          <label htmlFor="">Inicio y terminacion de la reunion</label>
-          <input type="number" />
+            <li>
+              <label>Imagen</label>
+              <input type='file' {...register('imagen')} />
+            </li>
 
-          <label htmlFor="">Fecha de la reunion</label>
-          <input type="text" />
+            <li>
+              <label>Descripción</label>
+              <input type='text' {...register('descripcion')} />
+            </li>
 
-          <button className="block p-2 bg-blue-500 mt-2 cursor-pointer">
+            <li>
+              <label>Lugar del evento</label>
+              <input type='text' {...register('lugar')} />
+            </li>
+
+            <li>
+              <label>Cantidad de integrantes</label>
+              <input type='text' {...register('integrantes')} />
+            </li>
+          </ul>
+
+          <button
+            type='submit'
+            className='block p-2 bg-blue-500 mt-2 cursor-pointer'
+          >
             Agregar a tienda
           </button>
         </form>
-      </div>
+      </Formulario>
     </section>
   );
 }
