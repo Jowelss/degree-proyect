@@ -27,10 +27,10 @@ function Tienda() {
         <button onClick={handleClick}>Abrir Modal</button>
       </div>
 
+      <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
+
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
-          <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
-
           <ul>
             <li>
               <label>Nombre</label>
