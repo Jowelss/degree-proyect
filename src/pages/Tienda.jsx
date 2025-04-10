@@ -13,18 +13,12 @@ function Tienda() {
   // end
 
   // enviar datos del formulario
-  const {
-    register, //Conecta los campos de entrada
-    handleSubmit, // Se ocupa de lo que sucede cuando se envia el formulario
-    formState: { errors }, // Maneja los errores
-    reset, // Para usarlo en la funcion donde manejo los datos recolectados
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   // Funcion con los datos recolectados
-  const onSubmit = (data) => {
-    console.log(data); // Datos del formulario
-    reset(); //Vacia los datos de los inputs y los reinicia
-  };
+  const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
+  });
   // end
 
   return (
@@ -34,76 +28,48 @@ function Tienda() {
       </div>
 
       <Formulario classState={state} onClosed={handleClick}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
 
           <ul>
             <li>
               <label>Nombre</label>
-              <input
-                {...register('nombre', {
-                  required: 'Agregue el nombre del libro',
-                })}
-              />
-              {errors.nombre && <p>{errors.nombre.message}</p>}
+              <input type='text' {...register('nombre')} />
+            </li>
+
+            <li>
+              <label>Imagen</label>
+              <input type='file' {...register('imagen')} />
             </li>
 
             <li>
               <label>Precio</label>
-              <input
-                {...register('precio', {
-                  required: 'Agrega el nombre del author',
-                })}
-              />
-              {errors.precio && <p>{errors.precio.message}</p>}
+              <input type='number' {...register('precio')} />
             </li>
+
             <li>
               <label>Descripción</label>
-              <input
-                {...register('descripcion', {
-                  required: 'Agrega el numero de paginas',
-                })}
-              />
-              {errors.descripcion && <p>{errors.descripcion.message}</p>}
+              <input type='text' {...register('descripcion')} />
             </li>
 
             <li>
               <label>Autor</label>
-              <input
-                {...register('autor', {
-                  required: 'El nombre de author es obligatorio',
-                })}
-              />
-              {errors.autor && <p>{errors.autor.message}</p>}
+              <input type='text' {...register('autor')} />
             </li>
 
             <li>
               <label>Cantidad</label>
-              <input
-                {...register('cantidad', {
-                  required: 'Cantidad de libros requerido',
-                })}
-              />
-              {errors.cantidad && <p>{errors.cantidad.message}</p>}
+              <input type='number' {...register('cantidad')} />
             </li>
 
             <li>
               <label>Editorial</label>
-              <input
-                {...register('editorial', {
-                  required: 'Cantidad de libros requerido',
-                })}
-              />
-              {errors.editorial && <p>{errors.editorial.message}</p>}
+              <input type='text' {...register('editorial')} />
             </li>
+
             <li>
               <label>Formato</label>
-              <input
-                {...register('formato', {
-                  required: 'Cantidad de libros requerido',
-                })}
-              />
-              {errors.formato && <p>{errors.formato.message}</p>}
+              <input type='text' {...register('formato')} />
             </li>
           </ul>
 
