@@ -6,49 +6,54 @@ function Eventos() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
+  function handleClick() {
+    setIsOpen(!isOpen);
+  }
+
   // enviar datos del formulario
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
-    reset();
   };
   // end
 
   return (
     <section className='w-[900px] border'>
       <div className='flex justify-end items-center bg-gray-800 text-white p-4 mb-4'>
-        <button onClick={() => setIsOpen(true)}>Abrir Modal</button>
+        <button onClick={handleClick}>Abrir Modal</button>
       </div>
 
-      <Formulario classState={state} onClosed={() => setIsOpen(false)}>
+      <Formulario classState={state} onClosed={handleClick}>
+        <h1 className='text-4xl font-bold text-gray-800'>Eventos</h1>
+
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1 className='text-4xl font-bold text-gray-800'>Eventos</h1>
+          <ul>
+            <li>
+              <label>Imagen del Evento</label>
+              <input
+                type='file'
+                {...register('imagen', {
+                  required: 'La imagen es obligatoria',
+                })}
+              />
+            </li>
 
-          <label>Imagen del Evento</label>
-          <input
-            type='file'
-            {...register('imagen', { required: 'La imagen es obligatoria' })}
-          />
-          {errors.imagen && <p>{errors.Imagen.message}</p>}
+            <li>
+              <label>Nombre del Evento</label>
+              <input type='text' {...register('nombre')} />
+            </li>
 
-          <label>Nombre del Evento</label>
-          <input
-            type='text'
-            {...register('nombre', { required: 'El nombre es obligatorio' })}
-          />
-          {errors.nombre && <p>{errors.nombre.message}</p>}
+            <li>
+              <label>Lugar del evento</label>
+              <input type='text' {...register('lugar')} />
+            </li>
 
-          <label>Lugar del evento</label>
-          <input type='text' />
-
-          <label>Cantidad de integrantes</label>
-          <input type='text' />
+            <li>
+              <label>Cantidad de integrantes</label>
+              <input type='text' {...register('integrantes')} />
+            </li>
+          </ul>
 
           <button
             type='submit'
