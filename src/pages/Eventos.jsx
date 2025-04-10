@@ -13,9 +13,9 @@ function Eventos() {
   // enviar datos del formulario
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = handleSubmit((data) => {
     console.log(data);
-  };
+  });
   // end
 
   return (
@@ -24,9 +24,9 @@ function Eventos() {
         <button onClick={handleClick}>Abrir Modal</button>
       </div>
 
-      <Formulario classState={state} onClosed={handleClick}>
-        <h1 className='text-4xl font-bold text-gray-800'>Eventos</h1>
+      <h1 className='text-4xl font-bold text-gray-800'>Eventos</h1>
 
+      <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <ul>
             <li>
