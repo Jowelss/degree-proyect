@@ -10,9 +10,7 @@ function Reuniones() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
-  function handleClick() {
-    setIsOpen(!isOpen);
-  }
+  const handleClick = () => setIsOpen(!isOpen);
 
   const { register, handleSubmit, reset } = useForm();
 
