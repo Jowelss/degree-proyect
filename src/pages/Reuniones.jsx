@@ -15,9 +15,13 @@ function Reuniones() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
-    await addDoc(collection(db, 'reuniones'), {
-      data,
-    });
+    try {
+      await addDoc(collection(db, 'reuniones'), {
+        data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     reset();
   });
