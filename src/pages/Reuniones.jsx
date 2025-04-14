@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario';
+// firebase DATABASE
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../firebaseConfig';
+// end
 
 function Reuniones() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,10 +14,14 @@ function Reuniones() {
     setIsOpen(!isOpen);
   }
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data) => {
+    await addDoc(collection(db, 'reuniones'), {
+      data,
+    });
+
+    reset();
   });
 
   return (
@@ -34,7 +42,7 @@ function Reuniones() {
 
             <li>
               <label>Imagen</label>
-              <input type='file' {...register('imagen')} />
+              <input type='text' {...register('imagen')} />
             </li>
 
             <li>
@@ -49,7 +57,7 @@ function Reuniones() {
 
             <li>
               <label>Cantidad de integrantes</label>
-              <input type='text' {...register('integrantes')} />
+              <input type='number' {...register('integrantes')} />
             </li>
           </ul>
 
