@@ -7,18 +7,16 @@ function Tienda() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
-  function handleClick() {
-    setIsOpen(!isOpen);
-  }
+  const handleClick = () => setIsOpen(!isOpen);
   // end
 
   // enviar datos del formulario
   const { register, handleSubmit } = useForm();
 
   // Funcion con los datos recolectados
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = (data) => {
     console.log(data);
-  });
+  };
   // end
 
   return (
@@ -30,48 +28,46 @@ function Tienda() {
       <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
 
       <Formulario classState={state} onClosed={handleClick}>
-        <form onSubmit={onSubmit}>
-          <ul>
-            <li>
-              <label>Nombre</label>
-              <input type='text' {...register('nombre')} />
-            </li>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <label>Nombre</label>
+            <input {...register('nombre')} />
+          </div>
 
-            <li>
-              <label>Imagen</label>
-              <input type='file' {...register('imagen')} />
-            </li>
+          <div>
+            <label>Imagen</label>
+            <input {...register('imagen')} />
+          </div>
 
-            <li>
-              <label>Precio</label>
-              <input type='number' {...register('precio')} />
-            </li>
+          <div>
+            <label>Precio</label>
+            <input {...register('precio')} />
+          </div>
 
-            <li>
-              <label>Descripción</label>
-              <input type='text' {...register('descripcion')} />
-            </li>
+          <div>
+            <label>Descripción</label>
+            <input {...register('descripcion')} />
+          </div>
 
-            <li>
-              <label>Autor</label>
-              <input type='text' {...register('autor')} />
-            </li>
+          <div>
+            <label>Autor</label>
+            <input {...register('autor')} />
+          </div>
 
-            <li>
-              <label>Cantidad</label>
-              <input type='number' {...register('cantidad')} />
-            </li>
+          <div>
+            <label>Cantidad</label>
+            <input {...register('cantidad')} />
+          </div>
 
-            <li>
-              <label>Editorial</label>
-              <input type='text' {...register('editorial')} />
-            </li>
+          <div>
+            <label>Editorial</label>
+            <input {...register('editorial')} />
+          </div>
 
-            <li>
-              <label>Formato</label>
-              <input type='text' {...register('formato')} />
-            </li>
-          </ul>
+          <div>
+            <label>Formato</label>
+            <input {...register('formato')} />
+          </div>
 
           <button
             type='submit'
