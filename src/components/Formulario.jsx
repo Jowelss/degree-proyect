@@ -1,9 +1,11 @@
 export function Formulario({ children, classState, onClosed }) {
   return (
     <article className={classState}>
-      <button onClick={onClosed}>Cerrar</button>
+      <div>
+        <button onClick={onClosed}>Cerrar</button>
+      </div>
 
-      {children}
+      <div>{children}</div>
     </article>
   );
 }
