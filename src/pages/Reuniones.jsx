@@ -36,32 +36,30 @@ function Reuniones() {
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
-          <ul>
-            <li>
-              <label>Nombre</label>
-              <input type='text' {...register('nombre')} />
-            </li>
+          <div>
+            <label>Nombre</label>
+            <input type='text' {...register('nombre')} />
+          </div>
 
-            <li>
-              <label>Imagen</label>
-              <input type='text' {...register('imagen')} />
-            </li>
+          <div>
+            <label>Imagen</label>
+            <input type='text' {...register('imagen')} />
+          </div>
 
-            <li>
-              <label>Descripción</label>
-              <input type='text' {...register('descripcion')} />
-            </li>
+          <div>
+            <label>Descripción</label>
+            <input type='text' {...register('descripcion')} />
+          </div>
 
-            <li>
-              <label>Lugar del evento</label>
-              <input type='text' {...register('lugar')} />
-            </li>
+          <div>
+            <label>Lugar del evento</label>
+            <input type='text' {...register('lugar')} />
+          </div>
 
-            <li>
-              <label>Cantidad de integrantes</label>
-              <input type='number' {...register('integrantes')} />
-            </li>
-          </ul>
+          <div>
+            <label>Cantidad de integrantes</label>
+            <input type='number' {...register('integrantes')} />
+          </div>
 
           <button
             type='submit'
