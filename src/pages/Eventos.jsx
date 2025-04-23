@@ -2,19 +2,22 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
 
+import { Add } from '../database/Add.jsx';
+
 function Eventos() {
+  // abrir y cerrar modal
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
-  function handleClick() {
-    setIsOpen(!isOpen);
-  }
+  const handleClick = () => setIsOpen(!isOpen);
+  // end
 
   // enviar datos del formulario
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    Add(data, 'eventos');
+    reset();
   });
   // end
 
@@ -27,33 +30,31 @@ function Eventos() {
       <h1 className='text-4xl font-bold text-gray-800'>Eventos</h1>
 
       <Formulario classState={state} onClosed={handleClick}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <ul>
-            <li>
-              <label>Imagen del Evento</label>
-              <input
-                type='file'
-                {...register('imagen', {
-                  required: 'La imagen es obligatoria',
-                })}
-              />
-            </li>
+        <form onSubmit={onSubmit}>
+          <div>
+            <label>Nombre</label>
+            <input type='text' {...register('nombre')} />
+          </div>
 
-            <li>
-              <label>Nombre del Evento</label>
-              <input type='text' {...register('nombre')} />
-            </li>
+          <div>
+            <label>Imagen</label>
+            <input type='text' {...register('imagen')} />
+          </div>
 
-            <li>
-              <label>Lugar del evento</label>
-              <input type='text' {...register('lugar')} />
-            </li>
+          <div>
+            <label>Descripción</label>
+            <input type='text' {...register('descripcion')} />
+          </div>
 
-            <li>
-              <label>Cantidad de integrantes</label>
-              <input type='text' {...register('integrantes')} />
-            </li>
-          </ul>
+          <div>
+            <label>Lugar del evento</label>
+            <input type='text' {...register('lugar')} />
+          </div>
+
+          <div>
+            <label>Cantidad de integrantes</label>
+            <input type='number' {...register('integrantes')} />
+          </div>
 
           <button
             type='submit'

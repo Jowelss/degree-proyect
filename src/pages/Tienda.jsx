@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
 
+import { Add } from '../database/Add.jsx';
+
 function Tienda() {
   // Metodo para abrir y cerrar el modal
   const [isOpen, setIsOpen] = useState(false);
@@ -11,12 +13,13 @@ function Tienda() {
   // end
 
   // enviar datos del formulario
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   // Funcion con los datos recolectados
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = handleSubmit((data) => {
+    Add(data, 'libros');
+    reset();
+  });
   // end
 
   return (
@@ -28,7 +31,7 @@ function Tienda() {
       <h1 className='text-4xl font-bold text-gray-800'>Tienda</h1>
 
       <Formulario classState={state} onClosed={handleClick}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
             <input {...register('nombre')} />
