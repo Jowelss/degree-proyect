@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario';
-// firebase DATABASE
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../firebaseConfig';
-// end
+
+import { Add } from '../database/Add';
 
 function Reuniones() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,15 +12,8 @@ function Reuniones() {
 
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await addDoc(collection(db, 'reuniones'), {
-        data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-
+  const onSubmit = handleSubmit((data) => {
+    Add(data, 'reuniones');
     reset();
   });
 
