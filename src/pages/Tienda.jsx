@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
 
-import { Add } from '../database/Add.jsx';
-
 function Tienda() {
   // Metodo para abrir y cerrar el modal
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +15,7 @@ function Tienda() {
 
   // Funcion con los datos recolectados
   const onSubmit = handleSubmit((data) => {
-    Add(data, 'libros');
+    console.log(data);
     reset();
   });
   // end
