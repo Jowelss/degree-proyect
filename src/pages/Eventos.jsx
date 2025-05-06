@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
 
-import { Add } from '../database/Add.jsx';
-
 function Eventos() {
   // abrir y cerrar modal
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +14,7 @@ function Eventos() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    Add(data, 'eventos');
+    console.log(data);
     reset();
   });
   // end
