@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario';
 
-import { Add } from '../database/Add';
-
 function Reuniones() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
@@ -13,7 +11,7 @@ function Reuniones() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    Add(data, 'reuniones');
+    console.log(data);
     reset();
   });
 
