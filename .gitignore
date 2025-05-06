@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #Database
-firebaseConfig.js
+
