@@ -21,7 +21,7 @@ function Reuniones() {
         <button onClick={handleClick}>Abrir Modal</button>
       </div>
 
-      <h1 className='text-4xl font-bold text-gray-800'>Reuniones</h1>
+      <h1 className='text-4xl font-bold text-gray-800'>Sesiones</h1>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
