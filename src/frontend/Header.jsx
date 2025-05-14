@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import LogoutButton from './components/LogoutButton';
 
 function Header() {
   return (
     <header className='flex justify-between items-center bg-gray-800 text-white p-4 mb-4'>
-      <h1>AUTENTICA</h1>
+      <h1>LOGO AUTENTICA</h1>
 
       <ul className='flex space-x-4'>
         <li>
@@ -17,7 +18,7 @@ function Header() {
         </li>
       </ul>
 
-      <a href='#'>Inicion Sesiada</a>
+      <LogoutButton />
     </header>
   );
 }
