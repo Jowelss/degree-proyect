@@ -1,9 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Auth0Provider } from '@auth0/auth0-react';
+
 import './css/index.css'; //IMPORTACION DEL CSS
 
-import App from './App.jsx'; //IMPORTACION DEL PRIMER COMPONENTE POR DEFECTO
-import { Auth0Provider } from '@auth0/auth0-react';
+import Login from './pages/Login.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -16,7 +17,7 @@ root.render(
     }}
   >
     <StrictMode>
-      <App />
+      <Login />
     </StrictMode>
   </Auth0Provider>
 );
