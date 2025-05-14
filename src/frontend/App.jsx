@@ -1,8 +1,7 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import Inicio from './pages/Inicio.jsx';
 
 function App() {
-  const { loginWithRedirect } = useAuth0();
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
+  return <Inicio />;
 }
 
 export default App;
