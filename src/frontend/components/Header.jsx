@@ -1,3 +1,3 @@
 export function Header({ children }) {
-  return <>{children};</>;
+  return <>{children}</>;
 }
