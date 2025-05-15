@@ -1,7 +1,7 @@
-import Inicio from './pages/Inicio.jsx';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
-  return <Inicio />;
+  return <AppRoutes />;
 }
 
 export default App;
