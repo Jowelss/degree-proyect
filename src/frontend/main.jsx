@@ -3,8 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 import './css/index.css'; //IMPORTACION DEL CSS
-
-import Login from './pages/Login.jsx';
+import App from './App';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -17,7 +16,7 @@ root.render(
     }}
   >
     <StrictMode>
-      <Login />
+      <App />
     </StrictMode>
   </Auth0Provider>
 );
