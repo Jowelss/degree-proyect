@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Dashboard from '../pages/dashboard.jsx';
-import Login from '../pages/Login.jsx';
+import Inicio from '../pages/Inicio.jsx';
 
 function AppRoutes() {
   return (
     <BrowserRouter>
-      <div className='flex justify-center items-center '>
+      <div>
         <Routes>
+          <Route path='/inicio' element={<Inicio />} />
           <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/login' element={<Login />} />
         </Routes>
       </div>
     </BrowserRouter>
