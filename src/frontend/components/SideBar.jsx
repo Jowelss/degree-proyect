@@ -5,8 +5,8 @@ function SideBar() {
     <aside className='h-full'>
       <ul className='flex gap-2 flex-col'>
         <Link to={'/dashboard/productos'}>Productos</Link>
-        <li>Eventos</li>
-        <li>Blog</li>
+        <Link to={'/dashboard/eventos'}>Eventos</Link>
+        <Link to={'/dashboard/blog'}>Blog</Link>
         <li>Suscripciones</li>
         <li>Coaching</li>
         <li>Duelo Animal</li>
