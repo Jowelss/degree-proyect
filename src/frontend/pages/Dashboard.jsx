@@ -1,6 +1,8 @@
+import { Outlet } from 'react-router-dom';
 import { Header } from '../components/Header';
 import LogoutButton from '../components/LogoutButton.jsx';
 import SideBar from '../components/SideBar.jsx';
+import Logo from '../assets/Autentica2.png';
 
 function Dashboard() {
   return (
@@ -8,7 +10,7 @@ function Dashboard() {
       <Header>
         <header className='flex justify-around w-full'>
           <div>
-            <h1>LOGO AUTENTICA</h1>
+            <img className='w-8' src={Logo} alt='Autentica' />
           </div>
           <ul className='flex gap-6'>
             <li>
@@ -20,8 +22,10 @@ function Dashboard() {
           </ul>
         </header>
       </Header>
-      <SideBar />
-      {/* Aqui ira el contenido dependiendo el sidebar */}
+      <div className='flex justify-around w-full'>
+        <SideBar />
+        <Outlet />
+      </div>
     </>
   );
 }
