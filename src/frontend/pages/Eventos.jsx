@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
+import { Add } from '../database/Add';
 
 function Eventos() {
   // abrir y cerrar modal
@@ -14,7 +15,7 @@ function Eventos() {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    Add(data, 'eventos');
     reset();
   });
   // end
@@ -31,27 +32,22 @@ function Eventos() {
         <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
-            <input type='text' {...register('nombre')} />
+            <input type='text' {...register('name')} />
           </div>
 
           <div>
             <label>Imagen</label>
-            <input type='text' {...register('imagen')} />
+            <input type='text' {...register('image')} />
           </div>
 
           <div>
             <label>Descripción</label>
-            <input type='text' {...register('descripcion')} />
+            <input type='text' {...register('description')} />
           </div>
 
           <div>
             <label>Lugar del evento</label>
-            <input type='text' {...register('lugar')} />
-          </div>
-
-          <div>
-            <label>Cantidad de integrantes</label>
-            <input type='number' {...register('integrantes')} />
+            <input type='text' {...register('ubication')} />
           </div>
 
           <button
