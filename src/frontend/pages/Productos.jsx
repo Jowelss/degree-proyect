@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
-import axios from 'axios';
+import { Add } from '../database/Add';
 
 function Tienda() {
   // Metodo para abrir y cerrar el modal
@@ -15,14 +15,8 @@ function Tienda() {
   const { register, handleSubmit, reset } = useForm();
 
   // Funcion con los datos recolectados
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await axios.post('http://localhost:5000/libros', data);
-
-      alert('Libro Agregado');
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit = handleSubmit((data) => {
+    Add(data, 'libros');
     reset();
   });
   // end
