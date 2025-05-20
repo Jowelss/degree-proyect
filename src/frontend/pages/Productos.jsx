@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
+import axios from 'axios';
 
 function Tienda() {
   // Metodo para abrir y cerrar el modal
@@ -14,8 +15,14 @@ function Tienda() {
   const { register, handleSubmit, reset } = useForm();
 
   // Funcion con los datos recolectados
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await axios.post('http://localhost:5000/libros', data);
+
+      alert('Libro Agregado');
+    } catch (error) {
+      console.log(error);
+    }
     reset();
   });
   // end
@@ -32,42 +39,17 @@ function Tienda() {
         <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
-            <input {...register('nombre')} />
+            <input {...register('name')} />
           </div>
 
           <div>
-            <label>Imagen</label>
-            <input {...register('imagen')} />
+            <label>Apellido</label>
+            <input {...register('lastName')} />
           </div>
 
           <div>
             <label>Precio</label>
-            <input {...register('precio')} />
-          </div>
-
-          <div>
-            <label>Descripción</label>
-            <input {...register('descripcion')} />
-          </div>
-
-          <div>
-            <label>Autor</label>
-            <input {...register('autor')} />
-          </div>
-
-          <div>
-            <label>Cantidad</label>
-            <input {...register('cantidad')} />
-          </div>
-
-          <div>
-            <label>Editorial</label>
-            <input {...register('editorial')} />
-          </div>
-
-          <div>
-            <label>Formato</label>
-            <input {...register('formato')} />
+            <input {...register('age')} />
           </div>
 
           <button
