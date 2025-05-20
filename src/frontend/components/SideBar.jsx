@@ -7,10 +7,10 @@ function SideBar() {
         <Link to={'/dashboard/productos'}>Productos</Link>
         <Link to={'/dashboard/eventos'}>Eventos</Link>
         <Link to={'/dashboard/blog'}>Blog</Link>
-        <li>Suscripciones</li>
-        <li>Coaching</li>
-        <li>Duelo Animal</li>
-        <li>Contacto</li>
+        <Link to={'/dashboard/suscripciones'}>Suscripciones</Link>
+        <Link to={'/dashboard/coaching'}>Coaching</Link>
+        <Link to={'/dashboard/duelo-animal'}>Duelo Animal</Link>
+        <Link to={'/dashboard/contacto'}>Contacto</Link>
       </ul>
     </aside>
   );
