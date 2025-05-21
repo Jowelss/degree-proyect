@@ -32,22 +32,27 @@ function Eventos() {
         <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
-            <input type='text' {...register('name')} />
+            <input type='text' {...register('nombre')} />
           </div>
 
           <div>
             <label>Imagen</label>
-            <input type='text' {...register('image')} />
+            <input type='text' {...register('imagen')} />
           </div>
 
           <div>
             <label>Descripción</label>
-            <input type='text' {...register('description')} />
+            <input type='text' {...register('descripcion')} />
           </div>
 
           <div>
             <label>Lugar del evento</label>
-            <input type='text' {...register('ubication')} />
+            <input type='text' {...register('ubicacion')} />
+          </div>
+
+          <div>
+            <label>Hora</label>
+            <input type='text' {...register('hora')} />
           </div>
 
           <button
