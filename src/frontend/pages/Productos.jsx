@@ -33,17 +33,32 @@ function Tienda() {
         <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
-            <input {...register('name')} />
+            <input type='text' {...register('nombre')} />
           </div>
 
           <div>
-            <label>Apellido</label>
-            <input {...register('lastName')} />
+            <label>Autor</label>
+            <input type='text' {...register('autor')} />
+          </div>
+
+          <div>
+            <label>Editorial</label>
+            <input type='text' {...register('editorial')} />
           </div>
 
           <div>
             <label>Precio</label>
-            <input {...register('age')} />
+            <input type='number' {...register('precio')} />
+          </div>
+
+          <div>
+            <label>Imagen</label>
+            <input type='text' {...register('imagen')} />
+          </div>
+
+          <div>
+            <label>Descripción</label>
+            <input type='text' {...register('descripcion')} />
           </div>
 
           <button
