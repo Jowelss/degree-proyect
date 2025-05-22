@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
-import { Add } from '../database/Add';
+import { Add } from '../services/Add';
 
 function Eventos() {
   // abrir y cerrar modal
@@ -22,11 +22,11 @@ function Eventos() {
 
   return (
     <section className='w-[900px] border'>
-      <div className='flex justify-end items-center bg-gray-800 text-white p-4 mb-4'>
+      <div className='flex justify-end items-center bg-gray-800 text-white p-4'>
         <button onClick={handleClick}>Abrir Modal</button>
       </div>
 
-      <h1 className='text-4xl font-bold text-gray-800'>Eventos</h1>
+      <h1 className='text-4xl font-bold text-gray-800 mb-4 mt-4'>Eventos</h1>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
@@ -51,8 +51,13 @@ function Eventos() {
           </div>
 
           <div>
+            <label>Fecha</label>
+            <input type='date' {...register('fecha')} />
+          </div>
+
+          <div>
             <label>Hora</label>
-            <input type='text' {...register('hora')} />
+            <input type='time' {...register('hora')} />
           </div>
 
           <button
