@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
-import { Add } from '../database/Add';
+import { Add } from '../services/Add';
 
 function Tienda() {
   // Metodo para abrir y cerrar el modal
@@ -22,14 +22,13 @@ function Tienda() {
   // end
 
   return (
-    <section className='w-[900px] border relative'>
-      <div className='flex justify-end items-center bg-gray-800 text-white p-4 mb-4'>
+    <section className='w-[900px] h-[500px] border rounded-2xl overflow-hidden'>
+      <div className='flex justify-between items-center bg-gray-800 text-white p-4'>
+        <h1 className='text-4xl font-bold'>Productos</h1>
         <button onClick={handleClick}>Agregar Libro</button>
       </div>
 
-      <h1 className='text-4xl font-bold text-gray-800'>Productos</h1>
-
-      <ul className='flex justify-around'>
+      <ul className='flex justify-around mb-1 mt-1'>
         <li>Producto</li>
         <li>Estado</li>
         <li>Precio</li>
@@ -44,7 +43,7 @@ function Tienda() {
           </div>
 
           <div>
-            <label>Autor</label>
+            <label>Autor/a</label>
             <input type='text' {...register('autor')} />
           </div>
 
@@ -54,7 +53,7 @@ function Tienda() {
           </div>
 
           <div>
-            <label>Precio</label>
+            <label>Inversión</label>
             <input type='number' {...register('precio')} />
           </div>
 
@@ -64,18 +63,18 @@ function Tienda() {
           </div>
 
           <div>
-            <label>Sinopsis</label>
+            <label>¿De que trata?</label>
             <input type='text' {...register('sinopsis')} />
-          </div>
-
-          <div>
-            <label>Cantidad</label>
-            <input type='number' {...register('cantidad')} />
           </div>
 
           <div>
             <label>Estado</label>
             <input type='text' {...register('estado')} />
+          </div>
+
+          <div>
+            <label>¿Como es este ejemplar?</label>
+            <input type='text' {...register('formato')} />
           </div>
 
           <button
