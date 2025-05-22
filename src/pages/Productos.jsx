@@ -1,6 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+
+// componentes
 import { Formulario } from '../components/Formulario.jsx';
+import { Panel } from '../components/Panel.jsx';
+import Libro from '../components/Libro.jsx';
+// end
+
+import { Get } from '../services/Get';
 import { Add } from '../services/Add';
 
 function Tienda() {
@@ -11,29 +18,49 @@ function Tienda() {
   const handleClick = () => setIsOpen(!isOpen);
   // end
 
-  // enviar datos del formulario
+  // Agregar libro al panel
+  const [libros, setLibros] = useState([]);
+
+  const fetchLibros = async () => {
+    const data = await Get('libros');
+    setLibros(data);
+  };
+
+  useEffect(() => {
+    fetchLibros();
+  }, []);
+  // end
+
+  // Enviar datos del formulario
   const { register, handleSubmit, reset } = useForm();
 
-  // Funcion con los datos recolectados
   const onSubmit = handleSubmit(async (data) => {
     await Add(data, 'libros');
     reset();
+
+    fetchLibros(); // Se ejecuta la funcion cuando envio los datos
   });
   // end
 
   return (
-    <section className='w-[900px] h-[500px] border rounded-2xl overflow-hidden'>
+    <Panel>
       <div className='flex justify-between items-center bg-gray-800 text-white p-4'>
         <h1 className='text-4xl font-bold'>Productos</h1>
         <button onClick={handleClick}>Agregar Libro</button>
       </div>
 
-      <ul className='flex justify-around mb-1 mt-1'>
+      <ul className='flex justify-around border mb-4'>
         <li>Producto</li>
         <li>Estado</li>
         <li>Precio</li>
-        <li>Cantidad</li>
+        <li>Formato</li>
       </ul>
+
+      <div className='overflow-y-scroll'>
+        {libros.map((item) => (
+          <Libro key={item._id} libro={item} />
+        ))}
+      </div>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
@@ -78,6 +105,7 @@ function Tienda() {
           </div>
 
           <button
+            onClick={handleClick}
             type='submit'
             className='block p-2 bg-blue-500 mt-2 cursor-pointer'
           >
@@ -85,7 +113,7 @@ function Tienda() {
           </button>
         </form>
       </Formulario>
-    </section>
+    </Panel>
   );
 }
 
