@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
 import { Add } from '../services/Add';
+import { Panel } from '../components/Panel.jsx';
 
 function Eventos() {
   // abrir y cerrar modal
@@ -21,7 +22,7 @@ function Eventos() {
   // end
 
   return (
-    <section className='w-[900px] border'>
+    <Panel>
       <div className='flex justify-end items-center bg-gray-800 text-white p-4'>
         <button onClick={handleClick}>Abrir Modal</button>
       </div>
@@ -68,7 +69,7 @@ function Eventos() {
           </button>
         </form>
       </Formulario>
-    </section>
+    </Panel>
   );
 }
 
