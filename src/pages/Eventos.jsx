@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario.jsx';
 import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { Panel } from '../components/Panel.jsx';
-import Libro from '../components/Libro.jsx';
+import { ItemCard } from '../components/ItemCard.jsx';
 
 import { Add } from '../services/Add';
 import { Get } from '../services/Get.jsx';
@@ -18,13 +18,12 @@ function Eventos() {
   // end
 
   // Agregar libro al panel
-  const [libros, setLibros] = useState([]);
+  const [eventos, setEventos] = useState([]);
 
   const fetchLibros = async () => {
     const data = await Get('eventos');
-    setLibros(data);
+    setEventos(data);
   };
-
   useEffect(() => {
     fetchLibros();
   }, []);
@@ -48,21 +47,21 @@ function Eventos() {
         <button onClick={handleClick}>Agregar Evento</button>
       </HeaderPanel>
 
-      <div>
-        {libros.map((item) => (
-          <Libro key={item._id}>
-            <li>{item.nombre}</li>
-            <li>{item.descripcion}</li>
-            <li>{item.hora}</li>
-            <li>{item.fecha}</li>
+      <ul>
+        {eventos.map((evento) => (
+          <ItemCard key={evento._id}>
+            <span>{evento.nombre}</span>
+            <span>{evento.descripcion}</span>
+            <span>{evento.hora}</span>
+            <span>{evento.fecha}</span>
 
-            <li className='flex gap-1'>
+            <span className='flex gap-1'>
               <button>Eliminar</button>
               <button>Actualizar</button>
-            </li>
-          </Libro>
+            </span>
+          </ItemCard>
         ))}
-      </div>
+      </ul>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
