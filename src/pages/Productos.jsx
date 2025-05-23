@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 // componentes
 import { Formulario } from '../components/Formulario.jsx';
 import { Panel } from '../components/Panel.jsx';
 import { HeaderPanel } from '../components/HeaderPanel.jsx';
-import Libro from '../components/Libro.jsx';
+import { ItemCard } from '../components/ItemCard.jsx';
 // end
 
+// Servicios API
 import { Get } from '../services/Get';
 import { Add } from '../services/Add';
+// end
 
 function Tienda() {
   // Metodo para abrir y cerrar el modal
@@ -24,12 +27,25 @@ function Tienda() {
 
   const fetchLibros = async () => {
     const data = await Get('libros');
+
     setLibros(data);
   };
 
   useEffect(() => {
+    // El use effect hace que lo que este dentro se cargue una sola ves a iniciar el sistema web
     fetchLibros();
   }, []);
+  // end
+
+  // Eliminar producto
+  const eliminarProducto = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/libros/${id}`);
+      setLibros(libros.filter((item) => item._id !== id));
+    } catch (error) {
+      console.log(`No se puedo eliminar el producto ${error}`);
+    }
+  };
   // end
 
   // Enviar datos del formulario
@@ -57,21 +73,23 @@ function Tienda() {
         <li>Formato</li>
       </ul>
 
-      <div className='overflow-y-scroll'>
-        {libros.map((item) => (
-          <Libro key={item._id}>
-            <li>{item.nombre}</li>
-            <li>{item.estado}</li>
-            <li>{item.precio}</li>
-            <li>{item.formato}</li>
+      <ul className='overflow-y-scroll'>
+        {libros.map((libro) => (
+          <ItemCard key={libro._id}>
+            <span>{libro.nombre}</span>
+            <span>{libro.estado}</span>
+            <span>{libro.precio}</span>
+            <span>{libro.formato}</span>
 
-            <li className='flex gap-1'>
-              <button>Eliminar</button>
+            <span className='flex gap-1'>
+              <button onClick={() => eliminarProducto(libro._id)}>
+                Eliminar
+              </button>
               <button>Actualizar</button>
-            </li>
-          </Libro>
+            </span>
+          </ItemCard>
         ))}
-      </div>
+      </ul>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
