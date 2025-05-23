@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+
 import { Formulario } from '../components/Formulario.jsx';
-import { Add } from '../services/Add';
+import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { Panel } from '../components/Panel.jsx';
+import Libro from '../components/Libro.jsx';
+
+import { Add } from '../services/Add';
+import { Get } from '../services/Get.jsx';
 
 function Eventos() {
   // abrir y cerrar modal
@@ -12,22 +17,52 @@ function Eventos() {
   const handleClick = () => setIsOpen(!isOpen);
   // end
 
+  // Agregar libro al panel
+  const [libros, setLibros] = useState([]);
+
+  const fetchLibros = async () => {
+    const data = await Get('eventos');
+    setLibros(data);
+  };
+
+  useEffect(() => {
+    fetchLibros();
+  }, []);
+  // end
+
   // enviar datos del formulario
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
-    Add(data, 'eventos');
+  const onSubmit = handleSubmit(async (data) => {
+    await Add(data, 'eventos');
     reset();
+
+    fetchLibros();
   });
   // end
 
   return (
     <Panel>
-      <div className='flex justify-end items-center bg-gray-800 text-white p-4'>
-        <button onClick={handleClick}>Abrir Modal</button>
-      </div>
+      <HeaderPanel>
+        <h1 className='text-4xl font-bold'>Eventos</h1>
+        <button onClick={handleClick}>Agregar Evento</button>
+      </HeaderPanel>
 
-      <h1 className='text-4xl font-bold text-gray-800 mb-4 mt-4'>Eventos</h1>
+      <div>
+        {libros.map((item) => (
+          <Libro key={item._id}>
+            <li>{item.nombre}</li>
+            <li>{item.descripcion}</li>
+            <li>{item.hora}</li>
+            <li>{item.fecha}</li>
+
+            <li className='flex gap-1'>
+              <button>Eliminar</button>
+              <button>Actualizar</button>
+            </li>
+          </Libro>
+        ))}
+      </div>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
