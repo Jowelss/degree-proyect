@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 // componentes
 import { Formulario } from '../components/Formulario.jsx';
 import { Panel } from '../components/Panel.jsx';
+import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import Libro from '../components/Libro.jsx';
 // end
 
@@ -44,10 +45,10 @@ function Tienda() {
 
   return (
     <Panel>
-      <div className='flex justify-between items-center bg-gray-800 text-white p-4'>
+      <HeaderPanel>
         <h1 className='text-4xl font-bold'>Productos</h1>
         <button onClick={handleClick}>Agregar Libro</button>
-      </div>
+      </HeaderPanel>
 
       <ul className='flex justify-around border mb-4'>
         <li>Producto</li>
@@ -58,7 +59,17 @@ function Tienda() {
 
       <div className='overflow-y-scroll'>
         {libros.map((item) => (
-          <Libro key={item._id} libro={item} />
+          <Libro key={item._id}>
+            <li>{item.nombre}</li>
+            <li>{item.estado}</li>
+            <li>{item.precio}</li>
+            <li>{item.formato}</li>
+
+            <li className='flex gap-1'>
+              <button>Eliminar</button>
+              <button>Actualizar</button>
+            </li>
+          </Libro>
         ))}
       </div>
 
