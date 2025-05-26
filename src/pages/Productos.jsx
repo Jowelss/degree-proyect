@@ -7,11 +7,12 @@ import { Formulario } from '../components/Formulario.jsx';
 import { Panel } from '../components/Panel.jsx';
 import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { ItemCard } from '../components/ItemCard.jsx';
+import { ModalDelete } from '../components/ModalDelete.jsx';
 // end
 
 // Servicios API
-import { Get } from '../services/Get';
-import { Add } from '../services/Add';
+import { Get } from '../services/Get.jsx';
+import { Add } from '../services/Add.jsx';
 // end
 
 function Tienda() {
@@ -36,6 +37,14 @@ function Tienda() {
     fetchLibros();
   }, []);
   // end
+
+  // Almacena el ID del producto y esta se la pasa como parametro a la funcion 'eliminarProdcuto'
+  const [selectId, setSelectId] = useState(null);
+
+  const [openButtonDelete, setIsOpenButtonDelete] = useState(false);
+  const stateButton = openButtonDelete ? 'block' : 'hidden';
+
+  const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
 
   // Eliminar producto
   const eliminarProducto = async (id) => {
@@ -82,7 +91,12 @@ function Tienda() {
             <span>{libro.formato}</span>
 
             <span className='flex gap-1'>
-              <button onClick={() => eliminarProducto(libro._id)}>
+              <button
+                onClick={() => {
+                  setSelectId(libro._id);
+                  handleClickDelete();
+                }}
+              >
                 Eliminar
               </button>
               <button>Actualizar</button>
@@ -90,6 +104,18 @@ function Tienda() {
           </ItemCard>
         ))}
       </ul>
+
+      <ModalDelete classState={stateButton} onClosed={handleClickDelete}>
+        <h2>¿Estas seguro que quieres eliminar este producto?</h2>
+        <button
+          onClick={() => {
+            eliminarProducto(selectId);
+            handleClickDelete();
+          }}
+        >
+          Confirmar
+        </button>
+      </ModalDelete>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
