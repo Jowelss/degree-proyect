@@ -5,9 +5,11 @@ import { Formulario } from '../components/Formulario.jsx';
 import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { Panel } from '../components/Panel.jsx';
 import { ItemCard } from '../components/ItemCard.jsx';
+import { ModalDelete } from '../components/ModalDelete.jsx';
 
 import { Add } from '../services/Add';
 import { Get } from '../services/Get.jsx';
+import { Delete } from '../services/Delete.jsx';
 
 function Eventos() {
   // abrir y cerrar modal
@@ -28,6 +30,13 @@ function Eventos() {
     fetchLibros();
   }, []);
   // end
+
+  const [selectId, setSelectId] = useState(null);
+
+  const [openButtonDelete, setIsOpenButtonDelete] = useState(false);
+  const stateButton = openButtonDelete ? 'block' : 'hidden';
+
+  const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
 
   // enviar datos del formulario
   const { register, handleSubmit, reset } = useForm();
@@ -56,12 +65,37 @@ function Eventos() {
             <span>{evento.fecha}</span>
 
             <span className='flex gap-1'>
-              <button>Eliminar</button>
+              <button
+                onClick={() => {
+                  setSelectId(evento._id);
+                  handleClickDelete();
+                }}
+              >
+                Eliminar
+              </button>
               <button>Actualizar</button>
             </span>
           </ItemCard>
         ))}
       </ul>
+
+      <ModalDelete classState={stateButton}>
+        <div className='border p-4 rounded-2xl'>
+          <h2>¿Estas seguro que quieres eliminar este Evento?</h2>
+
+          <div className='flex justify-center gap-2'>
+            <button
+              onClick={() => {
+                Delete(selectId, setEventos, eventos, 'eventos');
+                handleClickDelete();
+              }}
+            >
+              Confirmar
+            </button>
+            <button onClick={handleClickDelete}>Cancelar</button>
+          </div>
+        </div>
+      </ModalDelete>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
