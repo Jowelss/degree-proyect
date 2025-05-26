@@ -8,7 +8,7 @@ function Dashboard() {
   return (
     <>
       <Header>
-        <header className='flex justify-around w-full'>
+        <header className='flex justify-between w-full pr-8 pl-8'>
           <div>
             <img className='w-8' src={Logo} alt='Autentica' />
           </div>
