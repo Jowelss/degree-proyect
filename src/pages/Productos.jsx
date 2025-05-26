@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 
 // componentes
 import { Formulario } from '../components/Formulario.jsx';
@@ -13,6 +12,7 @@ import { ModalDelete } from '../components/ModalDelete.jsx';
 // Servicios API
 import { Get } from '../services/Get.jsx';
 import { Add } from '../services/Add.jsx';
+import { Delete } from '../services/Delete.jsx';
 // end
 
 function Tienda() {
@@ -46,17 +46,6 @@ function Tienda() {
 
   const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
 
-  // Eliminar producto
-  const eliminarProducto = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/libros/${id}`);
-      setLibros(libros.filter((item) => item._id !== id));
-    } catch (error) {
-      console.log(`No se puedo eliminar el producto ${error}`);
-    }
-  };
-  // end
-
   // Enviar datos del formulario
   const { register, handleSubmit, reset } = useForm();
 
@@ -82,7 +71,7 @@ function Tienda() {
         <li>Formato</li>
       </ul>
 
-      <ul className='overflow-y-scroll'>
+      <ul>
         {libros.map((libro) => (
           <ItemCard key={libro._id}>
             <span>{libro.nombre}</span>
@@ -105,16 +94,22 @@ function Tienda() {
         ))}
       </ul>
 
-      <ModalDelete classState={stateButton} onClosed={handleClickDelete}>
-        <h2>¿Estas seguro que quieres eliminar este producto?</h2>
-        <button
-          onClick={() => {
-            eliminarProducto(selectId);
-            handleClickDelete();
-          }}
-        >
-          Confirmar
-        </button>
+      <ModalDelete classState={stateButton}>
+        <div className='border p-4 rounded-2xl'>
+          <h2>¿Estas seguro que quieres eliminar este producto?</h2>
+
+          <div className='flex justify-center gap-2'>
+            <button
+              onClick={() => {
+                Delete(selectId, setLibros, libros, 'libros');
+                handleClickDelete();
+              }}
+            >
+              Confirmar
+            </button>
+            <button onClick={handleClickDelete}>Cancelar</button>
+          </div>
+        </div>
       </ModalDelete>
 
       <Formulario classState={state} onClosed={handleClick}>
