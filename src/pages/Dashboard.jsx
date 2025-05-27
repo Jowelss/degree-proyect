@@ -8,7 +8,7 @@ function Dashboard() {
   return (
     <>
       <Header>
-        <header className='flex justify-between w-full pr-8 pl-8'>
+        <header className='fixed top-0 h-10 flex justify-between w-full pr-8 pl-8'>
           <div>
             <img className='w-8' src={Logo} alt='Autentica' />
           </div>
@@ -22,7 +22,8 @@ function Dashboard() {
           </ul>
         </header>
       </Header>
-      <div className='flex justify-around w-full'>
+
+      <div className='mt-10 h-[calc(100vh-2.5rem)] flex justify-between items-center w-full pr-4 pl-4 '>
         <SideBar />
         <Outlet />
       </div>
