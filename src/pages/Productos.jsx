@@ -31,7 +31,11 @@ function Tienda() {
   const fetchLibros = async () => {
     const data = await Get('libros');
 
-    setLibros(data);
+    if (data === undefined) {
+      console.log('No funca pa');
+    } else {
+      setLibros(data);
+    }
   };
 
   useEffect(() => {
