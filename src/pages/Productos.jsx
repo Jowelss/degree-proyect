@@ -13,6 +13,7 @@ import { ModalDelete } from '../components/ModalDelete.jsx';
 import { Get } from '../services/Get.jsx';
 import { Add } from '../services/Add.jsx';
 import { Delete } from '../services/Delete.jsx';
+import { Update } from '../services/Update.jsx';
 // end
 
 function Tienda() {
@@ -20,7 +21,9 @@ function Tienda() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
-  const handleClick = () => setIsOpen(!isOpen);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
   // end
 
   // Agregar libro al panel
@@ -38,30 +41,57 @@ function Tienda() {
   }, []);
   // end
 
-  // Almacena el ID del producto y esta se la pasa como parametro a la funcion 'eliminarProdcuto'
+  // Almacena el ID del producto y esta se la pasa como parametro a la funcion 'eliminarProducto'
   const [selectId, setSelectId] = useState(null);
+  // end
 
+  // Abre y cierra el modalButton
   const [openButtonDelete, setIsOpenButtonDelete] = useState(false);
   const stateButton = openButtonDelete ? 'block' : 'hidden';
 
   const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
+  // end
 
   // Enviar datos del formulario
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
-    await Add(data, 'libros');
+    if (selectId) {
+      await Update(selectId, 'libros', data);
+    } else {
+      await Add(data, 'libros');
+    }
     reset();
 
     fetchLibros(); // Se ejecuta la funcion cuando envio los datos
   });
   // end
 
+  const handleEdit = (producto) => {
+    setSelectId(producto._id);
+    setValue('nombre', producto.nombre);
+    setValue('autor', producto.autor);
+    setValue('genero', producto.genero);
+    setValue('precio', producto.precio);
+    setValue('imagen', producto.imagen);
+    setValue('sinopsis', producto.sinopsis);
+    setValue('estado', producto.estado);
+    setValue('formato', producto.formato);
+  };
+
   return (
     <Panel>
       <HeaderPanel>
         <h1 className='text-4xl font-bold'>Productos</h1>
-        <button onClick={handleClick}>Agregar Libro</button>
+        <button
+          onClick={() => {
+            setSelectId(null);
+            reset();
+            handleClick();
+          }}
+        >
+          Agregar Libro
+        </button>
       </HeaderPanel>
 
       <ul className='flex justify-around border mb-4'>
@@ -88,7 +118,14 @@ function Tienda() {
               >
                 Eliminar
               </button>
-              <button>Actualizar</button>
+              <button
+                onClick={() => {
+                  handleClick();
+                  handleEdit(libro);
+                }}
+              >
+                Actualizar
+              </button>
             </span>
           </ItemCard>
         ))}
@@ -112,7 +149,12 @@ function Tienda() {
         </div>
       </ModalDelete>
 
-      <Formulario classState={state} onClosed={handleClick}>
+      <Formulario classState={state}>
+        <div className='flex justify-between mb-3'>
+          <span className='text-5xl'>Nuevo libro</span>
+          <button onClick={handleClick}>Cerrar</button>
+        </div>
+
         <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
