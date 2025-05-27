@@ -7,6 +7,7 @@ import { Panel } from '../components/Panel.jsx';
 import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { ItemCard } from '../components/ItemCard.jsx';
 import { ModalDelete } from '../components/ModalDelete.jsx';
+import { DataHeader } from '../components/DataHeader.jsx';
 // end
 
 // Servicios API
@@ -17,16 +18,14 @@ import { Update } from '../services/Update.jsx';
 // end
 
 function Tienda() {
-  // Metodo para abrir y cerrar el modal
+  // Abrir y cerrar el modal
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+  const handleClick = () => setIsOpen(!isOpen);
   // end
 
-  // Agregar libro al panel
+  // Agregar libro a la UI
   const [libros, setLibros] = useState([]);
 
   const fetchLibros = async () => {
@@ -63,7 +62,7 @@ function Tienda() {
     }
     reset();
 
-    fetchLibros(); // Se ejecuta la funcion cuando envio los datos
+    fetchLibros();
   });
   // end
 
@@ -94,12 +93,12 @@ function Tienda() {
         </button>
       </HeaderPanel>
 
-      <ul className='flex justify-around border mb-4'>
+      <DataHeader>
         <li>Producto</li>
         <li>Estado</li>
         <li>Precio</li>
         <li>Formato</li>
-      </ul>
+      </DataHeader>
 
       <ul>
         {libros.map((libro) => (
