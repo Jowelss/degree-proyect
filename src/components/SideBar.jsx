@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 function SideBar() {
   return (
-    <aside className='h-full'>
-      <ul className='flex gap-2 flex-col'>
+    <aside>
+      <ul className='h-[500px] flex gap-2 flex-col justify-around'>
         <Link to={'/dashboard/productos'}>Productos</Link>
         <Link to={'/dashboard/eventos'}>Eventos</Link>
         <Link to={'/dashboard/blog'}>Blog</Link>
