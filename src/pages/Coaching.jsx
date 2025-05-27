@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Formulario } from '../components/Formulario';
+import { Panel } from '../components/Panel';
+import { HeaderPanel } from '../components/HeaderPanel';
 
 function Reuniones() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +18,11 @@ function Reuniones() {
   });
 
   return (
-    <section className='w-[900px] border'>
-      <div className='flex justify-end items-center bg-gray-800 text-white p-4 mb-4'>
+    <Panel className='w-[900px] border'>
+      <HeaderPanel>
+        <h1 className='text-4xl font-bold'>Coaching</h1>
         <button onClick={handleClick}>Abrir Modal</button>
-      </div>
-
-      <h1 className='text-4xl font-bold text-gray-800'>Coaching</h1>
+      </HeaderPanel>
 
       <Formulario classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
@@ -58,7 +59,7 @@ function Reuniones() {
           </button>
         </form>
       </Formulario>
-    </section>
+    </Panel>
   );
 }
 
