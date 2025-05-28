@@ -5,7 +5,7 @@ label {
 }
 
 input {
-  @apply border;
+  @apply border w-full;
 }
 
 button {
