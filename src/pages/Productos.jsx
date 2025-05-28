@@ -22,7 +22,15 @@ function Tienda() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
-  const handleClick = () => setIsOpen(!isOpen);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+  // end
+
+  //Cambia el nombre del titulo del formModal segun la accion que quiera realizar ACTUALIZAR / AGREGAR
+  const [isnombre, setIsNombre] = useState('');
+
+  const changeName = (nombre) => setIsNombre(nombre);
   // end
 
   // Agregar libro a la UI
@@ -92,6 +100,7 @@ function Tienda() {
             setSelectId(null);
             reset();
             handleClick();
+            changeName('Nuevo libro');
           }}
         >
           Agregar Libro
@@ -132,6 +141,7 @@ function Tienda() {
                 onClick={() => {
                   handleClick();
                   handleEdit(libro);
+                  changeName('Actualizar libro');
                 }}
               >
                 Actualizar
@@ -161,7 +171,7 @@ function Tienda() {
 
       <Formulario classState={state}>
         <div className='flex justify-between items-center mb-3'>
-          <span className='text-4xl'>Nuevo libro</span>
+          <span className='text-4xl'>{isnombre}</span>
           <button onClick={handleClick} className='p-1 rounded-xl'>
             Cerrar
           </button>
