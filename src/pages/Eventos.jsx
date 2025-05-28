@@ -6,6 +6,7 @@ import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { Panel } from '../components/Panel.jsx';
 import { ItemCard } from '../components/ItemCard.jsx';
 import { ModalDelete } from '../components/ModalDelete.jsx';
+import { DataHeader } from '../components/DataHeader.jsx';
 
 import { Add } from '../services/Add';
 import { Get } from '../services/Get.jsx';
@@ -55,6 +56,13 @@ function Eventos() {
         <h1 className='text-4xl font-bold'>Eventos</h1>
         <button onClick={handleClick}>Agregar Evento</button>
       </HeaderPanel>
+
+      <DataHeader>
+        <li>Nombre</li>
+        <li>Hora</li>
+        <li>Fecha</li>
+        <li>Ubicación</li>
+      </DataHeader>
 
       <ul>
         {eventos.map((evento) => (
