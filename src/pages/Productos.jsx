@@ -205,17 +205,26 @@ function Tienda() {
 
           <div>
             <label>¿De que trata?</label>
-            <input type='text' {...register('sinopsis')} />
+            <textarea
+              type='text'
+              rows={2}
+              cols={100}
+              {...register('sinopsis')}
+            />
           </div>
 
-          <div>
+          <div className='flex gap-1'>
             <label>Estado</label>
-            <input type='text' {...register('estado')} />
+            <select type='text' {...register('estado')}>
+              <option value='Disponible'>Disponible</option>
+              <option value='Disponible'>Agotado</option>
+            </select>
           </div>
 
           <div>
             <label>¿Como es este ejemplar?</label>
-            <input type='text' {...register('formato')} />
+            <select name='' id='' type='text' {...register('formato')}></select>
+            <option value='Hoja ahuesada'>Hoja Ahuesada</option>
           </div>
 
           <button
