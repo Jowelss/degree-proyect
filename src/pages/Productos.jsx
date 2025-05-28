@@ -60,8 +60,10 @@ function Tienda() {
 
   const onSubmit = handleSubmit(async (data) => {
     if (selectId) {
+      //Si los datos tienen un id los actualiza
       await Update(selectId, 'libros', data);
     } else {
+      //Si no los tiene entonces es un producto nuevo
       await Add(data, 'libros');
     }
     reset();
@@ -70,23 +72,22 @@ function Tienda() {
   });
   // end
 
+  // Actualizar un producto
   const handleEdit = (producto) => {
     setSelectId(producto._id);
-    setValue('nombre', producto.nombre);
-    setValue('autor', producto.autor);
-    setValue('genero', producto.genero);
-    setValue('precio', producto.precio);
-    setValue('imagen', producto.imagen);
-    setValue('sinopsis', producto.sinopsis);
-    setValue('estado', producto.estado);
-    setValue('formato', producto.formato);
+
+    Object.entries(producto).forEach(([key, value]) => {
+      if (key !== '_id') setValue(key, value);
+    });
   };
+  // end
 
   return (
     <Panel>
       <HeaderPanel>
         <h1 className='text-4xl font-bold'>Productos</h1>
         <button
+          className='p-1.5 rounded-xl'
           onClick={() => {
             setSelectId(null);
             reset();
@@ -98,21 +99,27 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li>Producto</li>
+        <li>Imagen</li>
+        <li>Nombre</li>
         <li>Estado</li>
         <li>Precio</li>
         <li>Formato</li>
       </DataHeader>
 
-      <ul>
+      <ul className='flex flex-col gap-2 p-4'>
         {libros.map((libro) => (
           <ItemCard key={libro._id}>
+            <img
+              className='w-20px h-full'
+              src={libro.imagen}
+              alt='Imagen del producto'
+            />
             <span>{libro.nombre}</span>
             <span>{libro.estado}</span>
             <span>{libro.precio}</span>
             <span>{libro.formato}</span>
 
-            <span className='flex gap-1'>
+            <div className='flex gap-1'>
               <button
                 onClick={() => {
                   setSelectId(libro._id);
@@ -129,13 +136,13 @@ function Tienda() {
               >
                 Actualizar
               </button>
-            </span>
+            </div>
           </ItemCard>
         ))}
       </ul>
 
       <ModalDelete classState={stateButton}>
-        <div className='border p-4 rounded-2xl'>
+        <div className='border p-4 rounded-2xl bg-white'>
           <h2>¿Estas seguro que quieres eliminar este producto?</h2>
 
           <div className='flex justify-center gap-2'>
@@ -153,9 +160,11 @@ function Tienda() {
       </ModalDelete>
 
       <Formulario classState={state}>
-        <div className='flex justify-between mb-3'>
-          <span className='text-5xl'>Nuevo libro</span>
-          <button onClick={handleClick}>Cerrar</button>
+        <div className='flex justify-between items-center mb-3'>
+          <span className='text-4xl'>Nuevo libro</span>
+          <button onClick={handleClick} className='p-1 rounded-xl'>
+            Cerrar
+          </button>
         </div>
 
         <form onSubmit={onSubmit}>
