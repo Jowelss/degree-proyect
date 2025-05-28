@@ -1,6 +1,6 @@
 export function DataHeader({ children }) {
   return (
-    <ul className='flex justify-between border mb-4 p-[0_10px_0_10px]'>
+    <ul className='flex justify-between mb-4 shadow-[0px_4px_6px_0px_rgba(0,_0,_0,_0.1)]'>
       {children}
     </ul>
   );
