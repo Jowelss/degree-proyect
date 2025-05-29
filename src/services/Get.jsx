@@ -6,6 +6,6 @@ export async function Get(db) {
 
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(`${error}error pa`);
   }
 }
