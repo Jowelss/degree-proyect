@@ -108,28 +108,30 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li>Imagen</li>
-        <li>Nombre</li>
-        <li>Estado</li>
-        <li>Precio</li>
-        <li>Formato</li>
+        <li className='w-40'>Imagen</li>
+        <li className='w-40'>Nombre</li>
+        <li className='w-40'>Estado</li>
+        <li className='w-40'>Precio</li>
+        <li className='w-40'>Accion</li>
       </DataHeader>
 
       <ul className='flex flex-col gap-2 p-4'>
         {libros.map((libro) => (
           <ItemCard key={libro._id}>
-            <img
-              className='w-20px h-full'
-              src={libro.imagen}
-              alt='Imagen del producto'
-            />
-            <span>{libro.nombre}</span>
-            <span>{libro.estado}</span>
-            <span>{libro.precio}</span>
-            <span>{libro.formato}</span>
+            <div className='flex justify-center w-40 h-full'>
+              <img
+                className='object-contain h-full'
+                src={libro.imagen}
+                alt='Imagen del producto'
+              />
+            </div>
+            <span className='w-40'>{libro.nombre}</span>
+            <span className='w-40'>{libro.estado}</span>
+            <span className='w-40'>{libro.precio}</span>
 
-            <div className='flex gap-1'>
+            <div className='flex justify-center w-40 gap-1'>
               <button
+                className='w-18 rounded'
                 onClick={() => {
                   setSelectId(libro._id);
                   handleClickDelete();
@@ -138,6 +140,7 @@ function Tienda() {
                 Eliminar
               </button>
               <button
+                className='w-18 rounded'
                 onClick={() => {
                   handleClick();
                   handleEdit(libro);
@@ -194,11 +197,6 @@ function Tienda() {
           </div>
 
           <div>
-            <label>Inversión</label>
-            <input type='number' {...register('precio')} />
-          </div>
-
-          <div>
             <label>Imagen</label>
             <input type='text' {...register('imagen')} />
           </div>
@@ -206,6 +204,7 @@ function Tienda() {
           <div>
             <label>¿De que trata?</label>
             <textarea
+              className='border'
               type='text'
               rows={2}
               cols={100}
@@ -213,18 +212,32 @@ function Tienda() {
             />
           </div>
 
-          <div className='flex gap-1'>
-            <label>Estado</label>
-            <select type='text' {...register('estado')}>
-              <option value='Disponible'>Disponible</option>
-              <option value='Disponible'>Agotado</option>
-            </select>
-          </div>
+          <div className='flex justify-between'>
+            <div className='flex'>
+              <label>Inversión</label>
+              <input type='number' {...register('precio')} />
+            </div>
 
-          <div>
-            <label>¿Como es este ejemplar?</label>
-            <select name='' id='' type='text' {...register('formato')}></select>
-            <option value='Hoja ahuesada'>Hoja Ahuesada</option>
+            <div className='flex gap-1'>
+              <label>Estado</label>
+              <select className='border' type='text' {...register('estado')}>
+                <option value='Disponible'>Disponible</option>
+                <option value='Disponible'>Agotado</option>
+              </select>
+            </div>
+
+            <div className='flex gap-1.5 '>
+              <label>¿Como es este ejemplar?</label>
+              <select className='border' type='text' {...register('tapa')}>
+                <option value='Tapa dura'>Tapa dura</option>
+                <option value='Tapa flexible'>Tapa flexible</option>
+              </select>
+
+              <select className='border' type='text' {...register('hoja')}>
+                <option value='Hoja ahuesada'>Hoja ahuesada</option>
+                <option value='Hoja blanca'>Hoja blanca</option>
+              </select>
+            </div>
           </div>
 
           <button
