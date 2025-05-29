@@ -8,9 +8,9 @@ function Dashboard() {
   return (
     <>
       <Header>
-        <header className='fixed top-0 h-10 flex justify-between w-full pr-8 pl-8'>
-          <div>
-            <img className='w-8' src={Logo} alt='Autentica' />
+        <header className='fixed top-0 h-16 flex justify-between items-center w-full pr-8 pl-8'>
+          <div className='w-14'>
+            <img src={Logo} alt='Autentica' />
           </div>
           <ul className='flex gap-6'>
             <li>
@@ -23,7 +23,7 @@ function Dashboard() {
         </header>
       </Header>
 
-      <div className='mt-10 h-[calc(100vh-2.5rem)] flex justify-between items-center w-full pr-4 pl-4 '>
+      <div className='mt-16 h-[calc(100vh-4rem)] flex justify-between items-center w-full pr-4 pl-4 '>
         <SideBar />
         <Outlet />
       </div>
