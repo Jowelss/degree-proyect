@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Formulario } from '../components/Formulario';
+import { ModalForm } from '../components/ModalForm';
 import { Panel } from '../components/Panel';
 import { HeaderPanel } from '../components/HeaderPanel';
 
@@ -24,7 +24,7 @@ function Reuniones() {
         <button onClick={handleClick}>Abrir Modal</button>
       </HeaderPanel>
 
-      <Formulario classState={state} onClosed={handleClick}>
+      <ModalForm classState={state} onClosed={handleClick}>
         <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
@@ -58,7 +58,7 @@ function Reuniones() {
             Agregar a tienda
           </button>
         </form>
-      </Formulario>
+      </ModalForm>
     </Panel>
   );
 }
