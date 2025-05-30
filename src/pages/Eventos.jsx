@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Formulario } from '../components/Formulario.jsx';
+import { ModalForm } from '../components/ModalForm.jsx';
 import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { Panel } from '../components/Panel.jsx';
 import { ItemCard } from '../components/ItemCard.jsx';
@@ -11,6 +11,7 @@ import { DataHeader } from '../components/DataHeader.jsx';
 import { Add } from '../services/Add';
 import { Get } from '../services/Get.jsx';
 import { Delete } from '../services/Delete.jsx';
+import { Update } from '../services/Update.jsx';
 
 function Eventos() {
   // abrir y cerrar modal
@@ -20,41 +21,80 @@ function Eventos() {
   const handleClick = () => setIsOpen(!isOpen);
   // end
 
-  // Agregar libro al panel
+  //Cambio de nombre
+  const [isnombre, setIsNombre] = useState('');
+
+  const changeName = (nombre) => setIsNombre(nombre);
+  // end
+
+  // Agregar Evento a la UI
   const [eventos, setEventos] = useState([]);
 
   const fetchLibros = async () => {
     const data = await Get('eventos');
-    setEventos(data);
+
+    if (data === undefined) {
+      console.log('Error pa');
+    } else {
+      setEventos(data);
+    }
   };
+
   useEffect(() => {
     fetchLibros();
   }, []);
   // end
 
+  // Almacena el ID del evento y esta se la pasa como parametro a la funcion 'eliminarProducto'
   const [selectId, setSelectId] = useState(null);
+  // end
 
+  // Abre y cierra el modalButton
   const [openButtonDelete, setIsOpenButtonDelete] = useState(false);
   const stateButton = openButtonDelete ? 'block' : 'hidden';
 
   const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
+  // end
 
   // enviar datos del formulario
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
-    await Add(data, 'eventos');
+    if (selectId) {
+      await Update(selectId, 'eventos', data);
+    } else {
+      await Add(data, 'eventos');
+    }
     reset();
 
     fetchLibros();
   });
   // end
 
+  //Actualizar producto
+  const handleEdit = (evento) => {
+    setSelectId(evento._id);
+
+    Object.entries(evento).forEach(([key, value]) => {
+      if (key !== '_id') setValue(key, value);
+    });
+  };
+  // end
+
   return (
     <Panel>
       <HeaderPanel>
         <h1 className='text-4xl font-bold'>Eventos</h1>
-        <button onClick={handleClick}>Agregar Evento</button>
+        <button
+          onClick={() => {
+            setSelectId(null);
+            reset();
+            handleClick();
+            changeName('Nuevo Evento');
+          }}
+        >
+          Agregar Evento
+        </button>
       </HeaderPanel>
 
       <DataHeader>
@@ -68,9 +108,9 @@ function Eventos() {
         {eventos.map((evento) => (
           <ItemCard key={evento._id}>
             <span>{evento.nombre}</span>
-            <span>{evento.descripcion}</span>
             <span>{evento.hora}</span>
             <span>{evento.fecha}</span>
+            <span>{evento.ubicacion}</span>
 
             <span className='flex gap-1'>
               <button
@@ -81,7 +121,15 @@ function Eventos() {
               >
                 Eliminar
               </button>
-              <button>Actualizar</button>
+              <button
+                onClick={() => {
+                  handleClick();
+                  handleEdit(evento);
+                  changeName('Actualizar Evento');
+                }}
+              >
+                Actualizar
+              </button>
             </span>
           </ItemCard>
         ))}
@@ -105,7 +153,14 @@ function Eventos() {
         </div>
       </ModalDelete>
 
-      <Formulario classState={state} onClosed={handleClick}>
+      <ModalForm classState={state} onClosed={handleClick}>
+        <div className='flex justify-between items-center mb-3'>
+          <span className='text-4xl'>{isnombre}</span>
+          <button onClick={handleClick} className='p-1 rounded-xl'>
+            Cerrar
+          </button>
+        </div>
+
         <form onSubmit={onSubmit}>
           <div>
             <label>Nombre</label>
@@ -138,13 +193,14 @@ function Eventos() {
           </div>
 
           <button
+            onClick={handleClick}
             type='submit'
             className='block p-2 bg-blue-500 mt-2 cursor-pointer'
           >
             Agregar Evento
           </button>
         </form>
-      </Formulario>
+      </ModalForm>
     </Panel>
   );
 }
