@@ -11,3 +11,7 @@ input {
 button {
   @apply bg-blue-500 text-white cursor-pointer;
 }
+
+.sidebar_item {
+  @apply hover:bg-neutral-400 p-5 focus:outline-none focus:ring focus:bg-neutral-400;
+}
