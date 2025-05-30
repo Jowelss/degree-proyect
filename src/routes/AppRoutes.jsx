@@ -7,7 +7,6 @@ import Productos from '../pages/Productos.jsx';
 import Eventos from '../pages/Eventos.jsx';
 import Blog from '../pages/Blog.jsx';
 import Contacto from '../pages/Contacto.jsx';
-import DueloAnimal from '../pages/DueloAnimal.jsx';
 import Coaching from '../pages/Coaching.jsx';
 import Suscripciones from '../pages/Suscripciones.jsx';
 
@@ -22,7 +21,6 @@ function AppRoutes() {
         { path: 'blog', element: <Blog /> },
         { path: 'suscripciones', element: <Suscripciones /> },
         { path: 'coaching', element: <Coaching /> },
-        { path: 'duelo-animal', element: <DueloAnimal /> },
         { path: 'contacto', element: <Contacto /> },
       ],
     },
