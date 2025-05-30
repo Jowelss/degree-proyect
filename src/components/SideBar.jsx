@@ -3,14 +3,25 @@ import { Link } from 'react-router-dom';
 function SideBar() {
   return (
     <aside>
-      <ul className='h-[500px] flex gap-2 flex-col justify-around'>
-        <Link to={'/dashboard/productos'}>Productos</Link>
-        <Link to={'/dashboard/eventos'}>Eventos</Link>
-        <Link to={'/dashboard/blog'}>Blog</Link>
-        <Link to={'/dashboard/suscripciones'}>Suscripciones</Link>
-        <Link to={'/dashboard/coaching'}>Coaching</Link>
-        <Link to={'/dashboard/duelo-animal'}>Duelo Animal</Link>
-        <Link to={'/dashboard/contacto'}>Contacto</Link>
+      <ul className='h-[500px] w-[200px] flex gap-2 flex-col justify-around shadow rounded-2xl'>
+        <Link className='sidebar_item' to={'/dashboard/productos'}>
+          Productos
+        </Link>
+        <Link className='sidebar_item' to={'/dashboard/eventos'}>
+          Eventos
+        </Link>
+        <Link className='sidebar_item' to={'/dashboard/blog'}>
+          Blog
+        </Link>
+        <Link className='sidebar_item' to={'/dashboard/suscripciones'}>
+          Suscripciones
+        </Link>
+        <Link className='sidebar_item' to={'/dashboard/coaching'}>
+          Coaching
+        </Link>
+        <Link className='sidebar_item' to={'/dashboard/contacto'}>
+          Contacto
+        </Link>
       </ul>
     </aside>
   );
