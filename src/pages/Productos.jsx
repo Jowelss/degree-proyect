@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 // componentes
-import { Formulario } from '../components/Formulario.jsx';
+import { ModalForm } from '../components/ModalForm.jsx';
 import { Panel } from '../components/Panel.jsx';
 import { HeaderPanel } from '../components/HeaderPanel.jsx';
 import { ItemCard } from '../components/ItemCard.jsx';
 import { ModalDelete } from '../components/ModalDelete.jsx';
 import { DataHeader } from '../components/DataHeader.jsx';
+import { DropImagen } from '../components/DropImagen.jsx';
 // end
 
 // Servicios API
@@ -22,9 +23,7 @@ function Tienda() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+  const handleClick = () => setIsOpen(!isOpen);
   // end
 
   //Cambia el nombre del titulo del formModal segun la accion que quiera realizar ACTUALIZAR / AGREGAR
@@ -108,10 +107,10 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li className='w-40'>Imagen</li>
+        <li className='w-40 hover:bg-fuchsia-300'>Imagen</li>
         <li className='w-40'>Nombre</li>
         <li className='w-40'>Estado</li>
-        <li className='w-40'>Precio</li>
+        <li className='w-40'>Precio (bs)</li>
         <li className='w-40'>Accion</li>
       </DataHeader>
 
@@ -154,6 +153,8 @@ function Tienda() {
         ))}
       </ul>
 
+      <DropImagen />
+
       <ModalDelete classState={stateButton}>
         <div className='border p-4 rounded-2xl bg-white'>
           <h2>¿Estas seguro que quieres eliminar este producto?</h2>
@@ -172,7 +173,7 @@ function Tienda() {
         </div>
       </ModalDelete>
 
-      <Formulario classState={state}>
+      <ModalForm classState={state}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>{isnombre}</span>
           <button onClick={handleClick} className='p-1 rounded-xl'>
@@ -222,7 +223,7 @@ function Tienda() {
               <label>Estado</label>
               <select className='border' type='text' {...register('estado')}>
                 <option value='Disponible'>Disponible</option>
-                <option value='Disponible'>Agotado</option>
+                <option value='Agotado'>Agotado</option>
               </select>
             </div>
 
@@ -248,7 +249,7 @@ function Tienda() {
             Agregar a tienda
           </button>
         </form>
-      </Formulario>
+      </ModalForm>
     </Panel>
   );
 }
