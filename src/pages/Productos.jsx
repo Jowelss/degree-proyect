@@ -107,7 +107,7 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li className='w-40 hover:bg-fuchsia-300'>Imagen</li>
+        <li className='w-40 '>Imagen</li>
         <li className='w-40'>Nombre</li>
         <li className='w-40'>Estado</li>
         <li className='w-40'>Precio (bs)</li>
@@ -153,8 +153,6 @@ function Tienda() {
         ))}
       </ul>
 
-      <DropImagen />
-
       <ModalDelete classState={stateButton}>
         <div className='border p-4 rounded-2xl bg-white'>
           <h2>¿Estas seguro que quieres eliminar este producto?</h2>
@@ -192,53 +190,85 @@ function Tienda() {
             <input type='text' {...register('autor')} />
           </div>
 
-          <div>
-            <label>Género</label>
-            <input type='text' {...register('genero')} />
-          </div>
-
-          <div>
-            <label>Imagen</label>
-            <input type='text' {...register('imagen')} />
-          </div>
-
-          <div>
-            <label>¿De que trata?</label>
-            <textarea
-              className='border'
-              type='text'
-              rows={2}
-              cols={100}
-              {...register('sinopsis')}
-            />
-          </div>
-
-          <div className='flex justify-between'>
+          <div className='flex justify-between flex-wrap items-center'>
             <div className='flex'>
               <label>Inversión</label>
               <input type='number' {...register('precio')} />
             </div>
 
+            <div className='flex items-center'>
+              <label>Género</label>
+
+              <select className='border' type='text' {...register('genero')}>
+                <option value=''>Seleccionar</option>
+
+                <option value='Crecimiento personal'>
+                  Crecimiento personal
+                </option>
+                <option value='Crecimiento profesional'>
+                  Crecimiento profesional
+                </option>
+                <option value='Espiritualidad y bienestar'>
+                  Espiritualidad y bienestar
+                </option>
+                <option value='Salud y bienestar'>Salud y bienestar</option>
+                <option value='Amor y relaciones'>Amor y relaciones</option>
+                <option value='Educación y aprendizaje'>
+                  Educación y aprendizaje
+                </option>
+                <option value='Novelas'>Novelas</option>
+                <option value='Ficcion'>Ficción</option>
+                <option value='Infantiles'>Infantiles</option>
+                <option value='Adolescentes / Jovenes'>
+                  Adolescentes / Jóvenes
+                </option>
+                <option value='Familia y crianza'>Familia y crianza</option>
+                <option>Otro</option>
+              </select>
+            </div>
+
             <div className='flex gap-1'>
               <label>Estado</label>
               <select className='border' type='text' {...register('estado')}>
+                <option value=''>Seleccionar</option>
+
                 <option value='Disponible'>Disponible</option>
                 <option value='Agotado'>Agotado</option>
               </select>
             </div>
 
-            <div className='flex gap-1.5 '>
+            <div className='flex items-center gap-1.5 '>
               <label>¿Como es este ejemplar?</label>
               <select className='border' type='text' {...register('tapa')}>
+                <option value=''>Seleccionar</option>
+
                 <option value='Tapa dura'>Tapa dura</option>
                 <option value='Tapa flexible'>Tapa flexible</option>
               </select>
 
               <select className='border' type='text' {...register('hoja')}>
+                <option value=''>Seleccionar</option>
+
                 <option value='Hoja ahuesada'>Hoja ahuesada</option>
                 <option value='Hoja blanca'>Hoja blanca</option>
               </select>
             </div>
+          </div>
+
+          <div>
+            <label>¿De que trata?</label>
+            <textarea
+              className='border w-full'
+              type='text'
+              rows={2}
+              {...register('sinopsis')}
+            />
+          </div>
+
+          <div>
+            <label>Imagen</label>
+            <DropImagen setValue={setValue} />
+            <input {...register('imagen')} hidden />
           </div>
 
           <button
