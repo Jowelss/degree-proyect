@@ -1,14 +1,11 @@
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
-// import { useState } from 'react';
 
 export function DropImagen({ setValue }) {
-  //   const [isImage, setIsImage] = useState('');
-
   const onDrop = async (acceptedFiles) => {
     const formData = new FormData();
     formData.append('file', acceptedFiles[0]);
-    formData.append('upload_preset', 'jowelss');
+    formData.append('upload_preset', 'autentica_loveSelf');
 
     try {
       const res = await axios.post(
@@ -16,9 +13,7 @@ export function DropImagen({ setValue }) {
         formData
       );
 
-      //   setIsImage(res.data.secure_url);
-
-      await setValue('imagen', res.data.secure_url.url);
+      await setValue('imagen', res.data.secure_url);
     } catch (error) {
       console.log(error);
     }
