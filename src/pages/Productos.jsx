@@ -73,6 +73,7 @@ function Tienda() {
       //Si no los tiene entonces es un producto nuevo
       await Add(data, 'libros');
     }
+
     reset();
 
     fetchLibros();
@@ -268,7 +269,7 @@ function Tienda() {
           <div>
             <label>Imagen</label>
             <DropImagen setValue={setValue} />
-            <input {...register('imagen')} hidden />
+            <input {...register('imagen')} />
           </div>
 
           <button
