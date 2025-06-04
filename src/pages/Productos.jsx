@@ -269,7 +269,7 @@ function Tienda() {
           <div>
             <label>Imagen</label>
             <DropImagen setValue={setValue} />
-            <input {...register('imagen')} />
+            <input {...register('imagen')} hidden />
           </div>
 
           <button
