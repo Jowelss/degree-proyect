@@ -63,7 +63,9 @@ function Tienda() {
   // end
 
   // Enviar datos del formulario
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const { register, handleSubmit, reset, setValue, watch } = useForm();
+
+  const imagenURL = watch('imagen'); // URL de la imagen creada en cloudinary
 
   const onSubmit = handleSubmit(async (data) => {
     if (selectId) {
@@ -268,12 +270,22 @@ function Tienda() {
 
           <div>
             <label>Imagen</label>
-            <DropImagen setValue={setValue} />
             <input {...register('imagen')} hidden />
+            <DropImagen setValue={setValue}>
+              {imagenURL && (
+                <img
+                  src={imagenURL}
+                  alt='Imagen'
+                  className='object-contain h-full'
+                />
+              )}
+            </DropImagen>
           </div>
 
           <button
-            onClick={handleClick}
+            onClick={() => {
+              handleClick();
+            }}
             type='submit'
             className='block p-2 bg-blue-500 mt-2 cursor-pointer'
           >
