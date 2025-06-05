@@ -1,15 +1,15 @@
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-export function DropImagen({ setValue }) {
-  const [loading, setLoading] = useState(false);
-  const [isImagen, setImagen] = useState(undefined);
-  const [isAviso, setAviso] = useState('');
+export function DropImagen({ setValue, children }) {
+  const [isEstado, setEstado] = useState('Agrega un imagen');
+
+  const show = children ? 'hidden' : 'block'; //Si el children exite oculta el texto de 'Agregar una imagen'
 
   const onDrop = async (acceptedFiles) => {
-    setLoading(true);
-    setAviso('hidden');
+    setEstado('Cargando');
 
     const formData = new FormData();
     formData.append('file', acceptedFiles[0]);
@@ -22,22 +22,23 @@ export function DropImagen({ setValue }) {
       );
 
       setValue('imagen', res.data.secure_url);
-      setImagen(res.data.secure_url);
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+  useEffect(() => {
+    //Si el formulario se cierra el nombre del estado cambia
+    setEstado('Agrega una imagen');
+  }, [children]);
+
   return (
     <div {...getRootProps()} className='drop-imagen'>
       <input {...getInputProps()} />
-      <span className={isAviso}>Dale click o arrastra una imagen</span>
-      <img className='object-contain h-full' src={isImagen} />
-      {loading && <span>Cargando imagen</span>}
+      <span className={show}>{isEstado}</span>
+      {children}
     </div>
   );
 }
