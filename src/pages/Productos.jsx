@@ -110,7 +110,7 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li className='w-40 '>Imagen</li>
+        <li className='w-40'>Imagen</li>
         <li className='w-40'>Nombre</li>
         <li className='w-40'>Estado</li>
         <li className='w-40'>Precio (bs)</li>
@@ -289,7 +289,7 @@ function Tienda() {
             type='submit'
             className='block p-2 bg-blue-500 mt-2 cursor-pointer'
           >
-            Agregar a tienda
+            Agregar
           </button>
         </form>
       </ModalForm>
