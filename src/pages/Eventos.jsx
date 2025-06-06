@@ -7,6 +7,8 @@ import { Panel } from '../components/Panel.jsx';
 import { ItemCard } from '../components/ItemCard.jsx';
 import { ModalDelete } from '../components/ModalDelete.jsx';
 import { DataHeader } from '../components/DataHeader.jsx';
+import { Fecha } from '../components/Fecha.jsx';
+import { DropImagen } from '../components/DropImagen.jsx';
 
 import { Add } from '../services/Add';
 import { Get } from '../services/Get.jsx';
@@ -57,7 +59,9 @@ function Eventos() {
   // end
 
   // enviar datos del formulario
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const { register, handleSubmit, reset, setValue, watch } = useForm();
+
+  const imagenURL = watch('imagen');
 
   const onSubmit = handleSubmit(async (data) => {
     if (selectId) {
@@ -98,22 +102,34 @@ function Eventos() {
       </HeaderPanel>
 
       <DataHeader>
-        <li>Nombre</li>
-        <li>Hora</li>
-        <li>Fecha</li>
-        <li>Ubicación</li>
+        <li className='w-40'>Imagen</li>
+        <li className='w-40'>Nombre</li>
+        <li className='w-40'>Hora</li>
+        <li className='w-40'>Fecha</li>
+        <li className='w-40'>Ubicación</li>
+        <li className='w-40'>Accion</li>
       </DataHeader>
 
-      <ul>
+      <ul className='flex flex-col gap-2 p-4'>
         {eventos.map((evento) => (
           <ItemCard key={evento._id}>
-            <span>{evento.nombre}</span>
-            <span>{evento.hora}</span>
-            <span>{evento.fecha}</span>
-            <span>{evento.ubicacion}</span>
+            <div className='flex justify-center w-40 h-full'>
+              <img
+                className='object-contain h-full'
+                src={evento.imagen}
+                alt='Imagen del evento'
+              />
+            </div>
+            <span className='w-40'>{evento.nombre}</span>
+            <span className='w-40'>{evento.hora}</span>
+            <span className='w-40'>
+              {new Date(evento.fecha).toLocaleDateString()}
+            </span>
+            <span className='w-40'>{evento.ubicacion}</span>
 
-            <span className='flex gap-1'>
+            <div className='flex justify-center w-40 gap-1'>
               <button
+                className='w-18 rounded'
                 onClick={() => {
                   setSelectId(evento._id);
                   handleClickDelete();
@@ -122,6 +138,7 @@ function Eventos() {
                 Eliminar
               </button>
               <button
+                className='w-18 rounded'
                 onClick={() => {
                   handleClick();
                   handleEdit(evento);
@@ -130,7 +147,7 @@ function Eventos() {
               >
                 Actualizar
               </button>
-            </span>
+            </div>
           </ItemCard>
         ))}
       </ul>
@@ -168,11 +185,6 @@ function Eventos() {
           </div>
 
           <div>
-            <label>Imagen</label>
-            <input type='text' {...register('imagen')} />
-          </div>
-
-          <div>
             <label>Descripción</label>
             <input type='text' {...register('descripcion')} />
           </div>
@@ -184,12 +196,27 @@ function Eventos() {
 
           <div>
             <label>Fecha</label>
-            <input type='date' {...register('fecha')} />
+            <Fecha setValue={setValue} />
+            <input type='text' {...register('fecha')} hidden />
           </div>
 
           <div>
             <label>Hora</label>
-            <input type='time' {...register('hora')} />
+            <input aria-label='time' type='time' {...register('hora')} />
+          </div>
+
+          <div>
+            <label>Imagen</label>
+            <input {...register('imagen')} hidden />
+            <DropImagen setValue={setValue}>
+              {imagenURL && (
+                <img
+                  src={imagenURL}
+                  alt='sexo'
+                  className='object-contain h-full'
+                />
+              )}
+            </DropImagen>
           </div>
 
           <button
