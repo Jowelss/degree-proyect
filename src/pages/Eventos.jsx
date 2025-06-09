@@ -62,6 +62,7 @@ function Eventos() {
   const { register, handleSubmit, reset, setValue, watch } = useForm();
 
   const imagenURL = watch('imagen');
+  const fechaEvent = watch('fecha');
 
   const onSubmit = handleSubmit(async (data) => {
     if (selectId) {
@@ -196,7 +197,7 @@ function Eventos() {
 
           <div>
             <label>Fecha</label>
-            <Fecha setValue={setValue} />
+            <Fecha setValue={setValue} initialDate={fechaEvent} />
             <input type='text' {...register('fecha')} hidden />
           </div>
 
@@ -212,7 +213,7 @@ function Eventos() {
               {imagenURL && (
                 <img
                   src={imagenURL}
-                  alt='sexo'
+                  alt='Imagen del evento'
                   className='object-contain h-full'
                 />
               )}
