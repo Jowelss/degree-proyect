@@ -17,5 +17,5 @@ button {
 }
 
 .drop-imagen {
-  @apply w-full h-40 flex items-center justify-center border hover:bg-amber-200;
+  @apply w-full h-40 flex items-center justify-center border;
 }
