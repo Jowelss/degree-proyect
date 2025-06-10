@@ -97,15 +97,14 @@ function Tienda() {
       <HeaderPanel>
         <h1 className='text-4xl font-bold'>Productos</h1>
         <button
-          className='p-1.5 rounded-xl'
           onClick={() => {
             setSelectId(null);
             reset();
             handleClick();
-            changeName('Nuevo libro');
+            changeName('Agregar');
           }}
         >
-          Agregar Libro
+          Nuevo producto
         </button>
       </HeaderPanel>
 
@@ -133,7 +132,6 @@ function Tienda() {
 
             <div className='flex justify-center w-40 gap-1'>
               <button
-                className='w-18 rounded'
                 onClick={() => {
                   setSelectId(libro._id);
                   handleClickDelete();
@@ -142,11 +140,10 @@ function Tienda() {
                 Eliminar
               </button>
               <button
-                className='w-18 rounded'
                 onClick={() => {
                   handleClick();
                   handleEdit(libro);
-                  changeName('Actualizar libro');
+                  changeName('Actualizar');
                 }}
               >
                 Actualizar
@@ -176,10 +173,8 @@ function Tienda() {
 
       <ModalForm classState={state}>
         <div className='flex justify-between items-center mb-3'>
-          <span className='text-4xl'>{isnombre}</span>
-          <button onClick={handleClick} className='p-1 rounded-xl'>
-            Cerrar
-          </button>
+          <span className='text-4xl'>Producto</span>
+          <button onClick={handleClick}>Cerrar</button>
         </div>
 
         <form onSubmit={onSubmit}>
@@ -287,9 +282,8 @@ function Tienda() {
               handleClick();
             }}
             type='submit'
-            className='block p-2 bg-blue-500 mt-2 cursor-pointer'
           >
-            Agregar
+            {isnombre}
           </button>
         </form>
       </ModalForm>
