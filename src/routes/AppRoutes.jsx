@@ -12,6 +12,7 @@ import Suscripciones from '../pages/Suscripciones.jsx';
 
 function AppRoutes() {
   return useRoutes([
+    { path: '/', element: <Inicio /> },
     {
       path: '/dashboard/*',
       element: <Dashboard />,
