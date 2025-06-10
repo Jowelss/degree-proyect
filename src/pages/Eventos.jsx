@@ -130,7 +130,6 @@ function Eventos() {
 
             <div className='flex justify-center w-40 gap-1'>
               <button
-                className='w-18 rounded'
                 onClick={() => {
                   setSelectId(evento._id);
                   handleClickDelete();
@@ -139,7 +138,6 @@ function Eventos() {
                 Eliminar
               </button>
               <button
-                className='w-18 rounded'
                 onClick={() => {
                   handleClick();
                   handleEdit(evento);
@@ -174,9 +172,7 @@ function Eventos() {
       <ModalForm classState={state} onClosed={handleClick}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>{isnombre}</span>
-          <button onClick={handleClick} className='p-1 rounded-xl'>
-            Cerrar
-          </button>
+          <button onClick={handleClick}>Cerrar</button>
         </div>
 
         <form onSubmit={onSubmit}>
@@ -220,11 +216,7 @@ function Eventos() {
             </DropImagen>
           </div>
 
-          <button
-            onClick={handleClick}
-            type='submit'
-            className='block p-2 bg-blue-500 mt-2 cursor-pointer'
-          >
+          <button onClick={handleClick} type='submit' className='mt-2'>
             Agregar Evento
           </button>
         </form>
