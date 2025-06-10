@@ -4,7 +4,12 @@ function LogoutButton() {
   const { logout } = useAuth0();
 
   return (
-    <button className='p-1 rounded' onClick={() => logout()}>
+    <button
+      className='p-1 rounded'
+      onClick={() =>
+        logout({ logoutParams: { returnTo: window.location.origin } })
+      }
+    >
       Cerrar Sesion
     </button>
   );
