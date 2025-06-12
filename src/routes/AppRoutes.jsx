@@ -1,14 +1,22 @@
 import { Routes, Route, useRoutes } from 'react-router-dom';
 
-import Dashboard from '../pages/Dashboard.jsx';
-import Inicio from '../pages/Inicio.jsx';
+import Dashboard from '../pages/private/Dashboard.jsx';
+import Inicio from '../pages/private/Inicio.jsx';
 
-import Productos from '../pages/Productos.jsx';
-import Eventos from '../pages/Eventos.jsx';
-import Blog from '../pages/Blog.jsx';
-import Contacto from '../pages/Contacto.jsx';
-import Coaching from '../pages/Coaching.jsx';
-import Suscripciones from '../pages/Suscripciones.jsx';
+import Productos from '../pages/public/Productos.jsx';
+import Eventos from '../pages/public/Eventos.jsx';
+import Blog from '../pages/public/Blog.jsx';
+import Contacto from '../pages/public/Contacto.jsx';
+import Coaching from '../pages/public/Coaching.jsx';
+import Suscripciones from '../pages/public/Suscripciones.jsx';
+
+// Navegacion del blog
+import Crecimiento from '../pages/public/blog-items/Crecimiento.jsx';
+import Adolescentes from '../pages/public/blog-items/Adolescentes.jsx';
+import MujerAutentica from '../pages/public/blog-items/MujerAutentica.jsx';
+import PuroAmor from '../pages/public/blog-items/PuroAmor.jsx';
+import Reflexiones from '../pages/public/blog-items/Reflexiones.jsx';
+// end
 
 function AppRoutes() {
   return useRoutes([
@@ -20,7 +28,17 @@ function AppRoutes() {
       children: [
         { path: 'productos', element: <Productos /> },
         { path: 'eventos', element: <Eventos /> },
-        { path: 'blog', element: <Blog /> },
+        {
+          path: 'blog',
+          element: <Blog />,
+          children: [
+            { path: 'crecimiento', element: <Crecimiento /> },
+            { path: 'adolescentes', element: <Adolescentes /> },
+            { path: 'mujer_autentica', element: <MujerAutentica /> },
+            { path: 'puro_amor', element: <PuroAmor /> },
+            { path: 'reflexiones', element: <Reflexiones /> },
+          ],
+        },
         { path: 'suscripciones', element: <Suscripciones /> },
         { path: 'coaching', element: <Coaching /> },
         { path: 'contacto', element: <Contacto /> },
