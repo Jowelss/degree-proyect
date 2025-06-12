@@ -1,5 +1,4 @@
 import { Routes, Route, useRoutes } from 'react-router-dom';
-import PrivateRoutes from './PrivateRoutes.jsx';
 
 import Dashboard from '../pages/Dashboard.jsx';
 import Inicio from '../pages/Inicio.jsx';
@@ -16,11 +15,8 @@ function AppRoutes() {
     { path: '/', element: <Inicio /> },
     {
       path: '/dashboard/*',
-      element: (
-        <PrivateRoutes>
-          <Dashboard />
-        </PrivateRoutes>
-      ),
+      element: <Dashboard />,
+
       children: [
         { path: 'productos', element: <Productos /> },
         { path: 'eventos', element: <Eventos /> },
