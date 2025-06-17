@@ -169,7 +169,7 @@ function Eventos() {
         </div>
       </ModalDelete>
 
-      <ModalForm classState={state} onClosed={handleClick}>
+      <ModalForm classState={state}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>{isnombre}</span>
           <button onClick={handleClick}>Cerrar</button>
