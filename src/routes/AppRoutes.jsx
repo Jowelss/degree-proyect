@@ -28,17 +28,7 @@ function AppRoutes() {
       children: [
         { path: 'productos', element: <Productos /> },
         { path: 'eventos', element: <Eventos /> },
-        {
-          path: 'blog',
-          element: <Blog />,
-          children: [
-            { path: 'crecimiento', element: <Crecimiento /> },
-            { path: 'adolescentes', element: <Adolescentes /> },
-            { path: 'mujer_autentica', element: <MujerAutentica /> },
-            { path: 'puro_amor', element: <PuroAmor /> },
-            { path: 'reflexiones', element: <Reflexiones /> },
-          ],
-        },
+        { path: 'blog', element: <Blog /> },
         { path: 'suscripciones', element: <Suscripciones /> },
         { path: 'coaching', element: <Coaching /> },
         { path: 'contacto', element: <Contacto /> },
