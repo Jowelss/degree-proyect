@@ -17,7 +17,7 @@ function SideBar() {
           Suscripciones
         </Link>
         <Link className='sidebar_item' to={'/dashboard/coaching'}>
-          Coaching
+          Sesiones
         </Link>
         <Link className='sidebar_item' to={'/dashboard/contacto'}>
           Contacto
