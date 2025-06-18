@@ -16,7 +16,7 @@ function SideBar() {
         <Link className='sidebar_item' to={'/dashboard/suscripciones'}>
           Suscripciones
         </Link>
-        <Link className='sidebar_item' to={'/dashboard/coaching'}>
+        <Link className='sidebar_item' to={'/dashboard/sesiones'}>
           Sesiones
         </Link>
       </ul>
