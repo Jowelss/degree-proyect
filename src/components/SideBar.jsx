@@ -19,9 +19,6 @@ function SideBar() {
         <Link className='sidebar_item' to={'/dashboard/coaching'}>
           Sesiones
         </Link>
-        <Link className='sidebar_item' to={'/dashboard/contacto'}>
-          Contacto
-        </Link>
       </ul>
     </aside>
   );
