@@ -6,7 +6,7 @@ import Inicio from '../pages/private/Inicio.jsx';
 import Productos from '../pages/public/Productos.jsx';
 import Eventos from '../pages/public/Eventos.jsx';
 import Blog from '../pages/public/Blog.jsx';
-import Coaching from '../pages/public/Coaching.jsx';
+import Sesiones from '../pages/public/Sesiones.jsx';
 import Suscripciones from '../pages/public/Suscripciones.jsx';
 
 function AppRoutes() {
@@ -21,7 +21,7 @@ function AppRoutes() {
         { path: 'eventos', element: <Eventos /> },
         { path: 'blog', element: <Blog /> },
         { path: 'suscripciones', element: <Suscripciones /> },
-        { path: 'coaching', element: <Coaching /> },
+        { path: 'sesiones', element: <Sesiones /> },
       ],
     },
   ]);
