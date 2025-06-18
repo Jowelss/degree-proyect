@@ -182,7 +182,7 @@ function Eventos() {
           </div>
 
           <div>
-            <label>Descripción</label>
+            <label>¿Que viviremos?</label>
             <input type='text' {...register('descripcion')} />
           </div>
 
@@ -200,6 +200,11 @@ function Eventos() {
           <div>
             <label>Hora</label>
             <input aria-label='time' type='time' {...register('hora')} />
+          </div>
+
+          <div>
+            <label>Cupos</label>
+            <input type='number' {...register('cupos')} />
           </div>
 
           <div>
