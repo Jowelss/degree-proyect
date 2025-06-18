@@ -27,7 +27,7 @@ function Tienda() {
   // end
 
   //Cambia el nombre del titulo del formModal segun la accion que quiera realizar ACTUALIZAR / AGREGAR
-  const [isnombre, setIsNombre] = useState('');
+  const [isNombre, setIsNombre] = useState('');
 
   const changeName = (nombre) => setIsNombre(nombre);
   // end
@@ -277,13 +277,8 @@ function Tienda() {
             </DropImagen>
           </div>
 
-          <button
-            onClick={() => {
-              handleClick();
-            }}
-            type='submit'
-          >
-            {isnombre}
+          <button onClick={handleClick} type='submit'>
+            {isNombre}
           </button>
         </form>
       </ModalForm>
