@@ -3,11 +3,16 @@ import { Routes, Route, useRoutes } from 'react-router-dom';
 import Dashboard from '../pages/private/Dashboard.jsx';
 import Inicio from '../pages/private/Inicio.jsx';
 
+// Dashboard item
 import Productos from '../pages/public/Productos.jsx';
 import Eventos from '../pages/public/Eventos.jsx';
 import Blog from '../pages/public/Blog.jsx';
 import Sesiones from '../pages/public/Sesiones.jsx';
 import Suscripciones from '../pages/public/Suscripciones.jsx';
+// end
+
+import Landing from '../pages/Landing.jsx';
+import TiendaCliente from '../pages/TiendaCliente.jsx';
 
 function AppRoutes() {
   return useRoutes([
@@ -23,6 +28,11 @@ function AppRoutes() {
         { path: 'suscripciones', element: <Suscripciones /> },
         { path: 'sesiones', element: <Sesiones /> },
       ],
+    },
+    {
+      path: '/landing/*',
+      element: <Landing />,
+      children: [{ path: 'tiendaCliente', element: <TiendaCliente /> }],
     },
   ]);
 }
