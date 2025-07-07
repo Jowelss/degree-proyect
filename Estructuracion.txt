@@ -1,0 +1,13 @@
+
+BLOG
+ Secciones:
+  1. Reflexiones – artículos personales, filosóficos o emocionales.
+  2. Club de lectura – contenidos relacionados a los libros del mes, guías, reseñas.
+  3. Puro Amor – publicaciones de duelo animal, testimonios, herramientas.
+  4. Eventos – crónicas de eventos, resúmenes.
+  5. Recomendaciones – libros, películas, podcasts o recursos afines.
+  6. Coaching – temas de coaching ontológico y neurociencias.
+  7. Vida auténtica – tips de autocuidado, rutinas, hábitos, experiencias.
+  8. Testimonios – historias de personas que participaron en sesiones o clubes.
+  9. Noticias – actualizaciones, cambios en servicios o lanzamientos.
+ 10. Detrás de escena – bitácora personal, cómo se crean los espacios.
