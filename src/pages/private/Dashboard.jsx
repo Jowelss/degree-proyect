@@ -23,7 +23,7 @@ function Dashboard() {
         </header>
       </Header>
 
-      <div className='mt-16 h-[calc(100vh-4rem)] flex justify-between items-center w-full pr-4 pl-4 '>
+      <div className='mt-16 h-[calc(100vh-4rem)] flex justify-between items-center w-full pr-4 pl-4'>
         <SideBar />
         <Outlet />
       </div>
