@@ -167,20 +167,22 @@ function Blog() {
             <label>Tipo de publicacion</label>
 
             <select className='border' type='text' {...register('tipo')}>
-              <option value='Ninguno'>Ninguno</option>
-              <option value='Crecimiento personal y emocional'>
-                Crecimiento personal y emocional
-              </option>
-              <option value='Reflexion y frases'>Reflexiones y frases</option>
-              <option value='Mujer autentica y emprendedora'>
-                Mujer autentica y emprendedora
-              </option>
-              <option value='Duelo animal, vinculo ser humano y animal'>
-                Duelo animal, vinculo ser humano y animal
-              </option>
-              <option value='Espacio para adolescentes'>
-                Espacio para adolescentes
-              </option>
+              <option value='eventos'>Eventos</option>
+              <option value='club de lectura'>Club de lectura</option>
+              <option value='puro amor'>Puro amor</option>
+              <option value='coaching'>Coaching</option>
+              <option value='vida autentica'>Vida autentica</option>
+              <option value='testimonios'>Testimonios</option>
+              <option value='noticias'>Noticias</option>
+              <option value='detras de escena'>Detras de escena</option>
+            </select>
+          </div>
+
+          <div className='flex gap-1.5'>
+            <label>Comentarios</label>
+            <select className='border'>
+              <option value='activado'>Activado</option>
+              <option value='desactivado'>Desactivado</option>
             </select>
           </div>
 
