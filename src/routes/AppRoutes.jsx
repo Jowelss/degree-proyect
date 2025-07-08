@@ -13,6 +13,8 @@ import Suscripciones from '../pages/public/Suscripciones.jsx';
 
 import Landing from '../pages/Landing.jsx';
 import TiendaCliente from '../pages/TiendaCliente.jsx';
+import BlogClient from '../pages/BlogClient.jsx';
+import EventosClient from '../pages/EventosClient.jsx';
 
 function AppRoutes() {
   return useRoutes([
@@ -32,7 +34,11 @@ function AppRoutes() {
     {
       path: '/landing/*',
       element: <Landing />,
-      children: [{ path: 'tiendaCliente', element: <TiendaCliente /> }],
+      children: [
+        { path: 'tiendaCliente', element: <TiendaCliente /> },
+        { path: 'blogclient', element: <BlogClient /> },
+        { path: 'eventosclient', element: <EventosClient /> },
+      ],
     },
   ]);
 }
