@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import { ModalForm } from '../components/ModalForm';
+// component
+import { Modal } from '../components/Modal.jsx';
+// end
 
+// services
 import { Get } from '../services/Get.jsx';
+// end
 
 function TiendaCliente() {
   const [selectProduct, setSelectProduct] = useState(null);
@@ -12,6 +16,7 @@ function TiendaCliente() {
 
   const handleClick = (item) => {
     setIsOpen(item);
+
     setSelectProduct(item);
   };
 
@@ -40,15 +45,20 @@ function TiendaCliente() {
           key={item._id}
         >
           <div className='flex justify-center w-full h-60 mb-1 bg-fuchsia-300'>
-            <img className='object-contain h-full' src={item.imagen} alt='' />
+            <img
+              className='object-contain h-full'
+              src={item.imagen}
+              alt='Imagen'
+            />
           </div>
+
           <li className='text-end'>{item.estado}</li>
           <li>{item.nombre}</li>
           <li>{item.precio}bs</li>
         </ul>
       ))}
 
-      <ModalForm classState={state}>
+      <Modal classState={state}>
         {selectProduct && (
           <div className='max-w-full flex gap-3' key={selectProduct._id}>
             <div className='min-w-100 h-100'>
@@ -62,6 +72,7 @@ function TiendaCliente() {
               <div className='text-end'>
                 <button onClick={() => handleClick(false)}>Cerrar</button>
               </div>
+
               <div className='break-words'>
                 <span className='block text-4xl font-extrabold mb-2'>
                   {selectProduct.nombre}
@@ -69,20 +80,26 @@ function TiendaCliente() {
                 <p className='mb-2'>{selectProduct.sinopsis}</p>
                 <span>Autor: {selectProduct.autor}</span>
               </div>
+
               <div className='max-w-max flex gap-2 mb-2'>
                 <span className='border'>{selectProduct.tapa}</span>
                 <span className='border'>{selectProduct.hoja}</span>
               </div>
+
               <div>
                 <span className='text-7xl font-bold'>
                   {selectProduct.precio}
                 </span>
                 <span className='text-2xl font-semibold'>bs</span>
               </div>
+
+              <div>
+                <button>Agregar al carrito</button>
+              </div>
             </div>
           </div>
         )}
-      </ModalForm>
+      </Modal>
     </div>
   );
 }
