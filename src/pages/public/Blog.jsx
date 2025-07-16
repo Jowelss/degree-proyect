@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 // Componentes
 import { HeaderPanel } from '../../components/HeaderPanel';
 import { Panel } from '../../components/Panel';
-import { ModalForm } from '../../components/ModalForm';
+import { Modal } from '../../components/Modal.jsx';
 import { ModalDelete } from '../../components/ModalDelete';
 import { ItemCard } from '../../components/ItemCard';
 import { DropImagen } from '../../components/DropImagen';
@@ -147,7 +147,7 @@ function Blog() {
         </div>
       </ModalDelete>
 
-      <ModalForm classState={state} onClosed={handleClick}>
+      <Modal classState={state} onClosed={handleClick}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>Nuevo Post</span>
           <button onClick={handleClick}>Cerrar</button>
@@ -203,7 +203,7 @@ function Blog() {
             {isNombre}
           </button>
         </form>
-      </ModalForm>
+      </Modal>
     </Panel>
   );
 }
