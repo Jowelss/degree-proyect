@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { ModalForm } from '../../components/ModalForm.jsx';
+import { Modal } from '../../components/Modal.jsx';
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { Panel } from '../../components/Panel.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
@@ -169,7 +169,7 @@ function Eventos() {
         </div>
       </ModalDelete>
 
-      <ModalForm classState={state}>
+      <Modal classState={state}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>{isnombre}</span>
           <button onClick={handleClick}>Cerrar</button>
@@ -225,7 +225,7 @@ function Eventos() {
             Agregar Evento
           </button>
         </form>
-      </ModalForm>
+      </Modal>
     </Panel>
   );
 }
