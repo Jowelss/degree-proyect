@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ModalForm } from '../../components/ModalForm';
+import { Modal } from '../../components/Modal.jsx';
 import { Panel } from '../../components/Panel';
 import { HeaderPanel } from '../../components/HeaderPanel';
 
@@ -24,7 +24,7 @@ function Reuniones() {
         <button onClick={handleClick}>Abrir Modal</button>
       </HeaderPanel>
 
-      <ModalForm classState={state} onClosed={handleClick}>
+      <Modal classState={state} onClosed={handleClick}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>Sesion nueva</span>
           <button onClick={handleClick}>Cerrar</button>
@@ -58,7 +58,7 @@ function Reuniones() {
             Agregar a tienda
           </button>
         </form>
-      </ModalForm>
+      </Modal>
     </Panel>
   );
 }
