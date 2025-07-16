@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../components/Header';
 import Logo from '../assets/Autentica2.png';
+
+import { Header } from '../components/Header';
 import LogoutButton from '../components/LogoutButton';
 import HeaderBar from '../components/HeaderBar';
 
@@ -13,7 +14,7 @@ function Landing() {
             <img src={Logo} alt='Autentica' />
           </div>
 
-          <div>
+          <div className='flex gap-2 items-center'>
             <HeaderBar />
           </div>
 
