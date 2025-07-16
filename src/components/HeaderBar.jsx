@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Coso() {
+function HeaderBar() {
   return (
     <ul className='flex gap-10 p-2 rounded-2xl border'>
       <li>
@@ -16,5 +16,4 @@ function Coso() {
   );
 }
 
-export default Coso;
-//Modificar nombre
+export default HeaderBar;
