@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 // componentes
-import { ModalForm } from '../../components/ModalForm.jsx';
+import { Modal } from '../../components/Modal.jsx';
 import { Panel } from '../../components/Panel.jsx';
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
@@ -171,7 +171,7 @@ function Tienda() {
         </div>
       </ModalDelete>
 
-      <ModalForm classState={state}>
+      <Modal classState={state}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>Producto</span>
           <button onClick={handleClick}>Cerrar</button>
@@ -281,7 +281,7 @@ function Tienda() {
             {isNombre}
           </button>
         </form>
-      </ModalForm>
+      </Modal>
     </Panel>
   );
 }
