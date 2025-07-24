@@ -47,7 +47,7 @@ function TiendaCliente() {
 
   const [isAddCart, setAddCart] = useState([]);
 
-  const coso = (item) => setAddCart(item);
+  const addToCart = (item) => setAddCart((prev) => [...prev, item]);
 
   return (
     <>
@@ -57,7 +57,11 @@ function TiendaCliente() {
         <button onClick={handleClickCart}>Cerrar</button>
         {/* Al hacer click en agregar a carrito no lo agrega dentro del array */}
         <div>
-          <h1>{isAddCart.nombre}</h1>
+          {isAddCart.map((item) => (
+            <div key={item._id}>
+              <h1>{item.nombre}</h1>
+            </div>
+          ))}
         </div>
       </Modal>
 
@@ -120,7 +124,12 @@ function TiendaCliente() {
                 </div>
 
                 <div>
-                  <button onClick={() => coso(selectProduct)}>
+                  <button
+                    onClick={() => {
+                      addToCart(selectProduct);
+                      handleClick();
+                    }}
+                  >
                     Agregar al carrito
                   </button>
                 </div>
