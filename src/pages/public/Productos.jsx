@@ -235,6 +235,11 @@ function Tienda() {
               </select>
             </div>
 
+            <div>
+              <label>Cantidad</label>
+              <input type='number' {...register('cantidad')} />
+            </div>
+
             <div className='flex items-center gap-1.5 '>
               <label>¿Como es este ejemplar?</label>
               <select className='border' type='text' {...register('tapa')}>
