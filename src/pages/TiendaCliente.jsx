@@ -55,7 +55,7 @@ function TiendaCliente() {
 
       <Modal classState={stateCart}>
         <button onClick={handleClickCart}>Cerrar</button>
-        {/* Al hacer click en agregar a carrito no lo agrega dentro del array */}
+
         <div>
           {isAddCart.map((item) => (
             <div key={item._id}>
@@ -89,7 +89,7 @@ function TiendaCliente() {
         <Modal classState={state}>
           {selectProduct && (
             <div className='max-w-full flex gap-3' key={selectProduct._id}>
-              <div className='min-w-100 h-100'>
+              <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
                 <img
                   className='object-contain h-full'
                   src={selectProduct.imagen}
