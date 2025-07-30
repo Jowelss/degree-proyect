@@ -10,11 +10,12 @@ import { Get } from '../services/Get.jsx';
 // end
 
 function TiendaCliente() {
+  // Estado de seleccion del producto
   const [selectProduct, setSelectProduct] = useState(null);
+  // end
 
   //Modal de compra
   const [isOpen, setIsOpen] = useState(false);
-  const state = isOpen ? 'block' : 'hidden';
 
   const handleClick = (item) => {
     setIsOpen(item);
@@ -43,7 +44,6 @@ function TiendaCliente() {
 
   //Modal de carrito
   const [isOpenCart, setIsOpenCart] = useState(false);
-  const stateCart = isOpenCart ? 'block' : 'hidden';
 
   const handleClickCart = () => setIsOpenCart(!isOpenCart);
   //end
@@ -51,10 +51,8 @@ function TiendaCliente() {
   //Funcion de agregar producto al carrito
   const [isAddCart, setAddCart] = useState([]);
 
-  const addToCart = (item) => {
-    setAddCart((prev) => [...prev, item]);
-
-    console.log(item);
+  const addToCart = (product) => {
+    setAddCart((prevProduct) => [...prevProduct, product]);
   };
   //end
 
@@ -64,8 +62,10 @@ function TiendaCliente() {
         Carrito
       </button>
 
-      <ModalCart classState={stateCart}>
+      {/* Modal del carrito */}
+      <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
         <button onClick={handleClickCart}>Cerrar</button>
+
         <div className='h-20 flex items-center justify-center'>
           <span>No hay productos agregados</span>
         </div>
@@ -76,16 +76,19 @@ function TiendaCliente() {
               className='flex justify-between items-center border'
               key={item._id}
             >
-              <h1>{item.nombre}</h1>
+              <span>{item.nombre}</span>
+              <span>{item.cantidad}</span>
 
               <button className='bg-red-900'>Eliminar</button>
             </div>
           ))}
         </div>
+        {/* end */}
 
-        <button>Pagar</button>
+        <button>Ir a pagar</button>
       </ModalCart>
 
+      {/* Carts productos */}
       <div className='w-full flex justify-center gap-4 mt-10'>
         {producto.map((item) => (
           <ul
@@ -104,11 +107,13 @@ function TiendaCliente() {
             <li className='text-end'>{item.estado}</li>
             <li>{item.nombre}</li>
             <li>{item.precio}bs</li>
-            <li>{item.cantidad}</li>
+            <li>{item.cantidad} unidades</li>
           </ul>
         ))}
+        {/* end */}
 
-        <Modal classState={state}>
+        {/* Modal para mostrar el producto con sus especificaciones */}
+        <Modal classState={isOpen ? 'block' : 'hidden'}>
           {selectProduct && (
             <div className='max-w-full flex gap-3' key={selectProduct._id}>
               <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
@@ -138,20 +143,21 @@ function TiendaCliente() {
 
                 <span className='border'>{selectProduct.genero}</span>
 
-                <div>
-                  <span className='text-7xl font-bold'>
-                    {selectProduct.precio}
+                <div className='flex items-end gap-10'>
+                  <div>
+                    <span className='text-7xl font-bold'>
+                      {selectProduct.precio}
+                    </span>
+                    <span className='text-2xl font-semibold'>bs</span>
+                  </div>
+
+                  <span className='text-2xl font-bold'>
+                    Cantidad: {selectProduct.cantidad}
                   </span>
-                  <span className='text-2xl font-semibold'>bs</span>
                 </div>
 
                 <div>
-                  <button
-                    onClick={() => {
-                      addToCart(selectProduct);
-                      handleClick();
-                    }}
-                  >
+                  <button onClick={() => addToCart(selectProduct)}>
                     Agregar al carrito
                   </button>
                 </div>
@@ -159,6 +165,7 @@ function TiendaCliente() {
             </div>
           )}
         </Modal>
+        {/* end */}
       </div>
     </>
   );
