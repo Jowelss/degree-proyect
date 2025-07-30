@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 // component
+import ModalCart from '../components/ModalCart.jsx';
 import { Modal } from '../components/Modal.jsx';
 // end
 
@@ -40,30 +41,50 @@ function TiendaCliente() {
   }, []);
   //end
 
+  //Modal de carrito
   const [isOpenCart, setIsOpenCart] = useState(false);
   const stateCart = isOpenCart ? 'block' : 'hidden';
 
   const handleClickCart = () => setIsOpenCart(!isOpenCart);
+  //end
 
+  //Funcion de agregar producto al carrito
   const [isAddCart, setAddCart] = useState([]);
 
-  const addToCart = (item) => setAddCart((prev) => [...prev, item]);
+  const addToCart = (item) => {
+    setAddCart((prev) => [...prev, item]);
+
+    console.log(item);
+  };
+  //end
 
   return (
     <>
-      <button onClick={handleClickCart}>Carrito</button>
+      <button className='absolute right-10' onClick={handleClickCart}>
+        Carrito
+      </button>
 
-      <Modal classState={stateCart}>
+      <ModalCart classState={stateCart}>
         <button onClick={handleClickCart}>Cerrar</button>
+        <div className='h-20 flex items-center justify-center'>
+          <span>No hay productos agregados</span>
+        </div>
 
         <div>
           {isAddCart.map((item) => (
-            <div key={item._id}>
+            <div
+              className='flex justify-between items-center border'
+              key={item._id}
+            >
               <h1>{item.nombre}</h1>
+
+              <button className='bg-red-900'>Eliminar</button>
             </div>
           ))}
         </div>
-      </Modal>
+
+        <button>Pagar</button>
+      </ModalCart>
 
       <div className='w-full flex justify-center gap-4 mt-10'>
         {producto.map((item) => (
@@ -83,6 +104,7 @@ function TiendaCliente() {
             <li className='text-end'>{item.estado}</li>
             <li>{item.nombre}</li>
             <li>{item.precio}bs</li>
+            <li>{item.cantidad}</li>
           </ul>
         ))}
 
