@@ -51,7 +51,6 @@ function TiendaCliente() {
   //Funcion de agregar producto al carrito
   const [isAddCart, setAddCart] = useState([]);
 
-  //1 producto como parametro
   const addToCart = (product) => {
     setAddCart((prevProduct) => {
       const element = prevProduct.find((item) => item._id === product._id);
