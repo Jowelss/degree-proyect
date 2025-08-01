@@ -51,20 +51,33 @@ function TiendaCliente() {
   //Funcion de agregar producto al carrito
   const [isAddCart, setAddCart] = useState([]);
 
+  //1 producto como parametro
   const addToCart = (product) => {
-    setAddCart((prevProduct) => [...prevProduct, product]);
+    setAddCart((prevProduct) => {
+      const element = prevProduct.find((item) => item._id === product._id);
+
+      if (element) {
+        return prevProduct.map((item) =>
+          item._id === product._id
+            ? { ...item, cantidad: item.cantidad - 1 }
+            : item
+        );
+      } else {
+        return [...prevProduct, { ...product, cantidad: product.cantidad - 1 }];
+      }
+    });
   };
   //end
 
   return (
     <>
-      <button className='absolute right-10' onClick={handleClickCart}>
+      <button className='absolute right-10' onClick={() => handleClickCart()}>
         Carrito
       </button>
 
       {/* Modal del carrito */}
       <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
-        <button onClick={handleClickCart}>Cerrar</button>
+        <button onClick={() => handleClickCart()}>Cerrar</button>
 
         <div className='h-20 flex items-center justify-center'>
           <span>No hay productos agregados</span>
@@ -78,7 +91,6 @@ function TiendaCliente() {
             >
               <span>{item.nombre}</span>
               <span>{item.cantidad}</span>
-
               <button className='bg-red-900'>Eliminar</button>
             </div>
           ))}
