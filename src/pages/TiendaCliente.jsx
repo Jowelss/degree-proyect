@@ -10,10 +10,6 @@ import { Get } from '../services/Get.jsx';
 // end
 
 function TiendaCliente() {
-  // Estado de seleccion del producto
-  const [selectProduct, setSelectProduct] = useState(null);
-  // end
-
   //Modal de compra
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,21 +44,46 @@ function TiendaCliente() {
   const handleClickCart = () => setIsOpenCart(!isOpenCart);
   //end
 
+  // Estado de seleccion del producto
+  const [selectProduct, setSelectProduct] = useState(null);
+  // end
+
   //Funcion de agregar producto al carrito
   const [isAddCart, setAddCart] = useState([]);
 
   const addToCart = (product) => {
-    setAddCart((prevProduct) => {
-      const element = prevProduct.find((item) => item._id === product._id);
+    const productFoundIndex = producto.findIndex(
+      (item) => item._id === product._id
+    );
+    const productSelect = producto[productFoundIndex];
 
-      if (element) {
-        return prevProduct.map((item) =>
+    // Si no hay stock, no hacemos nada
+    if (!productSelect || productSelect.cantidad <= 0) return;
+
+    // Reducir el stock del producto en lista
+    const nuevosProductos = [...producto];
+    nuevosProductos[productFoundIndex] = {
+      ...productSelect,
+      cantidad: productSelect.cantidad - 1,
+    };
+
+    setProducto(nuevosProductos);
+
+    setAddCart((prevCart) => {
+      const productFound = prevCart.find((item) => item._id === product._id);
+
+      if (productFound) {
+        return prevCart.map((item) =>
           item._id === product._id
-            ? { ...item, cantidad: item.cantidad - 1 }
+            ? {
+                ...item,
+                cantidad: item.cantidad++,
+                precio: item.precio + product.precio,
+              }
             : item
         );
       } else {
-        return [...prevProduct, { ...product, cantidad: product.cantidad - 1 }];
+        return [...prevCart, { ...product, cantidad: 1 }];
       }
     });
   };
@@ -90,6 +111,7 @@ function TiendaCliente() {
             >
               <span>{item.nombre}</span>
               <span>{item.cantidad}</span>
+              <span>{item.precio}</span>
               <button className='bg-red-900'>Eliminar</button>
             </div>
           ))}
