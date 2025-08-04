@@ -52,6 +52,7 @@ function TiendaCliente() {
   const [isAddCart, setAddCart] = useState([]);
 
   const addToCart = (product) => {
+    //Copiado de la IA debo modificar y entender
     const productFoundIndex = producto.findIndex(
       (item) => item._id === product._id
     );
@@ -68,6 +69,7 @@ function TiendaCliente() {
     };
 
     setProducto(nuevosProductos);
+    // end
 
     setAddCart((prevCart) => {
       const productFound = prevCart.find((item) => item._id === product._id);
