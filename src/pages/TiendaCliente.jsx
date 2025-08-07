@@ -56,6 +56,8 @@ function TiendaCliente() {
     const productFoundIndex = producto.findIndex(
       (item) => item._id === product._id
     );
+
+    // Guarda el elemento segun el indice encontrado
     const productSelect = producto[productFoundIndex];
 
     // Si no hay stock, no hacemos nada
@@ -79,13 +81,35 @@ function TiendaCliente() {
           item._id === product._id
             ? {
                 ...item,
-                cantidad: item.cantidad++,
+                cantidad: item.cantidad + 1,
                 precio: item.precio + product.precio,
               }
             : item
         );
       } else {
         return [...prevCart, { ...product, cantidad: 1 }];
+      }
+    });
+  };
+  //end
+
+  // Funcion para disminuir la cantidad de productos
+  const decreaseQuantity = (product) => {
+    setAddCart((prevCart) => {
+      const productFound = prevCart.find((item) => item._id === product._id);
+
+      if (productFound) {
+        return prevCart.map((item) =>
+          item._id === product._id
+            ? {
+                ...item,
+                cantidad: item.cantidad - 1,
+                precio: item.precio - product.precio,
+              }
+            : item
+        );
+      } else {
+        return prevCart;
       }
     });
   };
@@ -192,9 +216,25 @@ function TiendaCliente() {
                 </div>
 
                 <div>
+                  {/* Mi idea es que cuando le de click al button de agregar este cambie a dos botones, uno para quitar y otro para agregar */}
+
                   <button onClick={() => addToCart(selectProduct)}>
                     Agregar al carrito
                   </button>
+
+                  <div>
+                    <button onClick={() => decreaseQuantity(selectProduct)}>
+                      Quitar
+                    </button>
+
+                    {isAddCart.map((item) => (
+                      <span key={item._id}>{item.cantidad}</span>
+                    ))}
+
+                    <button onClick={() => addToCart(selectProduct)}>
+                      Agregar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
