@@ -100,7 +100,7 @@ function TiendaCliente() {
 
       if (productFound) {
         return prevCart.map((item) =>
-          item._id === product._id
+          item._id === product._id && item.cantidad > 0
             ? {
                 ...item,
                 cantidad: item.cantidad - 1,
@@ -227,10 +227,10 @@ function TiendaCliente() {
                       Quitar
                     </button>
 
-                    {isAddCart.map((item) => (
-                      <span key={item._id}>{item.cantidad}</span>
-                    ))}
-
+                    {
+                      isAddCart.find((item) => item._id === selectProduct._id)
+                        ?.cantidad
+                    }
                     <button onClick={() => addToCart(selectProduct)}>
                       Agregar
                     </button>
