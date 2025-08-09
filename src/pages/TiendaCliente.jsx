@@ -109,17 +109,20 @@ function TiendaCliente() {
         </div>
 
         <div>
-          {isAddCart.map((item) => (
-            <div
-              className='flex justify-between items-center border'
-              key={item._id}
-            >
-              <span>{item.nombre}</span>
-              <span>{item.cantidad}</span>
-              <span>{item.precio}</span>
-              <button className='bg-red-900'>Eliminar</button>
-            </div>
-          ))}
+          {isAddCart.map(
+            (item) =>
+              item.cantidad > 0 && (
+                <div
+                  className='flex justify-between items-center border'
+                  key={item._id}
+                >
+                  <span>{item.nombre}</span>
+                  <span>{item.cantidad}</span>
+                  <span>{item.precio}</span>
+                  <button className='bg-red-900'>Eliminar</button>
+                </div>
+              )
+          )}
         </div>
         {/* end */}
 
