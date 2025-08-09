@@ -52,27 +52,6 @@ function TiendaCliente() {
   const [isAddCart, setAddCart] = useState([]);
 
   const addToCart = (product) => {
-    //Copiado de la IA debo modificar y entender
-    const productFoundIndex = producto.findIndex(
-      (item) => item._id === product._id
-    );
-
-    // Guarda el elemento segun el indice encontrado
-    const productSelect = producto[productFoundIndex];
-
-    // Si no hay stock, no hacemos nada
-    if (!productSelect || productSelect.cantidad <= 0) return;
-
-    // Reducir el stock del producto en lista
-    const nuevosProductos = [...producto];
-    nuevosProductos[productFoundIndex] = {
-      ...productSelect,
-      cantidad: productSelect.cantidad - 1,
-    };
-
-    setProducto(nuevosProductos);
-    // end
-
     setAddCart((prevCart) => {
       const productFound = prevCart.find((item) => item._id === product._id);
 
