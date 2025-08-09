@@ -94,6 +94,10 @@ function TiendaCliente() {
   };
   //end
 
+  // Funcion para obtener el item del carrito | Devuelve el item si existe, de lo contrario devuelve undefined
+  const cartItem = isAddCart.find((item) => item._id === selectProduct._id);
+  // end
+
   return (
     <>
       <button className='absolute right-10' onClick={() => handleClickCart()}>
@@ -198,25 +202,24 @@ function TiendaCliente() {
                 </div>
 
                 <div>
-                  {/* Mi idea es que cuando le de click al button de agregar este cambie a dos botones, uno para quitar y otro para agregar */}
+                  {cartItem ? (
+                    <div>
+                      <button onClick={() => decreaseQuantity(selectProduct)}>
+                        Quitar
+                      </button>
 
-                  <button onClick={() => addToCart(selectProduct)}>
-                    Agregar al carrito
-                  </button>
+                      {/* Si el item existe en el carrito, mostramos la cantidad */}
+                      {cartItem?.cantidad > 0 && cartItem.cantidad}
 
-                  <div>
-                    <button onClick={() => decreaseQuantity(selectProduct)}>
-                      Quitar
-                    </button>
-
-                    {
-                      isAddCart.find((item) => item._id === selectProduct._id)
-                        ?.cantidad
-                    }
+                      <button onClick={() => addToCart(selectProduct)}>
+                        Agregar
+                      </button>
+                    </div>
+                  ) : (
                     <button onClick={() => addToCart(selectProduct)}>
-                      Agregar
+                      Agregar al carrito
                     </button>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
