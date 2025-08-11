@@ -96,10 +96,6 @@ function TiendaCliente() {
   };
   //end
 
-  // Funcion para obtener el item del carrito | Devuelve el item si existe, de lo contrario devuelve undefined
-  const cartItem = isAddCart.find((item) => item._id === selectProduct._id);
-  // end
-
   return (
     <>
       <button className='absolute right-10' onClick={() => handleClickCart()}>
@@ -162,7 +158,7 @@ function TiendaCliente() {
       </div>
       {/* end */}
 
-      {/* Modal para mostrar el producto con sus especificaciones */}
+      {/* Modal para mostrar el producto y poder comprar */}
       <Modal classState={isOpen ? 'block' : 'hidden'}>
         {selectProduct && (
           <div className='max-w-full flex gap-3' key={selectProduct._id}>
@@ -211,9 +207,6 @@ function TiendaCliente() {
                   <button onClick={() => decreaseQuantity(selectProduct)}>
                     Quitar
                   </button>
-
-                  {/* Si el item existe en el carrito, mostramos la cantidad */}
-                  {cartItem?.cantidad > 0 && cartItem.cantidad}
 
                   <button onClick={() => addToCart(selectProduct)}>
                     Agregar
