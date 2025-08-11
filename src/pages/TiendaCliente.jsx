@@ -53,11 +53,13 @@ function TiendaCliente() {
 
   const addToCart = (selectProduct) => {
     setAddCart((prevCart) => {
+      // Verifica si el elemento existe
       const productFound = prevCart.find(
         (item) => item._id === selectProduct._id
       );
 
       if (productFound) {
+        //Evita que la cantidad del producto agregado al carrito exceda la del stock
         if (productFound.cantidad >= selectProduct.cantidad) return prevCart;
 
         return prevCart.map((item) =>
