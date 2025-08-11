@@ -51,28 +51,28 @@ function TiendaCliente() {
   //Funcion de agregar producto al carrito
   const [isAddCart, setAddCart] = useState([]);
 
-  const addToCart = (product) => {
+  const addToCart = (selectProduct) => {
     setAddCart((prevCart) => {
-      const productFound = prevCart.find((item) => item._id === product._id);
+      const productFound = producto.find(
+        (item) => item._id === selectProduct._id
+      );
 
       if (productFound) {
         return prevCart.map((item) =>
-          item._id === product._id
-            ? {
+          item._id === selectProduct._id
+            ? item
+            : {
                 ...item,
                 cantidad: item.cantidad + 1,
-                precio: item.precio + product.precio,
+                precio: item.precio + selectProduct.precio,
               }
-            : item
         );
       } else {
-        return [...prevCart, { ...product, cantidad: 1 }];
+        return [...prevCart, { ...selectProduct, cantidad: 1 }];
       }
     });
   };
   //end
-
-  console.log(isAddCart);
 
   // Funcion para disminuir la cantidad de productos
   const decreaseQuantity = (product) => {
