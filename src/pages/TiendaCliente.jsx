@@ -72,6 +72,8 @@ function TiendaCliente() {
   };
   //end
 
+  console.log(isAddCart);
+
   // Funcion para disminuir la cantidad de productos
   const decreaseQuantity = (product) => {
     setAddCart((prevCart) => {
@@ -122,18 +124,21 @@ function TiendaCliente() {
                 >
                   <span>{item.nombre}</span>
                   <span>{item.cantidad}</span>
-                  <span>{item.precio}</span>
+                  <span>{item.precio}bs</span>
                   <button className='bg-red-900'>Eliminar</button>
                 </div>
               )
           )}
         </div>
-        {/* end */}
 
-        <button>Ir a pagar</button>
+        <div className='flex justify-around'>
+          <button>Ir a pagar</button>
+
+          <span>Total:</span>
+        </div>
       </ModalCart>
 
-      {/* Carts productos */}
+      {/* Carts views products */}
       <div className='w-full flex justify-center gap-4 mt-10'>
         {producto.map((item) => (
           <ul
@@ -148,85 +153,82 @@ function TiendaCliente() {
                 alt='Imagen'
               />
             </div>
-
             <li className='text-end'>{item.estado}</li>
             <li>{item.nombre}</li>
             <li>{item.precio}bs</li>
             <li>{item.cantidad} unidades</li>
           </ul>
         ))}
-        {/* end */}
+      </div>
+      {/* end */}
 
-        {/* Modal para mostrar el producto con sus especificaciones */}
-        <Modal classState={isOpen ? 'block' : 'hidden'}>
-          {selectProduct && (
-            <div className='max-w-full flex gap-3' key={selectProduct._id}>
-              <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
-                <img
-                  className='object-contain h-full'
-                  src={selectProduct.imagen}
-                  alt='Imagen'
-                />
+      {/* Modal para mostrar el producto con sus especificaciones */}
+      <Modal classState={isOpen ? 'block' : 'hidden'}>
+        {selectProduct && (
+          <div className='max-w-full flex gap-3' key={selectProduct._id}>
+            <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
+              <img
+                className='object-contain h-full'
+                src={selectProduct.imagen}
+                alt='Imagen'
+              />
+            </div>
+            <div className='flex-1 overflow-hidden'>
+              <div className='text-end'>
+                <button onClick={() => handleClick(false)}>Cerrar</button>
               </div>
-              <div className='flex-1 overflow-hidden'>
-                <div className='text-end'>
-                  <button onClick={() => handleClick(false)}>Cerrar</button>
-                </div>
 
-                <div className='break-words'>
-                  <span className='block text-4xl font-extrabold mb-2'>
-                    {selectProduct.nombre}
-                  </span>
-                  <p className='mb-2'>{selectProduct.sinopsis}</p>
-                  <span>Autor: {selectProduct.autor}</span>
-                </div>
+              <div className='break-words'>
+                <span className='block text-4xl font-extrabold mb-2'>
+                  {selectProduct.nombre}
+                </span>
+                <p className='mb-2'>{selectProduct.sinopsis}</p>
+                <span>Autor: {selectProduct.autor}</span>
+              </div>
 
-                <div className='max-w-max flex gap-2 mb-2'>
-                  <span className='border'>{selectProduct.tapa}</span>
-                  <span className='border'>{selectProduct.hoja}</span>
-                </div>
+              <div className='max-w-max flex gap-2 mb-2'>
+                <span className='border'>{selectProduct.tapa}</span>
+                <span className='border'>{selectProduct.hoja}</span>
+              </div>
 
-                <span className='border'>{selectProduct.genero}</span>
+              <span className='border'>{selectProduct.genero}</span>
 
-                <div className='flex items-end gap-10'>
-                  <div>
-                    <span className='text-7xl font-bold'>
-                      {selectProduct.precio}
-                    </span>
-                    <span className='text-2xl font-semibold'>bs</span>
-                  </div>
-
-                  <span className='text-2xl font-bold'>
-                    Cantidad: {selectProduct.cantidad}
-                  </span>
-                </div>
-
+              <div className='flex items-end gap-10'>
                 <div>
-                  {cartItem ? (
-                    <div>
-                      <button onClick={() => decreaseQuantity(selectProduct)}>
-                        Quitar
-                      </button>
-
-                      {/* Si el item existe en el carrito, mostramos la cantidad */}
-                      {cartItem?.cantidad > 0 && cartItem.cantidad}
-
-                      <button onClick={() => addToCart(selectProduct)}>
-                        Agregar
-                      </button>
-                    </div>
-                  ) : (
-                    <button onClick={() => addToCart(selectProduct)}>
-                      Agregar al carrito
-                    </button>
-                  )}
+                  <span className='text-7xl font-bold'>
+                    {selectProduct.precio}
+                  </span>
+                  <span className='text-2xl font-semibold'>bs</span>
                 </div>
+
+                <span className='text-2xl font-bold'>
+                  Cantidad: {selectProduct.cantidad}
+                </span>
+              </div>
+
+              <div>
+                <div>
+                  <button onClick={() => decreaseQuantity(selectProduct)}>
+                    Quitar
+                  </button>
+
+                  {/* Si el item existe en el carrito, mostramos la cantidad */}
+                  {cartItem?.cantidad > 0 && cartItem.cantidad}
+
+                  <button onClick={() => addToCart(selectProduct)}>
+                    Agregar
+                  </button>
+                </div>
+
+                <button onClick={() => addToCart(selectProduct)}>
+                  Agregar al carrito
+                </button>
               </div>
             </div>
-          )}
-        </Modal>
-        {/* end */}
-      </div>
+          </div>
+        )}
+      </Modal>
+      {/* end */}
     </>
   );
 }
