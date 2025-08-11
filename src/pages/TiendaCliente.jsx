@@ -53,19 +53,20 @@ function TiendaCliente() {
 
   const addToCart = (selectProduct) => {
     setAddCart((prevCart) => {
-      const productFound = producto.find(
+      const productFound = prevCart.find(
         (item) => item._id === selectProduct._id
       );
 
       if (productFound) {
+        if (productFound.cantidad >= selectProduct.cantidad) return prevCart;
+
         return prevCart.map((item) =>
           item._id === selectProduct._id
-            ? item
-            : {
+            ? {
                 ...item,
                 cantidad: item.cantidad + 1,
-                precio: item.precio + selectProduct.precio,
               }
+            : item
         );
       } else {
         return [...prevCart, { ...selectProduct, cantidad: 1 }];
