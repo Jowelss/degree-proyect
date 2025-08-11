@@ -16,7 +16,7 @@ function TiendaCliente() {
   const handleClick = (item) => {
     setIsOpen(item);
 
-    setSelectProduct(item);
+    setselectedProduct(item);
   };
   //end
 
@@ -45,7 +45,7 @@ function TiendaCliente() {
   //end
 
   // Estado de seleccion del producto
-  const [selectProduct, setSelectProduct] = useState(null);
+  const [selectedProduct, setselectedProduct] = useState(null);
   // end
 
   const [isAddCart, setAddCart] = useState([]);
@@ -178,12 +178,12 @@ function TiendaCliente() {
 
       {/* Modal para mostrar el producto y poder comprar */}
       <Modal classState={isOpen ? 'block' : 'hidden'}>
-        {selectProduct && (
-          <div className='max-w-full flex gap-3' key={selectProduct._id}>
+        {selectedProduct && (
+          <div className='max-w-full flex gap-3' key={selectedProduct._id}>
             <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
               <img
                 className='object-contain h-full'
-                src={selectProduct.imagen}
+                src={selectedProduct.imagen}
                 alt='Imagen'
               />
             </div>
@@ -194,44 +194,44 @@ function TiendaCliente() {
 
               <div className='break-words'>
                 <span className='block text-4xl font-extrabold mb-2'>
-                  {selectProduct.nombre}
+                  {selectedProduct.nombre}
                 </span>
-                <p className='mb-2'>{selectProduct.sinopsis}</p>
-                <span>Autor: {selectProduct.autor}</span>
+                <p className='mb-2'>{selectedProduct.sinopsis}</p>
+                <span>Autor: {selectedProduct.autor}</span>
               </div>
 
               <div className='max-w-max flex gap-2 mb-2'>
-                <span className='border'>{selectProduct.tapa}</span>
-                <span className='border'>{selectProduct.hoja}</span>
+                <span className='border'>{selectedProduct.tapa}</span>
+                <span className='border'>{selectedProduct.hoja}</span>
               </div>
 
-              <span className='border'>{selectProduct.genero}</span>
+              <span className='border'>{selectedProduct.genero}</span>
 
               <div className='flex items-end gap-10'>
                 <div>
                   <span className='text-7xl font-bold'>
-                    {selectProduct.precio}
+                    {selectedProduct.precio}
                   </span>
                   <span className='text-2xl font-semibold'>bs</span>
                 </div>
 
                 <span className='text-2xl font-bold'>
-                  Cantidad: {selectProduct.cantidad}
+                  Cantidad: {selectedProduct.cantidad}
                 </span>
               </div>
 
               <div>
                 <div>
-                  <button onClick={() => decreaseQuantity(selectProduct)}>
+                  <button onClick={() => decreaseQuantity(selectedProduct)}>
                     Quitar
                   </button>
 
-                  <button onClick={() => addToCart(selectProduct)}>
+                  <button onClick={() => addToCart(selectedProduct)}>
                     Agregar
                   </button>
                 </div>
 
-                <button onClick={() => addToCart(selectProduct)}>
+                <button onClick={() => addToCart(selectedProduct)}>
                   Agregar al carrito
                 </button>
               </div>
