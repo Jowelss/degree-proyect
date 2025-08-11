@@ -21,7 +21,7 @@ function TiendaCliente() {
   //end
 
   //Obtencion de datos API
-  const [producto, setProducto] = useState([]);
+  const [products, setproducts] = useState([]);
 
   const fetchLibros = async () => {
     const data = await Get('libros');
@@ -29,7 +29,7 @@ function TiendaCliente() {
     if (data === undefined) {
       console.log('error pa');
     } else {
-      setProducto(data);
+      setproducts(data);
     }
   };
 
@@ -44,23 +44,23 @@ function TiendaCliente() {
   const handleClickCart = () => setIsOpenCart(!isOpenCart);
   //end
 
-  // Estado de seleccion del producto
+  // Estado de seleccion del products
   const [selectedProduct, setselectedProduct] = useState(null);
   // end
 
   const [isAddCart, setAddCart] = useState([]);
 
   const addToCart = (selectProduct) => {
-    // Esto resta la cantidad del producto
-    const productoExiste = producto.find(
+    // Esto resta la cantidad del products
+    const productsExiste = products.find(
       (item) => item._id === selectProduct._id
     );
 
-    if (!productoExiste || productoExiste.cantidad <= 0) {
-      return productoExiste;
+    if (!productsExiste || productsExiste.cantidad <= 0) {
+      return productsExiste;
     }
 
-    setProducto((prev) =>
+    setproducts((prev) =>
       prev.map((item) =>
         item._id === selectProduct._id
           ? { ...item, cantidad: item.cantidad - 1 }
@@ -69,7 +69,7 @@ function TiendaCliente() {
     );
     // end
 
-    //Funcion de agregar producto al carrito
+    //Funcion de agregar products al carrito
     setAddCart((prevCart) => {
       // Verifica si el elemento existe
       const productFound = prevCart.find(
@@ -82,6 +82,7 @@ function TiendaCliente() {
             ? {
                 ...item,
                 cantidad: item.cantidad + 1,
+                precio: (item.cantidad + 1) * selectProduct.precio,
               }
             : item
         );
@@ -92,7 +93,7 @@ function TiendaCliente() {
   };
   //end
 
-  // Funcion para disminuir la cantidad de productos
+  // Funcion para disminuir la cantidad de productss
   const decreaseQuantity = (product) => {
     setAddCart((prevCart) => {
       const productFound = prevCart.find((item) => item._id === product._id);
@@ -103,7 +104,6 @@ function TiendaCliente() {
             ? {
                 ...item,
                 cantidad: item.cantidad - 1,
-                precio: item.precio - product.precio,
               }
             : item
         );
@@ -125,7 +125,7 @@ function TiendaCliente() {
         <button onClick={() => handleClickCart()}>Cerrar</button>
 
         <div className='h-20 flex items-center justify-center'>
-          <span>No hay productos agregados</span>
+          <span>No hay productss agregados</span>
         </div>
 
         <div>
@@ -154,7 +154,7 @@ function TiendaCliente() {
 
       {/* Carts views products */}
       <div className='w-full flex justify-center gap-4 mt-10'>
-        {producto.map((item) => (
+        {products.map((item) => (
           <ul
             className='border w-70 cursor-pointer'
             onClick={() => handleClick(item)}
@@ -176,7 +176,7 @@ function TiendaCliente() {
       </div>
       {/* end */}
 
-      {/* Modal para mostrar el producto y poder comprar */}
+      {/* Modal para mostrar el products y poder comprar */}
       <Modal classState={isOpen ? 'block' : 'hidden'}>
         {selectedProduct && (
           <div className='max-w-full flex gap-3' key={selectedProduct._id}>
