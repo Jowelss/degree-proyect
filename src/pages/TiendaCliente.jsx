@@ -48,10 +48,28 @@ function TiendaCliente() {
   const [selectProduct, setSelectProduct] = useState(null);
   // end
 
-  //Funcion de agregar producto al carrito
   const [isAddCart, setAddCart] = useState([]);
 
   const addToCart = (selectProduct) => {
+    // Esto resta la cantidad del producto
+    const productoExiste = producto.find(
+      (item) => item._id === selectProduct._id
+    );
+
+    if (!productoExiste || productoExiste.cantidad <= 0) {
+      return productoExiste;
+    }
+
+    setProducto((prev) =>
+      prev.map((item) =>
+        item._id === selectProduct._id
+          ? { ...item, cantidad: item.cantidad - 1 }
+          : item
+      )
+    );
+    // end
+
+    //Funcion de agregar producto al carrito
     setAddCart((prevCart) => {
       // Verifica si el elemento existe
       const productFound = prevCart.find(
@@ -59,9 +77,6 @@ function TiendaCliente() {
       );
 
       if (productFound) {
-        //Evita que la cantidad del producto agregado al carrito exceda la del stock
-        if (productFound.cantidad >= selectProduct.cantidad) return prevCart;
-
         return prevCart.map((item) =>
           item._id === selectProduct._id
             ? {
