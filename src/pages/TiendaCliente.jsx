@@ -114,6 +114,8 @@ function TiendaCliente() {
   };
   //end
 
+  const fountItem = isAddCart.find((item) => item._id === selectedProduct._id);
+
   return (
     <>
       <button className='absolute right-10' onClick={() => handleClickCart()}>
@@ -225,6 +227,8 @@ function TiendaCliente() {
                   <button onClick={() => decreaseQuantity(selectedProduct)}>
                     Quitar
                   </button>
+
+                  <span>{fountItem?.cantidad}</span>
 
                   <button onClick={() => addToCart(selectedProduct)}>
                     Agregar
