@@ -242,21 +242,23 @@ function TiendaCliente() {
               </div>
 
               <div>
-                <div>
-                  <button onClick={() => decreaseQuantity(selectedProduct)}>
-                    Quitar
-                  </button>
+                {fountItem?.cantidad > 0 ? (
+                  <div>
+                    <button onClick={() => decreaseQuantity(selectedProduct)}>
+                      Quitar
+                    </button>
 
-                  <span>{fountItem?.cantidad}</span>
+                    <span>{fountItem?.cantidad}</span>
 
+                    <button onClick={() => addToCart(selectedProduct)}>
+                      Agregar
+                    </button>
+                  </div>
+                ) : (
                   <button onClick={() => addToCart(selectedProduct)}>
-                    Agregar
+                    Agregar al carrito
                   </button>
-                </div>
-
-                <button onClick={() => addToCart(selectedProduct)}>
-                  Agregar al carrito
-                </button>
+                )}
               </div>
             </div>
           </div>
