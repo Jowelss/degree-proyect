@@ -100,7 +100,7 @@ function TiendaCliente() {
       (item) => item._id === selectProduct._id
     );
 
-    if (!productsExiste || productsExiste.cantidad > selectProduct.cantidad) {
+    if (!productsExiste || productsExiste.cantidad >= isAddCart.cantidad) {
       return productsExiste;
     }
 
