@@ -137,9 +137,6 @@ function TiendaCliente() {
   };
   //end
 
-  console.log(isAddCart);
-  console.log(products);
-
   const fountItem = isAddCart.find((item) => item._id === selectedProduct._id);
 
   return (
@@ -152,26 +149,28 @@ function TiendaCliente() {
       <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
         <button onClick={() => handleClickCart()}>Cerrar</button>
 
-        <div className='h-20 flex items-center justify-center'>
-          <span>No hay productos agregados</span>
-        </div>
-
-        <div>
-          {isAddCart.map(
-            (item) =>
-              item.cantidad > 0 && (
-                <div
-                  className='flex justify-between items-center border'
-                  key={item._id}
-                >
-                  <span>{item.nombre}</span>
-                  <span>{item.cantidad}</span>
-                  <span>{item.precio}bs</span>
-                  <button className='bg-red-900'>Eliminar</button>
-                </div>
-              )
-          )}
-        </div>
+        {isAddCart.length === 0 ? (
+          <div className='h-20 flex items-center justify-center'>
+            <span>No hay productos agregados</span>
+          </div>
+        ) : (
+          <div>
+            {isAddCart.map(
+              (item) =>
+                item.cantidad > 0 && (
+                  <div
+                    className='flex justify-between items-center border'
+                    key={item._id}
+                  >
+                    <span>{item.nombre}</span>
+                    <span>{item.cantidad}</span>
+                    <span>{item.precio}bs</span>
+                    <button className='bg-red-900'>Eliminar</button>
+                  </div>
+                )
+            )}
+          </div>
+        )}
 
         <div className='flex justify-around'>
           <button>Ir a pagar</button>
