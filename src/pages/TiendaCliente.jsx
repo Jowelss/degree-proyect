@@ -112,26 +112,33 @@ function TiendaCliente() {
       )
     );
     // end
+
     setAddCart((prevCart) => {
       const productFound = prevCart.find(
         (item) => item._id === selectProduct._id
       );
 
       if (productFound) {
-        return prevCart.map((item) =>
-          item._id === selectProduct._id && item.cantidad > 0
-            ? {
-                ...item,
-                cantidad: item.cantidad - 1,
-              }
-            : item
-        );
-      } else {
-        return prevCart;
+        if (productFound.cantidad > 1) {
+          return prevCart.map((item) =>
+            item._id === selectProduct._id
+              ? {
+                  ...item,
+                  cantidad: item.cantidad - 1,
+                }
+              : item
+          );
+        } else {
+          return prevCart.filter((item) => item._id !== selectProduct._id);
+        }
       }
+      return prevCart;
     });
   };
   //end
+
+  console.log(isAddCart);
+  console.log(products);
 
   const fountItem = isAddCart.find((item) => item._id === selectedProduct._id);
 
@@ -191,7 +198,7 @@ function TiendaCliente() {
             <li className='text-end'>{item.estado}</li>
             <li>{item.nombre}</li>
             <li>{item.precio}bs</li>
-            <li>{item.cantidad} unidades</li>
+            <li>{item.cantidad} disponibles</li>
           </ul>
         ))}
       </div>
@@ -237,7 +244,7 @@ function TiendaCliente() {
                 </div>
 
                 <span className='text-2xl font-bold'>
-                  Cantidad: {selectedProduct.cantidad}
+                  Disponibles: {selectedProduct.cantidad}
                 </span>
               </div>
 
