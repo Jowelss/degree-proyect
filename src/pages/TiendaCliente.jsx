@@ -69,7 +69,7 @@ function TiendaCliente() {
     );
     // end
 
-    //Funcion de agregar products al carrito
+    //Funcion de agregar productos al carrito
     setAddCart((prevCart) => {
       // Verifica si el elemento existe
       const productFound = prevCart.find(
@@ -93,14 +93,33 @@ function TiendaCliente() {
   };
   //end
 
-  // Funcion para disminuir la cantidad de productss
-  const decreaseQuantity = (product) => {
+  // Funcion para disminuir la cantidad de un producto
+  const decreaseQuantity = (selectProduct) => {
+    // Esto resta la cantidad del products
+    const productsExiste = products.find(
+      (item) => item._id === selectProduct._id
+    );
+
+    if (!productsExiste || productsExiste.cantidad > selectProduct.cantidad) {
+      return productsExiste;
+    }
+
+    setproducts((prev) =>
+      prev.map((item) =>
+        item._id === selectProduct._id
+          ? { ...item, cantidad: item.cantidad + 1 }
+          : item
+      )
+    );
+    // end
     setAddCart((prevCart) => {
-      const productFound = prevCart.find((item) => item._id === product._id);
+      const productFound = prevCart.find(
+        (item) => item._id === selectProduct._id
+      );
 
       if (productFound) {
         return prevCart.map((item) =>
-          item._id === product._id && item.cantidad > 0
+          item._id === selectProduct._id && item.cantidad > 0
             ? {
                 ...item,
                 cantidad: item.cantidad - 1,
@@ -127,7 +146,7 @@ function TiendaCliente() {
         <button onClick={() => handleClickCart()}>Cerrar</button>
 
         <div className='h-20 flex items-center justify-center'>
-          <span>No hay productss agregados</span>
+          <span>No hay productos agregados</span>
         </div>
 
         <div>
