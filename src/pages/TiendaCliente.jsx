@@ -51,6 +51,8 @@ function TiendaCliente() {
   const [isAddCart, setAddCart] = useState([]);
 
   const addToCart = (selectProduct) => {
+    calculateTotal();
+
     // Esto resta la cantidad del products
     const productsExiste = products.find(
       (item) => item._id === selectProduct._id
@@ -95,6 +97,7 @@ function TiendaCliente() {
 
   // Funcion para disminuir la cantidad de un producto
   const decreaseQuantity = (selectProduct) => {
+    calculateTotal();
     // Esto resta la cantidad del products
     const productsExiste = products.find(
       (item) => item._id === selectProduct._id
@@ -137,6 +140,16 @@ function TiendaCliente() {
   };
   //end
 
+  const [isTotal, setTotal] = useState(0);
+  // Funcion para calcular el total
+  const calculateTotal = () => {
+    let total = 0;
+    isAddCart.forEach((item) => {
+      total += item.precio * item.cantidad;
+    });
+    setTotal(total);
+  };
+
   const fountItem = isAddCart.find((item) => item._id === selectedProduct._id);
 
   return (
@@ -149,6 +162,7 @@ function TiendaCliente() {
       <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
         <button onClick={() => handleClickCart()}>Cerrar</button>
 
+        {/* Si no hay productos en el carrito muestra el mensaje caso contrario muestra los productos */}
         {isAddCart.length === 0 ? (
           <div className='h-20 flex items-center justify-center'>
             <span>No hay productos agregados</span>
@@ -175,7 +189,7 @@ function TiendaCliente() {
         <div className='flex justify-around'>
           <button>Ir a pagar</button>
 
-          <span>Total:</span>
+          <span>Total: {isTotal}</span>
         </div>
       </ModalCart>
 
