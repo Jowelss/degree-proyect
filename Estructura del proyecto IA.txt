@@ -1,0 +1,32 @@
+degree-proyect/
+├── public/                  # Archivos estáticos públicos
+├── src/
+│   ├── assets/              # Recursos estáticos (imágenes, fuentes, etc.)
+│   ├── components/          # Componentes reutilizables
+│   │   ├── common/          # Componentes genéricos (botones, inputs, etc.)
+│   │   │   └── UI/          # Componentes de interfaz de usuario básicos
+│   │   ├── layout/          # Componentes de estructura (Header, Footer, Sidebar)
+│   │   └── features/        # Componentes específicos de características
+│   │       ├── cart/        # Componentes relacionados con el carrito
+│   │       ├── auth/        # Componentes de autenticación
+│   │       └── products/    # Componentes relacionados con productos
+│   ├── hooks/               # Custom hooks
+│   ├── context/             # Contextos de React
+│   ├── pages/               # Páginas/vistas de la aplicación
+│   │   ├── public/          # Páginas públicas
+│   │   └── private/         # Páginas que requieren autenticación
+│   ├── routes/              # Configuración de rutas
+│   ├── services/            # Servicios y API
+│   │   ├── api/             # Funciones para llamadas a API
+│   │   │   ├── endpoints.js # Definición de endpoints
+│   │   │   └── client.js    # Cliente HTTP configurado (axios)
+│   │   └── auth/            # Servicios de autenticación
+│   ├── utils/               # Funciones utilitarias
+│   ├── styles/              # Estilos globales y variables
+│   ├── constants/           # Constantes y configuraciones
+│   ├── types/               # Definiciones de tipos (si usas TypeScript)
+│   ├── App.jsx              # Componente principal
+│   └── main.jsx             # Punto de entrada
+├── .env                     # Variables de entorno (no incluir en git)
+├── .env.example             # Ejemplo de variables de entorno
+└── [archivos de configuración] # package.json, vite.config.js, etc.
