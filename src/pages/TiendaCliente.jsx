@@ -51,8 +51,6 @@ function TiendaCliente() {
   const [isAddCart, setAddCart] = useState([]);
 
   const addToCart = (selectProduct) => {
-    calculateTotal();
-
     // Esto resta la cantidad del products
     const productsExiste = products.find(
       (item) => item._id === selectProduct._id
@@ -84,7 +82,6 @@ function TiendaCliente() {
             ? {
                 ...item,
                 cantidad: item.cantidad + 1,
-                precio: (item.cantidad + 1) * selectProduct.precio,
               }
             : item
         );
@@ -97,8 +94,7 @@ function TiendaCliente() {
 
   // Funcion para disminuir la cantidad de un producto
   const decreaseQuantity = (selectProduct) => {
-    calculateTotal();
-    // Esto resta la cantidad del products
+    // Esto devuelve la cantidad de un producto
     const productsExiste = products.find(
       (item) => item._id === selectProduct._id
     );
@@ -140,15 +136,16 @@ function TiendaCliente() {
   };
   //end
 
+  // Estado del total
   const [isTotal, setTotal] = useState(0);
-  // Funcion para calcular el total
-  const calculateTotal = () => {
-    let total = 0;
-    isAddCart.forEach((item) => {
-      total += item.precio * item.cantidad;
-    });
+
+  // useEffect para recalcular cada vez que cambie el carrito
+  useEffect(() => {
+    const total = isAddCart.reduce((acc, item) => {
+      return acc + item.precio * item.cantidad; // precio unitario * cantidad
+    }, 0);
     setTotal(total);
-  };
+  }, [isAddCart]);
 
   const fountItem = isAddCart.find((item) => item._id === selectedProduct._id);
 
@@ -177,7 +174,7 @@ function TiendaCliente() {
                     key={item._id}
                   >
                     <span>{item.nombre}</span>
-                    <span>{item.cantidad}</span>
+                    <span>x{item.cantidad}</span>
                     <span>{item.precio}bs</span>
                     <button className='bg-red-900'>Eliminar</button>
                   </div>
