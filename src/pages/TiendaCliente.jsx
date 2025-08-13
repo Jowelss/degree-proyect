@@ -165,33 +165,37 @@ function TiendaCliente() {
 
       {/* Modal del carrito */}
       <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
-        <button onClick={() => handleClickCart()}>Cerrar</button>
+        <button className='mb-3' onClick={() => handleClickCart()}>
+          Cerrar
+        </button>
 
         {/* Si no hay productos en el carrito muestra el mensaje caso contrario muestra los productos */}
-        {isAddCart.length === 0 ? (
-          <div className='h-20 flex items-center justify-center'>
-            <span>No hay productos agregados</span>
-          </div>
-        ) : (
-          <div>
-            {isAddCart.map(
-              (item) =>
-                item.cantidad > 0 && (
-                  <div
-                    className='flex justify-between items-center border'
-                    key={item._id}
-                  >
-                    <span>{item.nombre}</span>
-                    <span>x{item.cantidad}</span>
-                    <span>{item.precio}bs</span>
-                    <button className='bg-red-900'>Eliminar</button>
-                  </div>
-                )
-            )}
-          </div>
-        )}
+        <div>
+          {isAddCart.length === 0 ? (
+            <div className='h-20 flex items-center justify-center'>
+              <span>No hay productos agregados</span>
+            </div>
+          ) : (
+            <div className='flex flex-col gap-3'>
+              {isAddCart.map(
+                (item) =>
+                  item.cantidad > 0 && (
+                    <div
+                      className='flex justify-between items-center border'
+                      key={item._id}
+                    >
+                      <span>{item.nombre}</span>
+                      <span>x{item.cantidad}</span>
+                      <span>{item.precio}bs</span>
+                      <button className='bg-red-900'>Eliminar</button>
+                    </div>
+                  )
+              )}
+            </div>
+          )}
+        </div>
 
-        <div className='flex justify-around'>
+        <div className='flex justify-around mt-3'>
           <button>Ir a pagar</button>
 
           <span>Total: {isTotal}</span>
