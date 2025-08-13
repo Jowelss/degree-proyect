@@ -151,9 +151,17 @@ function TiendaCliente() {
 
   return (
     <>
-      <button className='absolute right-10' onClick={() => handleClickCart()}>
-        Carrito
-      </button>
+      <div className='absolute right-10'>
+        <button className='relative' onClick={() => handleClickCart()}>
+          Carrito
+        </button>
+
+        {isAddCart.length > 0 && (
+          <span className='absolute bottom-[-9px] left-[-7px] flex items-center justify-center w-5 h-5 rounded-full bg-red-800'>
+            {isAddCart.length}
+          </span>
+        )}
+      </div>
 
       {/* Modal del carrito */}
       <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
