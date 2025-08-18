@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header';
-import LoginButton from '../client/components/LoginButton.jsx';
+import LoginButton from '../../auth/LoginButton.jsx';
 
 function Inicio() {
   return (
