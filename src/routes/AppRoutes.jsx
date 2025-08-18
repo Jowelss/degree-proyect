@@ -1,20 +1,20 @@
 import { Routes, Route, useRoutes } from 'react-router-dom';
 
-import Dashboard from '../pages/private/Dashboard.jsx';
-import Inicio from '../pages/private/Inicio.jsx';
+import Dashboard from '../pages/admin/Dashboard.jsx';
+import Inicio from '../pages/admin/Inicio.jsx';
 
 // Dashboard item
-import Productos from '../pages/public/Productos.jsx';
-import Eventos from '../pages/public/Eventos.jsx';
-import Blog from '../pages/public/Blog.jsx';
-import Sesiones from '../pages/public/Sesiones.jsx';
-import Suscripciones from '../pages/public/Suscripciones.jsx';
+import Productos from '../pages/admin/Productos.jsx';
+import Eventos from '../pages/admin/Eventos.jsx';
+import Blog from '../pages/admin/Blog.jsx';
+import Sesiones from '../pages/admin/Sesiones.jsx';
+import Suscripciones from '../pages/admin/Suscripciones.jsx';
 // end
 
-import Landing from '../pages/Landing.jsx';
-import TiendaCliente from '../pages/TiendaCliente.jsx';
-import BlogClient from '../pages/BlogClient.jsx';
-import EventosClient from '../pages/EventosClient.jsx';
+import Landing from '../pages/client/Landing.jsx';
+import TiendaCliente from '../pages/client/TiendaCliente.jsx';
+import BlogClient from '../pages/client/BlogClient.jsx';
+import EventosClient from '../pages/client/EventosClient.jsx';
 
 function AppRoutes() {
   return useRoutes([
