@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from '../../components/Header.jsx';
-import LogoutButton from '../client/components/LogoutButton.jsx';
+import LogoutButton from '../../auth/LogoutButton.jsx';
 import SideBar from '../../components/SideBar.jsx';
 import Logo from '../../assets/Autentica2.png';
 
