@@ -1,4 +1,5 @@
-import { Routes, Route, useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
+import RequireAuth from '../components/RequireAuth.jsx'; //Ojito
 
 import Dashboard from '../pages/admin/Dashboard.jsx';
 import Inicio from '../pages/admin/Inicio.jsx';
@@ -33,7 +34,11 @@ function AppRoutes() {
     },
     {
       path: '/landing/*',
-      element: <Landing />,
+      element: (
+        <RequireAuth>
+          <Landing />
+        </RequireAuth>
+      ),
       children: [
         { path: 'tiendaCliente', element: <TiendaCliente /> },
         { path: 'blogclient', element: <BlogClient /> },
