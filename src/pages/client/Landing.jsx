@@ -2,8 +2,8 @@ import { Outlet } from 'react-router-dom';
 import Logo from '../../assets/Autentica2.png';
 
 import { Header } from '../../components/Header.jsx';
-import LogoutButton from './components/LogoutButton.jsx';
-import Profile from './components/Profile.jsx';
+import LogoutButton from '../../auth/LogoutButton.jsx';
+import Profile from '../../auth/Profile.jsx';
 import HeaderNav from '../../components/HeaderNav.jsx';
 
 function Landing() {
