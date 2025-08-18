@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom';
-import RequireAuth from '../components/RequireAuth.jsx'; //Ojito
+import RequireAuth from '../auth/RequireAuth.jsx'; //Ojito
 
 import Dashboard from '../pages/admin/Dashboard.jsx';
 import Inicio from '../pages/admin/Inicio.jsx';
@@ -20,6 +20,7 @@ import EventosClient from '../pages/client/EventosClient.jsx';
 function AppRoutes() {
   return useRoutes([
     { path: '/', element: <Inicio /> },
+
     {
       path: '/dashboard/*',
       element: <Dashboard />,
