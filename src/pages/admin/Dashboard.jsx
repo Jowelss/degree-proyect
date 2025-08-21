@@ -1,10 +1,17 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+
 import { Header } from '../../components/Header.jsx';
+
 import LogoutButton from '../../auth/LogoutButton.jsx';
 import SideBar from '../../components/SideBar.jsx';
 import Logo from '../../assets/Autentica2.png';
+import ModalQr from '../../components/ModalQr.jsx';
 
 function Dashboard() {
+  const [isOpenQr, setOpenQr] = useState(false);
+  const handleClick = () => setOpenQr(!isOpenQr);
+
   return (
     <>
       <Header>
@@ -12,6 +19,9 @@ function Dashboard() {
           <div className='w-14'>
             <img src={Logo} alt='Autentica' />
           </div>
+
+          <button onClick={handleClick}>Qr</button>
+
           <ul className='flex gap-6'>
             <li>
               <h3>tema</h3>
@@ -22,6 +32,8 @@ function Dashboard() {
           </ul>
         </header>
       </Header>
+
+      <ModalQr classState={isOpenQr ? 'block' : 'hidden'} coso={handleClick} />
 
       <div className='mt-16 h-[calc(100vh-4rem)] flex justify-between items-center w-full pr-4 pl-4'>
         <SideBar />
