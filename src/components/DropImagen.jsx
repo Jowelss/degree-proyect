@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export function DropImagen({ setValue, children }) {
+export function DropImagen({ setValue, children, coso }) {
   const [isEstado, setEstado] = useState('Agrega un imagen');
 
   const show = children ? 'hidden' : 'block'; //Si el children exite oculta el texto de 'Agregar una imagen'
@@ -20,6 +20,8 @@ export function DropImagen({ setValue, children }) {
         'https://api.cloudinary.com/v1_1/drazdkofq/image/upload',
         formData
       );
+
+      coso(res.data.secure_url);
 
       setValue('imagen', res.data.secure_url);
     } catch (error) {
