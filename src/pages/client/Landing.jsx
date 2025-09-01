@@ -4,7 +4,7 @@ import Logo from '../../assets/Autentica2.png';
 import { Header } from '../../components/Header.jsx';
 import LogoutButton from '../../auth/LogoutButton.jsx';
 import Profile from '../../auth/Profile.jsx';
-import HeaderNav from '../../components/HeaderNav.jsx';
+import HeaderNav from '../client/components/HeaderNav.jsx';
 
 function Landing() {
   return (
