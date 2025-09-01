@@ -8,7 +8,7 @@ import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
 import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { DataHeader } from '../../components/DataHeader.jsx';
-import { DropImagen } from '../../components/DropImagen.jsx';
+import { DropImagen } from './components/DropImagen.jsx';
 // end
 
 // Servicios API
