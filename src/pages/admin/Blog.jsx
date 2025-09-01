@@ -7,7 +7,7 @@ import { Panel } from '../../components/Panel.jsx';
 import { Modal } from '../../components/Modal.jsx';
 import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
-import { DropImagen } from '../../components/DropImagen.jsx';
+import { DropImagen } from './components/DropImagen.jsx';
 // end
 
 // services
