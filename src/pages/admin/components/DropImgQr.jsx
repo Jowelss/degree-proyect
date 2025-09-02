@@ -4,7 +4,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function DropImgQr({ setQr, children }) {
+import { Add } from '../../../services/Add';
+import { Get } from '../../../services/Get';
+
+export default function DropImgQr({ children }) {
   const [isEstado, setEstado] = useState('Agrega una imagen');
 
   const show = children ? 'hidden' : 'block'; //Si el children exite oculta el texto de 'Agregar una imagen'
@@ -22,7 +25,7 @@ export default function DropImgQr({ setQr, children }) {
         formData
       );
 
-      setQr(res.data.secure_url);
+      await Add({ imagen: res.data.secure_url }, 'qr');
     } catch (error) {
       console.log(error);
     }
