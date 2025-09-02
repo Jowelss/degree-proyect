@@ -36,7 +36,7 @@ export default function DropImgQr({ setQr, children }) {
   }, [children]);
 
   return (
-    <div {...getRootProps()} className='drop-imagen'>
+    <div {...getRootProps()} className='drop-imagen cursor-pointer'>
       <input {...getInputProps()} />
       <span className={show}>{isEstado}</span>
       {children}
