@@ -15,22 +15,21 @@ export default function Qr({ children, classState, setOpen }) {
 
   const show = qr ? 'hidden' : 'block';
 
-  const addQr = async () => {
-    const data = await Get('qr');
-
-    if (data.length > 0) {
-      await Update(data[0]._id, 'qr', { imagen: qr });
-    } else {
-      await Add({ imagen: qr }, 'qr');
-    }
-    fecthQr();
-  };
-
   const fecthQr = async () => {
     const data = await Get('qr');
 
     if (data.length > 0) {
-      setQr(data[0].imagen);
+      setQr(data);
+    }
+  };
+
+  const deleteQr = async () => {
+    try {
+      await Delete(qr[0]._id, setQr, qr, 'qr'),
+        setQr(null),
+        setState('Agrega una imagen');
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -47,7 +46,15 @@ export default function Qr({ children, classState, setOpen }) {
         formData
       );
 
-      setQr(res.data.secure_url);
+      const data = await Get('qr');
+
+      if (data.length > 0) {
+        await Update(data[0]._id, 'qr', { imagen: res.data.secure_url });
+      } else {
+        await Add({ imagen: res.data.secure_url }, 'qr');
+      }
+
+      fecthQr();
     } catch (error) {
       console.log(error);
     }
@@ -58,11 +65,6 @@ export default function Qr({ children, classState, setOpen }) {
   useEffect(() => {
     fecthQr();
   }, []);
-
-  useEffect(() => {
-    //Si el formulario se cierra el nombre del estado cambia
-    setState('Agrega una imagen');
-  }, [qr]);
 
   return (
     <div
@@ -76,18 +78,24 @@ export default function Qr({ children, classState, setOpen }) {
 
           <span className={show}>{state}</span>
 
-          {qr && <img className='object-contain h-full' src={qr} alt='Qr' />}
+          {qr && (
+            <img
+              className='object-contain h-full'
+              src={qr[0].imagen}
+              alt='Qr'
+            />
+          )}
         </div>
 
         <div className='flex justify-around mt-1.5'>
           <button
             onClick={() => {
-              addQr(), setOpen(false);
+              setOpen(false);
             }}
           >
             Guardar
           </button>
-          <button>Eliminar</button>
+          <button onClick={deleteQr}>Eliminar</button>
         </div>
       </div>
     </div>
