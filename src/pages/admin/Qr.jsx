@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Get } from '../../services/Get';
 import { Add } from '../../services/Add';
 import { Update } from '../../services/Update';
+import { Delete } from '../../services/Delete';
 
 export default function Qr({ children, classState }) {
   const [qr, setQr] = useState(null);
@@ -13,6 +14,10 @@ export default function Qr({ children, classState }) {
   const [state, setState] = useState('Agrega una imagen');
 
   const show = qr ? 'hidden' : 'block';
+
+  const addQr = () => {
+    Add({ imagen: qr }, 'qr');
+  };
 
   const onDrop = async (acceptedFiles) => {
     setState('Cargando');
@@ -56,7 +61,7 @@ export default function Qr({ children, classState }) {
         </div>
 
         <div className='flex justify-around mt-1.5'>
-          <button>Guardar</button>
+          <button onClick={addQr}>Guardar</button>
           <button>Eliminar</button>
         </div>
       </div>
