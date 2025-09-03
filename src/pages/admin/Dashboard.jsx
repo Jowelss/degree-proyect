@@ -6,7 +6,7 @@ import { Header } from '../../components/Header.jsx';
 import LogoutButton from '../../auth/LogoutButton.jsx';
 import SideBar from '../admin/components/SideBar.jsx';
 import Logo from '../../assets/Autentica2.png';
-import Qr from './QR.jsx';
+import Qr from './Qr.jsx';
 
 function Dashboard() {
   const [isOpenQr, setOpenQr] = useState(false);
