@@ -77,7 +77,10 @@ export default function Qr({ children, classState, setOpen }) {
     >
       <div className='w-[500px] bg-white rounded-2xl overflow-hidden p-2'>
         {children}
-        <div {...getRootProps()} className='drop-imagen cursor-pointer'>
+        <div
+          {...getRootProps()}
+          className='w-full min-h-[400px] drop-imagen cursor-pointer'
+        >
           <input {...getInputProps()} />
 
           <span className={show}>{state}</span>
@@ -104,7 +107,7 @@ export default function Qr({ children, classState, setOpen }) {
 
         <ModalDelete classState={openDelete ? 'block' : 'hidden'}>
           <div className='border p-4 rounded-2xl bg-white'>
-            <h2>¿Estas seguro que quieres eliminar este producto?</h2>
+            <h2>¿Estas seguro que quieres eliminar este QR?</h2>
 
             <div className='flex justify-center gap-2'>
               <button
