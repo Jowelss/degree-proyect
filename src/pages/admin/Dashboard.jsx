@@ -33,7 +33,7 @@ function Dashboard() {
         </header>
       </Header>
 
-      <Qr classState={isOpenQr ? 'block' : 'hidden'}>
+      <Qr classState={isOpenQr ? 'block' : 'hidden'} setOpen={setOpenQr}>
         <button className='mb-1.5' onClick={handleClick}>
           Cerrar
         </button>
