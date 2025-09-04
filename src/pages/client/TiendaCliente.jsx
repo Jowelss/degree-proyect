@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 // component
 import ModalCart from '../../components/ModalCart.jsx';
 import { Modal } from '../../components/Modal.jsx';
+import PayModal from './PayModal.jsx';
 // end
 
 // services
@@ -10,6 +11,8 @@ import { Get } from '../../services/Get.jsx';
 // end
 
 function TiendaCliente() {
+  const [openModalQr, setOpenModalQr] = useState(false);
+
   //Modal de compra
   const [isOpen, setIsOpen] = useState(false);
 
@@ -187,6 +190,7 @@ function TiendaCliente() {
                       <span>{item.nombre}</span>
                       <span>x{item.cantidad}</span>
                       <span>{item.precio}bs</span>
+
                       <button className='bg-red-900'>Eliminar</button>
                     </div>
                   )
@@ -196,11 +200,17 @@ function TiendaCliente() {
         </div>
 
         <div className='flex justify-around mt-3'>
-          <button>Ir a pagar</button>
+          <button onClick={() => setOpenModalQr(true)}>Ir a pagar</button>
 
           <span>Total: {isTotal}</span>
         </div>
       </ModalCart>
+
+      <PayModal
+        setOpenModalQr={setOpenModalQr}
+        classState={openModalQr}
+        products={isAddCart}
+      />
 
       {/* Carts views products */}
       <div className='w-full flex justify-center gap-4 mt-10'>
