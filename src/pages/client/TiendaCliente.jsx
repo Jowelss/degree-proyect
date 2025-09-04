@@ -1,9 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 // component
 import ModalCart from '../../components/ModalCart.jsx';
 import { Modal } from '../../components/Modal.jsx';
-import PayModal from './PayModal.jsx';
 // end
 
 // services
@@ -11,7 +11,7 @@ import { Get } from '../../services/Get.jsx';
 // end
 
 function TiendaCliente() {
-  const [openModalQr, setOpenModalQr] = useState(false);
+  const navigate = useNavigate();
 
   //Modal de compra
   const [isOpen, setIsOpen] = useState(false);
@@ -200,17 +200,21 @@ function TiendaCliente() {
         </div>
 
         <div className='flex justify-around mt-3'>
-          <button onClick={() => setOpenModalQr(true)}>Ir a pagar</button>
+          <button
+            onClick={() =>
+              navigate('/landing/tiendacliente/pay', {
+                state: { cart: isAddCart },
+              })
+            }
+          >
+            Ir a pagar
+          </button>
 
           <span>Total: {isTotal}</span>
         </div>
       </ModalCart>
 
-      <PayModal
-        setOpenModalQr={setOpenModalQr}
-        classState={openModalQr}
-        products={isAddCart}
-      />
+      {/* <Pay products={isAddCart} /> */}
 
       {/* Carts views products */}
       <div className='w-full flex justify-center gap-4 mt-10'>
