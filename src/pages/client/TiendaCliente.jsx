@@ -202,8 +202,9 @@ function TiendaCliente() {
         <div className='flex justify-around mt-3'>
           <button
             onClick={() =>
+              isAddCart.length > 0 &&
               navigate('/landing/tiendacliente/pay', {
-                state: { cart: isAddCart },
+                state: { cart: isAddCart, total: isTotal, producto: products },
               })
             }
           >
@@ -213,8 +214,6 @@ function TiendaCliente() {
           <span>Total: {isTotal}</span>
         </div>
       </ModalCart>
-
-      {/* <Pay products={isAddCart} /> */}
 
       {/* Carts views products */}
       <div className='w-full flex justify-center gap-4 mt-10'>
