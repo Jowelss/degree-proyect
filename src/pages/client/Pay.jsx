@@ -1,11 +1,16 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
+import axios from 'axios';
 import { Get } from '../../services/Get';
 
 function Pay() {
+  const { user } = useAuth0();
+
+  console.log(user);
+
   const [status, setStatus] = useState('idle');
   const [voucher, setVoucher] = useState(null);
 
