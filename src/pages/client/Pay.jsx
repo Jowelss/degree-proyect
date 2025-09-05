@@ -6,12 +6,22 @@ import axios from 'axios';
 import { Get } from '../../services/Get';
 
 function Pay() {
-  const navigate = useNavigate();
+  const [status, setStatus] = useState('idle');
+  const [voucher, setVoucher] = useState(null);
 
+  const navigate = useNavigate();
   const location = useLocation();
 
-  const { cart } = location.state || { cart: [] };
+  const { cart, total, producto } = location.state || {
+    cart: [],
+    total,
+    producto: [],
+  };
 
+  console.log(cart);
+  console.log(producto);
+
+  //Obtiene datos de la API Qr
   const [qr, setQr] = useState(null);
 
   const getQr = async () => {
@@ -23,8 +33,10 @@ function Pay() {
   useEffect(() => {
     getQr();
   }, []);
+  // end
 
   const onDrop = async (acceptedFiles) => {
+    setStatus('loading');
     const formData = new FormData();
     formData.append('file', acceptedFiles[0]);
     formData.append('upload_preset', 'autentica_loveSelf');
@@ -35,7 +47,8 @@ function Pay() {
         formData
       );
 
-      console.log(res.data.secure_url);
+      setVoucher(res.data.secure_url);
+      setStatus('ready');
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +60,7 @@ function Pay() {
     <div className='flex justify-center items-center'>
       <div>
         <button className='mb-2' onClick={() => navigate(-1)}>
-          Cerrar
+          Cancelar compra
         </button>
 
         <div className='flex gap-5'>
@@ -56,12 +69,22 @@ function Pay() {
           </div>
 
           <div>
-            <div className='w-[300px] mb-3'>
+            <div className='w-[400px] mb-3'>
               <div {...getRootProps()} className='drop-imagen'>
                 <input {...getInputProps()} />
+                {status === 'idle' && (
+                  <span>Agrega tu comprobante de pago</span>
+                )}
+                {status === 'loading' && <span>Cargando</span>}
+                {status === 'ready' && (
+                  <img
+                    className='object-contain h-full'
+                    src={voucher}
+                    alt='Voucher'
+                  />
+                )}
               </div>
             </div>
-
             <div className='mb-5'>
               {cart.length === 0 ? (
                 <div className='h-20 flex items-center justify-center'>
@@ -85,6 +108,8 @@ function Pay() {
                 </div>
               )}
             </div>
+
+            <span>TOTAL: {total}</span>
 
             <div>
               <button>Enviar</button>
