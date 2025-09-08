@@ -171,7 +171,6 @@ function TiendaCliente() {
       }
     });
   };
-  console.log(isAddCart);
 
   // Estado del total
   const [isTotal, setTotal] = useState(0);
