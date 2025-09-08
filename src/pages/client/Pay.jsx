@@ -5,11 +5,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import axios from 'axios';
 import { Get } from '../../services/Get';
+import { Add } from '../../services/Add';
 
 function Pay() {
   const { user } = useAuth0();
-
-  console.log(user);
 
   const [status, setStatus] = useState('idle');
   const [voucher, setVoucher] = useState(null);
@@ -17,14 +16,32 @@ function Pay() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { cart, total, producto } = location.state || {
+  const { cart, total } = location.state || {
     cart: [],
     total,
-    producto: [],
   };
 
-  console.log(cart);
-  console.log(producto);
+  const items = cart.map((item) => ({
+    libroId: item._id,
+    nombre: item.nombre,
+    precio: item.precio,
+    cantidad: item.cantidad,
+  }));
+
+  const BuyProducts = async () => {
+    try {
+      const orden = {
+        userId: user.sub,
+        items,
+        total,
+        voucher,
+      };
+
+      await Add(orden, 'orden');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //Obtiene datos de la API Qr
   const [qr, setQr] = useState(null);
@@ -91,11 +108,7 @@ function Pay() {
               </div>
             </div>
             <div className='mb-5'>
-              {cart.length === 0 ? (
-                <div className='h-20 flex items-center justify-center'>
-                  <span>No hay productos agregados</span>
-                </div>
-              ) : (
+              {
                 <div className='flex flex-col gap-3'>
                   {cart.map(
                     (item) =>
@@ -111,13 +124,13 @@ function Pay() {
                       )
                   )}
                 </div>
-              )}
+              }
             </div>
 
             <span>TOTAL: {total}</span>
 
             <div>
-              <button>Enviar</button>
+              <button onClick={BuyProducts}>Enviar</button>
             </div>
             <span className=' block w-100'>
               La confirmación de tu compra puede demorar maximo 24horas, deja tu
