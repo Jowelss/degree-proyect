@@ -139,6 +139,40 @@ function TiendaCliente() {
   };
   //end
 
+  const deleteProduct = (selectProduct) => {
+    const productsExiste = products.find(
+      (item) => item._id === selectProduct._id
+    );
+
+    if (!productsExiste || productsExiste.cantidad >= isAddCart.cantidad) {
+      return productsExiste;
+    }
+
+    setproducts((prev) =>
+      prev.map((item) =>
+        item._id === selectProduct._id
+          ? { ...item, cantidad: item.cantidad + selectProduct.cantidad }
+          : item
+      )
+    );
+
+    setAddCart((prevCart) => {
+      if (prevCart.cantidad > 1) {
+        return prevCart.map((item) =>
+          item._id === selectProduct._id
+            ? {
+                ...item,
+                cantidad: 0,
+              }
+            : item
+        );
+      } else {
+        return prevCart.filter((item) => item._id !== selectProduct._id);
+      }
+    });
+  };
+  console.log(isAddCart);
+
   // Estado del total
   const [isTotal, setTotal] = useState(0);
 
@@ -147,6 +181,7 @@ function TiendaCliente() {
     const total = isAddCart.reduce((acc, item) => {
       return acc + item.precio * item.cantidad; // precio unitario * cantidad
     }, 0);
+
     setTotal(total);
   }, [isAddCart]);
 
@@ -191,7 +226,12 @@ function TiendaCliente() {
                       <span>x{item.cantidad}</span>
                       <span>{item.precio}bs</span>
 
-                      <button className='bg-red-900'>Eliminar</button>
+                      <button
+                        className='bg-red-900'
+                        onClick={() => deleteProduct(item)}
+                      >
+                        Eliminar
+                      </button>
                     </div>
                   )
               )}
