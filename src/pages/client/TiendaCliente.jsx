@@ -15,12 +15,6 @@ function TiendaCliente() {
 
   //Modal de compra
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = (item) => {
-    setIsOpen(item);
-
-    setselectedProduct(item);
-  };
   //end
 
   //Obtencion de datos API
@@ -29,10 +23,10 @@ function TiendaCliente() {
   const fetchLibros = async () => {
     const data = await Get('libros');
 
-    if (data === undefined) {
-      console.log('error pa');
-    } else {
+    if (data) {
       setproducts(data);
+    } else {
+      console.log('error pa');
     }
   };
 
@@ -46,10 +40,6 @@ function TiendaCliente() {
 
   const handleClickCart = () => setIsOpenCart(!isOpenCart);
   //end
-
-  // Estado de seleccion del products
-  const [selectedProduct, setselectedProduct] = useState(null);
-  // end
 
   const [isAddCart, setAddCart] = useState([]);
 
@@ -184,7 +174,7 @@ function TiendaCliente() {
     setTotal(total);
   }, [isAddCart]);
 
-  const fountItem = isAddCart.find((item) => item._id === selectedProduct._id);
+  const fountItem = isAddCart.find((item) => item._id === isOpen._id);
 
   return (
     <>
@@ -259,7 +249,7 @@ function TiendaCliente() {
         {products.map((item) => (
           <ul
             className='border w-70 cursor-pointer'
-            onClick={() => handleClick(item)}
+            onClick={() => setIsOpen(item)}
             key={item._id}
           >
             <div className='flex justify-center w-full h-60 mb-1 bg-fuchsia-300'>
@@ -280,69 +270,68 @@ function TiendaCliente() {
 
       {/* Modal para mostrar el products y poder comprar */}
       <Modal classState={isOpen ? 'block' : 'hidden'}>
-        {selectedProduct && (
-          <div className='max-w-full flex gap-3' key={selectedProduct._id}>
-            <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
-              <img
-                className='object-contain h-full'
-                src={selectedProduct.imagen}
-                alt='Imagen'
-              />
-            </div>
-            <div className='flex-1 overflow-hidden'>
-              <div className='text-end'>
-                <button onClick={() => handleClick(false)}>Cerrar</button>
-              </div>
-
-              <div className='break-words'>
-                <span className='block text-4xl font-extrabold mb-2'>
-                  {selectedProduct.nombre}
-                </span>
-                <p className='mb-2'>{selectedProduct.sinopsis}</p>
-                <span>Autor: {selectedProduct.autor}</span>
-              </div>
-
-              <div className='max-w-max flex gap-2 mb-2'>
-                <span className='border'>{selectedProduct.tapa}</span>
-                <span className='border'>{selectedProduct.hoja}</span>
-              </div>
-
-              <span className='border'>{selectedProduct.genero}</span>
-
-              <div className='flex items-end gap-10'>
-                <div>
-                  <span className='text-7xl font-bold'>
-                    {selectedProduct.precio}
-                  </span>
-                  <span className='text-2xl font-semibold'>bs</span>
+        {products.map(
+          (item) =>
+            item._id === isOpen._id && (
+              <div className='max-w-full flex gap-3' key={item._id}>
+                <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
+                  <img
+                    className='object-contain h-full'
+                    src={item.imagen}
+                    alt='Imagen'
+                  />
                 </div>
-
-                <span className='text-2xl font-bold'>
-                  Disponibles: {selectedProduct.cantidad}
-                </span>
-              </div>
-
-              <div>
-                {fountItem?.cantidad > 0 ? (
-                  <div>
-                    <button onClick={() => decreaseQuantity(selectedProduct)}>
-                      Quitar
-                    </button>
-
-                    <span>{fountItem?.cantidad}</span>
-
-                    <button onClick={() => addToCart(selectedProduct)}>
-                      Agregar
-                    </button>
+                <div className='flex-1 overflow-hidden'>
+                  <div className='text-end'>
+                    <button onClick={() => setIsOpen(false)}>Cerrar</button>
                   </div>
-                ) : (
-                  <button onClick={() => addToCart(selectedProduct)}>
-                    Agregar al carrito
-                  </button>
-                )}
+
+                  <div className='break-words'>
+                    <span className='block text-4xl font-extrabold mb-2'>
+                      {item.nombre}
+                    </span>
+                    <p className='mb-2'>{item.sinopsis}</p>
+                    <span>Autor: {item.autor}</span>
+                  </div>
+
+                  <div className='max-w-max flex gap-2 mb-2'>
+                    <span className='border'>{item.tapa}</span>
+                    <span className='border'>{item.hoja}</span>
+                  </div>
+
+                  <span className='border'>{item.genero}</span>
+
+                  <div className='flex items-end gap-10'>
+                    <div>
+                      <span className='text-7xl font-bold'>{item.precio}</span>
+                      <span className='text-2xl font-semibold'>bs</span>
+                    </div>
+
+                    <span className='text-2xl font-bold'>
+                      Disponibles: {item.cantidad}
+                    </span>
+                  </div>
+
+                  <div>
+                    {fountItem?.cantidad > 0 ? (
+                      <div>
+                        <button onClick={() => decreaseQuantity(item)}>
+                          Quitar
+                        </button>
+
+                        <span>{fountItem?.cantidad}</span>
+
+                        <button onClick={() => addToCart(item)}>Agregar</button>
+                      </div>
+                    ) : (
+                      <button onClick={() => addToCart(item)}>
+                        Agregar al carrito
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            )
         )}
       </Modal>
       {/* end */}
