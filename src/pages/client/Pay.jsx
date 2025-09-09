@@ -33,8 +33,8 @@ function Pay() {
       const orden = {
         userId: user.sub,
         items,
-        total,
         voucher,
+        total,
       };
 
       await Add(orden, 'orden');
