@@ -43,6 +43,19 @@ function TiendaCliente() {
 
   const [isAddCart, setAddCart] = useState([]);
 
+  const [cosos, setCosos] = useState([]);
+
+  useEffect(() => {
+    if (isAddCart.length > 0 && products.length > 0) {
+      const combinados = isAddCart.map((c) => {
+        const prod = products.find((p) => p._id === c._id); // busca coincidencia
+        return prod;
+      });
+
+      setCosos(combinados);
+    }
+  }, [isAddCart, products]);
+
   const addToCart = (selectProduct) => {
     // Esto resta la cantidad del products
     const productsExiste = products.find(
@@ -233,7 +246,7 @@ function TiendaCliente() {
             onClick={() =>
               isAddCart.length > 0 &&
               navigate('/landing/tiendacliente/pay', {
-                state: { cart: isAddCart, total: isTotal, producto: products },
+                state: { cart: isAddCart, total: isTotal, producto: cosos },
               })
             }
           >
