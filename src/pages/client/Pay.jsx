@@ -43,6 +43,8 @@ function Pay() {
     }
   };
 
+  console.log('sexo');
+
   //Obtiene datos de la API Qr
   const [qr, setQr] = useState(null);
 
