@@ -6,6 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { Get } from '../../services/Get';
 import { Add } from '../../services/Add';
+import { Update } from '../../services/Update';
 
 function Pay() {
   const { user } = useAuth0();
@@ -16,9 +17,10 @@ function Pay() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { cart, total } = location.state || {
+  const { cart, total, producto } = location.state || {
     cart: [],
     total,
+    producto: [],
   };
 
   const items = cart.map((item) => ({
@@ -37,13 +39,17 @@ function Pay() {
         total,
       };
 
+      for (const item of producto) {
+        const { _id, ...data } = item;
+
+        await Update(_id, 'libros', data);
+      }
+
       await Add(orden, 'orden');
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log('sexo');
 
   //Obtiene datos de la API Qr
   const [qr, setQr] = useState(null);
