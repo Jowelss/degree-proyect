@@ -25,6 +25,7 @@ function Pay() {
 
   const items = cart.map((item) => ({
     libroId: item._id,
+    imagen: item.imagen,
     nombre: item.nombre,
     precio: item.precio,
     cantidad: item.cantidad,
