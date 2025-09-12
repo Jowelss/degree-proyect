@@ -12,6 +12,9 @@ function HeaderBar() {
       <li>
         <Link to={'/landing/eventosclient'}>Eventos</Link>
       </li>
+      <li>
+        <Link to={'/landing/tiendaCliente/history'}>Historial</Link>
+      </li>
     </ul>
   );
 }
