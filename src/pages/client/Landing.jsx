@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom';
-import Logo from '../../assets/Autentica2.png';
 
 import { Header } from '../../components/Header.jsx';
 import LogoutButton from '../../auth/LogoutButton.jsx';
 import Profile from '../../auth/Profile.jsx';
 import HeaderNav from '../client/components/HeaderNav.jsx';
+import Logo from '../../assets/Autentica2.png';
 
 function Landing() {
   return (
     <>
       <Header>
-        <header className='h-16 flex justify-between items-center w-full pr-8 pl-8'>
+        <header className='fixed top-0 h-16 flex justify-between items-center w-full pr-8 pl-8'>
           <div className='w-14'>
             <img src={Logo} alt='Autentica' />
           </div>
@@ -31,7 +31,7 @@ function Landing() {
         </header>
       </Header>
 
-      <div>
+      <div className='mt-16 h-[calc(100vh-4rem)] w-full pr-4 pl-4'>
         <Outlet />
       </div>
     </>
