@@ -260,7 +260,7 @@ function TiendaCliente() {
       {/* Carts views products */}
       <div className='w-full flex justify-center gap-4 mt-10'>
         {products.map((item) =>
-          item.cantidad > 1 ? (
+          item.cantidad >= 1 ? (
             <ul
               className='border w-70 cursor-pointer'
               onClick={() => setIsOpen(item)}
