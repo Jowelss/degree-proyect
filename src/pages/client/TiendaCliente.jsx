@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 // component
 import ModalCart from '../../components/ModalCart.jsx';
 import { Modal } from '../../components/Modal.jsx';
+import ProductCard from '../../components/ProductCard';
 // end
 
 // services
@@ -259,46 +260,9 @@ function TiendaCliente() {
 
       {/* Carts views products */}
       <div className='w-full flex justify-center gap-4 mt-10'>
-        {products.map((item) =>
-          item.cantidad >= 1 ? (
-            <ul
-              className='border w-70 cursor-pointer'
-              onClick={() => setIsOpen(item)}
-              key={item._id}
-            >
-              <div className='flex justify-center w-full h-60 mb-1 bg-fuchsia-300'>
-                <img
-                  className='object-contain h-full'
-                  src={item.imagen}
-                  alt='Imagen'
-                />
-              </div>
-              <li className='text-end'>{item.estado}</li>
-              <li>{item.nombre}</li>
-              <li>{item.precio}bs</li>
-              <li>{item.cantidad} disponibles</li>
-            </ul>
-          ) : (
-            <div className='relative '>
-              <div className='absolute inset-0 bg-black/80 z-10 flex items-center justify-center text-white'>
-                <span>AGOTADO</span>
-              </div>
-              <ul className='border bg w-70 cursor-pointer' key={item._id}>
-                <div className='flex justify-center w-full h-60 mb-1 bg-fuchsia-300'>
-                  <img
-                    className='object-contain h-full'
-                    src={item.imagen}
-                    alt='Imagen'
-                  />
-                </div>
-                <li className='text-end'>{item.estado}</li>
-                <li>{item.nombre}</li>
-                <li>{item.precio}bs</li>
-                <li>{item.cantidad} disponibles</li>
-              </ul>
-            </div>
-          )
-        )}
+        {products.map((item) => (
+          <ProductCard key={item._id} item={item} onClick={setIsOpen} />
+        ))}
       </div>
       {/* end */}
 
