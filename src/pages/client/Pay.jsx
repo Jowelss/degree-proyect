@@ -43,6 +43,10 @@ function Pay() {
       for (const item of producto) {
         const { _id, ...data } = item;
 
+        if (data.cantidad === 0) {
+          data.estado = 'Agotado';
+        }
+
         await Update(_id, 'libros', data);
       }
 
