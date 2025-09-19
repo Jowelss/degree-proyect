@@ -7,7 +7,7 @@ function Blog() {
 
   const getDataPost = async () => {
     const data = await Get('posts');
-    console.log(data);
+
     if (data) {
       setPost(data);
     } else {
@@ -21,15 +21,20 @@ function Blog() {
 
   return (
     <>
-      <div>
+      <div className='flex'>
         {post.map((item) => (
-          <ul key={item._id}>
-            <div>
-              <img src={item.imagen} alt='post' />
-            </div>
+          <ul className='border' key={item._id}>
             <li>{item.tipo}</li>
             <li>{item.titulo}</li>
             <li>{item.mensaje}</li>
+
+            <div className='h-80'>
+              <img
+                className='object-contain h-full'
+                src={item.imagen}
+                alt='post'
+              />
+            </div>
           </ul>
         ))}
       </div>
