@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useForm } from 'react-hook-form';
 
 import axios from 'axios';
 import { Get } from '../../services/Get';
@@ -17,6 +18,8 @@ function Pay() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { handleSubmit, register } = useForm();
+
   const { cart, total, producto } = location.state || {
     cart: [],
     total,
@@ -31,12 +34,15 @@ function Pay() {
     cantidad: item.cantidad,
   }));
 
-  const BuyProducts = async () => {
+  const BuyProducts = handleSubmit(async (data) => {
     try {
       const orden = {
         userId: user.sub,
         items,
         voucher,
+        nombre: data.nombre,
+        telefono: data.telefono,
+        email: user.email,
         total,
       };
 
@@ -54,7 +60,7 @@ function Pay() {
     } catch (error) {
       console.log(error);
     }
-  };
+  });
 
   //Obtiene datos de la API Qr
   const [qr, setQr] = useState(null);
@@ -104,22 +110,6 @@ function Pay() {
           </div>
 
           <div>
-            <div className='w-[400px] mb-3'>
-              <div {...getRootProps()} className='drop-imagen'>
-                <input {...getInputProps()} />
-                {status === 'idle' && (
-                  <span>Agrega tu comprobante de pago</span>
-                )}
-                {status === 'loading' && <span>Cargando</span>}
-                {status === 'ready' && (
-                  <img
-                    className='object-contain h-full'
-                    src={voucher}
-                    alt='Voucher'
-                  />
-                )}
-              </div>
-            </div>
             <div className='mb-5'>
               {
                 <div className='flex flex-col gap-3'>
@@ -140,11 +130,41 @@ function Pay() {
               }
             </div>
 
+            <div className='w-[400px] mb-3'>
+              <div {...getRootProps()} className='drop-imagen'>
+                <input {...getInputProps()} />
+                {status === 'idle' && (
+                  <span>Agrega tu comprobante de pago</span>
+                )}
+                {status === 'loading' && <span>Cargando</span>}
+                {status === 'ready' && (
+                  <img
+                    className='object-contain h-full'
+                    src={voucher}
+                    alt='Voucher'
+                  />
+                )}
+              </div>
+            </div>
+
+            <div></div>
+
+            <form onSubmit={BuyProducts}>
+              <div>
+                <label>Nombre</label>
+                <input type='text' {...register('nombre')} />
+              </div>
+
+              <div>
+                <label>Numero de celular</label>
+                <input type='number' {...register('telefono')} />
+              </div>
+
+              <button type='submit'>Enviar</button>
+            </form>
+
             <span>TOTAL: {total}</span>
 
-            <div>
-              <button onClick={BuyProducts}>Enviar</button>
-            </div>
             <span className=' block w-100'>
               La confirmación de tu compra puede demorar maximo 24horas, deja tu
               numero de telefono o correo electronico para contactarnos contigo.
