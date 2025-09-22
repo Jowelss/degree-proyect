@@ -21,14 +21,14 @@ function Blog() {
 
   return (
     <>
-      <div className='flex'>
+      <div className='flex flex-col items-center gap-5'>
         {post.map((item) => (
-          <ul className='border' key={item._id}>
-            <li>{item.tipo}</li>
-            <li>{item.titulo}</li>
-            <li>{item.mensaje}</li>
+          <ul className='border w-[800px] p-2 rounded-2xl' key={item._id}>
+            <li className='uppercase text-3xl font-bold mb-2'>{item.titulo}</li>
+            <li className='text-xs uppercase font-bold'>{item.tipo}</li>
+            <li className=' text-lg break-words mb-8'>{item.mensaje}</li>
 
-            <div className='h-80'>
+            <div className='h-80 flex justify-center bg-fuchsia-300'>
               <img
                 className='object-contain h-full'
                 src={item.imagen}
