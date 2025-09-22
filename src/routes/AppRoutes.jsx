@@ -35,6 +35,7 @@ function AppRoutes() {
         { path: 'sesiones', element: <Sesiones /> },
       ],
     },
+
     {
       path: '/landing/*',
       element: (
