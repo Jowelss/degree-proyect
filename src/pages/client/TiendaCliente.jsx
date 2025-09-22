@@ -20,14 +20,17 @@ function TiendaCliente() {
 
   //Obtencion de datos API
   const [products, setproducts] = useState([]);
+  const [status, setStatus] = useState();
 
   const fetchLibros = async () => {
+    setStatus('loading');
     const data = await Get('libros');
 
     if (data) {
+      setStatus('ready');
       setproducts(data);
     } else {
-      console.log('error pa');
+      setStatus('error');
     }
   };
 
@@ -192,8 +195,17 @@ function TiendaCliente() {
 
   return (
     <>
-      <div className='absolute right-10'>
-        <button className='relative' onClick={() => handleClickCart()}>
+      <div
+        className={`${
+          status === 'ready' ? 'hidden' : 'block'
+        } h-full flex items-center justify-center`}
+      >
+        {status === 'loading' && <span>Cargando los productos</span>}
+        {status === 'error' && <span>Error al acceder a los productos</span>}
+      </div>
+
+      <div className='absolute right-10 top-0'>
+        <button className='relative mt-16' onClick={() => handleClickCart()}>
           Carrito
         </button>
 
