@@ -10,7 +10,7 @@ function Landing() {
   return (
     <>
       <Header>
-        <header className='fixed top-0 h-16 flex justify-between items-center w-full pr-8 pl-8'>
+        <header className='fixed top-0 h-16 flex justify-between items-center w-full pr-8 pl-8 bg-white'>
           <div className='w-14'>
             <img src={Logo} alt='Autentica' />
           </div>
@@ -31,7 +31,7 @@ function Landing() {
         </header>
       </Header>
 
-      <div className='mt-16 h-[calc(100vh-4rem)] w-full pr-4 pl-4'>
+      <div className='pt-30 h-[calc(100vh-4rem)] w-full pr-4 pl-4'>
         <Outlet />
       </div>
     </>
