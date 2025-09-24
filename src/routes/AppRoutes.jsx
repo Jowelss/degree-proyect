@@ -12,6 +12,8 @@ import Sesiones from '../pages/admin/Sesiones.jsx';
 import Suscripciones from '../pages/admin/Suscripciones.jsx';
 // end
 
+import RoleRedirect from '../auth/RoleRedirect.jsx';
+
 import Landing from '../pages/client/Landing.jsx';
 import TiendaCliente from '../pages/client/TiendaCliente.jsx';
 import BlogClient from '../pages/client/BlogClient.jsx';
@@ -21,12 +23,15 @@ import History from '../pages/client/History.jsx';
 
 function AppRoutes() {
   return useRoutes([
-    { path: '/', element: <Inicio /> },
+    { path: '/', element: <RoleRedirect /> },
 
     {
       path: '/dashboard/*',
-      element: <Dashboard />,
-
+      element: (
+        <RequireAuth>
+          <Dashboard />
+        </RequireAuth>
+      ),
       children: [
         { path: 'productos', element: <Productos /> },
         { path: 'eventos', element: <Eventos /> },
