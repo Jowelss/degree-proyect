@@ -116,7 +116,7 @@ function Tienda() {
         <li className='w-40'>Accion</li>
       </DataHeader>
 
-      <ul className='flex flex-col gap-2 p-4'>
+      <ul className='flex flex-col-reverse gap-2 p-4'>
         {libros.map((libro) => (
           <ItemCard key={libro._id}>
             <div className='flex justify-center w-40 h-full'>
