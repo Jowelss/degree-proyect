@@ -21,9 +21,9 @@ function Dashboard() {
             <img src={Logo} alt='Autentica' />
           </div>
 
-          <button onClick={handleClick}>
-            <IoQrCode />
-          </button>
+          <div className='cursor-pointer border p-1' onClick={handleClick}>
+            <IoQrCode className='text-black text-3xl' />
+          </div>
 
           <ul className='flex gap-6'>
             <li>
