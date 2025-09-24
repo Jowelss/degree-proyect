@@ -7,6 +7,7 @@ import LogoutButton from '../../auth/LogoutButton.jsx';
 import SideBar from '../admin/components/SideBar.jsx';
 import Logo from '../../assets/Autentica2.png';
 import Qr from './Qr.jsx';
+import { IoQrCode } from 'react-icons/io5';
 
 function Dashboard() {
   const [isOpenQr, setOpenQr] = useState(false);
@@ -20,7 +21,9 @@ function Dashboard() {
             <img src={Logo} alt='Autentica' />
           </div>
 
-          <button onClick={handleClick}>Qr</button>
+          <button onClick={handleClick}>
+            <IoQrCode />
+          </button>
 
           <ul className='flex gap-6'>
             <li>
