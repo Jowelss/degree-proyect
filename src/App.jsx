@@ -8,7 +8,7 @@ function App() {
       domain={import.meta.env.VITE_DOMAIN_AUTH0}
       clientId={import.meta.env.VITE_CLIENTID_AUTH0}
       authorizationParams={{
-        redirect_uri: `${window.location.origin}/landing`,
+        redirect_uri: window.location.origin,
       }}
     >
       <BrowserRouter>
