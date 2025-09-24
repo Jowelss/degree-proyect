@@ -271,7 +271,7 @@ function TiendaCliente() {
       </ModalCart>
 
       {/* Carts views products */}
-      <div className='w-full flex justify-center gap-4'>
+      <div className='w-full flex justify-center flex-row-reverse gap-4'>
         {products.map((item) => (
           <ProductCard key={item._id} item={item} onClick={setIsOpen} />
         ))}
