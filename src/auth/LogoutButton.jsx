@@ -12,7 +12,7 @@ function LogoutButton() {
         logout({ logoutParams: { returnTo: window.location.origin } })
       }
     >
-      Cerrar Sesion
+      Cerrar sesión
     </button>
   );
 }
