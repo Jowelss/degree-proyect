@@ -30,8 +30,8 @@ export default function RoleRedirect() {
   return (
     <>
       <Header>
-        <header className='flex justify-around w-full pt-2'>
-          <div className='w-14'>
+        <header className='max-w-[1500px] flex justify-between items-center w-full px-8 py-2'>
+          <div className='w-16 rounded-full bg-white p-2'>
             <img src={Logo} alt='Autentica' />
           </div>
           <div>
@@ -39,10 +39,6 @@ export default function RoleRedirect() {
           </div>
         </header>
       </Header>
-
-      <main className='h-screen flex justify-center items-center'>
-        <h1 className='text-6xl'>AUTENTICA</h1>
-      </main>
     </>
   );
 }
