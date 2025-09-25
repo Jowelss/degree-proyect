@@ -9,7 +9,7 @@ input {
 }
 
 button {
-  @apply bg-blue-500 text-white cursor-pointer p-1 rounded-xl;
+  @apply cursor-pointer;
 }
 
 .sidebar_item {
