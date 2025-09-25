@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { MdSaveAlt } from 'react-icons/md';
+import { MdDeleteOutline } from 'react-icons/md';
 
 import axios from 'axios';
 
@@ -75,11 +77,12 @@ export default function Qr({ children, classState, setOpen }) {
     <div
       className={`${classState} fixed inset-0 flex justify-center items-center bg-[#00000091]`}
     >
-      <div className='w-[500px] bg-white rounded-2xl overflow-hidden p-2'>
+      <div className='w-[500px] bg-white rounded-2xl overflow-hidden'>
         {children}
+
         <div
           {...getRootProps()}
-          className='w-full min-h-[400px] drop-imagen cursor-pointer'
+          className='w-full min-h-[400px] drop-imagen cursor-pointer bg-white border-none'
         >
           <input {...getInputProps()} />
 
@@ -93,16 +96,25 @@ export default function Qr({ children, classState, setOpen }) {
             />
           )}
         </div>
-        <div className='flex justify-around mt-1.5'>
+
+        <div className='flex justify-around my-3'>
           <button
+            title='Guardar Qr'
+            className='bg-purple-700 w-16 flex justify-center rounded-2xl text-white'
             onClick={() => {
               setOpen(false);
             }}
           >
-            Guardar
+            <MdSaveAlt className='text-4xl' />
           </button>
 
-          <button onClick={handleClickDelete}>Eliminar</button>
+          <button
+            title='Eliminar Qr'
+            className='bg-purple-700 w-16 flex justify-center rounded-2xl text-white'
+            onClick={handleClickDelete}
+          >
+            <MdDeleteOutline className='text-4xl' />
+          </button>
         </div>
 
         <ModalDelete classState={openDelete ? 'block' : 'hidden'}>
