@@ -15,9 +15,9 @@ function Dashboard() {
   const handleClick = () => setOpenQr(!isOpenQr);
 
   return (
-    <>
+    <div className='flex flex-col min-h-screen'>
       <Header>
-        <div className='bg-purple-700 fixed top-0 max-w-[1500px] flex justify-between items-center w-full px-8 py-2'>
+        <div className='bg-purple-700 max-w-[1500px] flex justify-between items-center w-full px-8 py-2'>
           <div className='w-16 rounded-full bg-white p-2'>
             <img src={Logo} alt='Autentica' />
           </div>
@@ -48,11 +48,11 @@ function Dashboard() {
         </div>
       </Qr>
 
-      <div className='mt-16 h-[calc(100vh-4rem)] max-w-[1500px] mx-auto flex justify-between items-center gap-2 w-full pr-4 pl-4'>
+      <div className='max-w-[1500px] max-h-[800px] mx-auto my-3 px-3 flex-1 flex justify-between gap-2 w-full '>
         <SideBar />
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
 

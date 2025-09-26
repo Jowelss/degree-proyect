@@ -80,21 +80,23 @@ export default function Qr({ children, classState, setOpen }) {
       <div className='w-[500px] bg-white rounded-2xl overflow-hidden'>
         {children}
 
-        <div
-          {...getRootProps()}
-          className='w-full min-h-[400px] drop-imagen cursor-pointer bg-white border-none'
-        >
-          <input {...getInputProps()} />
+        <div className='border-y-1'>
+          <div
+            {...getRootProps()}
+            className='w-full min-h-[400px] drop-imagen cursor-pointer bg-white border-none'
+          >
+            <input {...getInputProps()} />
 
-          <span className={show}>{state}</span>
+            <span className={show}>{state}</span>
 
-          {qr && (
-            <img
-              className='object-contain h-full'
-              src={qr[0].imagen}
-              alt='Qr'
-            />
-          )}
+            {qr && (
+              <img
+                className='object-contain h-full'
+                src={qr[0].imagen}
+                alt='Qr'
+              />
+            )}
+          </div>
         </div>
 
         <div className='flex justify-around my-3'>
