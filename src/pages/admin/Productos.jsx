@@ -109,28 +109,27 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li className='w-40'>Imagen</li>
-        <li className='w-40'>Nombre</li>
-        <li className='w-40'>Estado</li>
-        <li className='w-40'>Precio (bs)</li>
+        <li className='w-80 border-r-1'>Titulo</li>
+        <li className='w-40 border-r-1'>Estado</li>
+        <li className='w-40 border-r-1'>Precio (bs)</li>
         <li className='w-40'>Accion</li>
       </DataHeader>
 
-      <ul className='flex flex-col-reverse gap-2 p-4'>
+      <ul className='flex flex-col-reverse'>
         {libros.map((libro) => (
           <ItemCard key={libro._id}>
-            <div className='flex justify-center w-40 h-full'>
+            <div className='flex items-center gap-2 w-80 h-full'>
               <img
-                className='object-contain h-full'
+                className='object-contain h-full border'
                 src={libro.imagen}
                 alt='Imagen del producto'
               />
+              <span>{libro.nombre}</span>
             </div>
-            <span className='w-40'>{libro.nombre}</span>
             <span className='w-40'>{libro.estado}</span>
             <span className='w-40'>{libro.precio}</span>
 
-            <div className='flex justify-center w-40 gap-1'>
+            <div className='flex justify-between w-40 gap-1'>
               <button
                 onClick={() => {
                   setSelectId(libro._id);
