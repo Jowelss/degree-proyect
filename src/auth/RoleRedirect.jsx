@@ -18,7 +18,7 @@ export default function RoleRedirect() {
       const roles = user[import.meta.env.VITE_AUTH0_NAMESPACE] || [];
 
       if (roles.includes('admin')) {
-        navigate('/dashboard', { replace: true });
+        navigate('/dashboard/productos', { replace: true });
       } else {
         // Si no es admin, lo tratamos como cliente
         navigate('/landing', { replace: true });

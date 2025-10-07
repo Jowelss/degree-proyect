@@ -70,9 +70,22 @@ function Tienda() {
   const onSubmit = handleSubmit(async (data) => {
     if (selectId) {
       //Si los datos tienen un id los actualiza
+      if (data.cantidad > 0) {
+        data.estado = 'Disponible';
+      } else {
+        data.estado = 'Agotado';
+      }
+
       await Update(selectId, 'libros', data);
     } else {
       //Si no los tiene entonces es un producto nuevo
+
+      if (data.cantidad > 0) {
+        data.estado = 'Disponible';
+      } else {
+        data.estado = 'Agotado';
+      }
+
       await Add(data, 'libros');
     }
 
@@ -109,15 +122,17 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li className='w-80 border-r-1'>Titulo</li>
-        <li className='w-40 border-r-1'>Estado</li>
-        <li className='w-40 border-r-1'>Precio (bs)</li>
-        <li className='w-40'>Accion</li>
+        <li>#</li>
+        <li className='w-80'>Titulo</li>
+        <li className='w-40 pl-3 border-l-1'>Estado</li>
+        <li className='w-40 pl-3 border-l-1'>Precio (bs)</li>
+        <li className='w-40 pl-3 border-l-1'>Accion</li>
       </DataHeader>
 
       <ul className='flex flex-col-reverse'>
-        {libros.map((libro) => (
+        {libros.map((libro, i) => (
           <ItemCard key={libro._id}>
+            <span>{i}</span>
             <div className='flex items-center gap-2 w-80 h-full'>
               <img
                 className='object-contain h-full border'
@@ -221,16 +236,6 @@ function Tienda() {
                 </option>
                 <option value='Familia y crianza'>Familia y crianza</option>
                 <option>Otro</option>
-              </select>
-            </div>
-
-            <div className='flex gap-1'>
-              <label>Estado</label>
-              <select className='border' type='text' {...register('estado')}>
-                <option value=''>Seleccionar</option>
-
-                <option value='Disponible'>Disponible</option>
-                <option value='Agotado'>Agotado</option>
               </select>
             </div>
 

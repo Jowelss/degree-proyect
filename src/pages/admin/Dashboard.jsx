@@ -15,7 +15,7 @@ function Dashboard() {
   const handleClick = () => setOpenQr(!isOpenQr);
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-col min-h-screen '>
       <Header>
         <div className='bg-purple-700 max-w-[1500px] flex justify-between items-center w-full px-8 py-2'>
           <div className='w-16 rounded-full bg-white p-2'>
