@@ -9,6 +9,7 @@ import { MdEvent } from 'react-icons/md';
 import { TbBrandBlogger } from 'react-icons/tb';
 import { FaRegStar } from 'react-icons/fa';
 import { HiOutlineVideoCamera } from 'react-icons/hi';
+import { CgArrowsExchangeAltV } from 'react-icons/cg';
 
 import Qr from '../Qr';
 import Logo from '../../../assets/Autentica2.png';
@@ -70,8 +71,9 @@ function SideBar() {
         </ul>
       </div>
 
-      <div className='flex'>
+      <div className='py-3 px-4 flex items-center gap-4 rounded-xl border border-gray-300'>
         <Profile />
+        <CgArrowsExchangeAltV className='text-4xl' />
       </div>
 
       <Qr classState={isOpenQr ? 'block' : 'hidden'} setOpen={setOpenQr}>

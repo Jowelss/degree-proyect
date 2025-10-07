@@ -6,11 +6,13 @@ function Profile() {
   if (!isAuthenticated) return <span>No logueado</span>;
 
   return (
-    <div className='flex gap-1.5'>
-      <img className='w-10 h-10' src={user.picture} alt={user.name} />
+    <div className='flex items-center gap-1.5'>
+      <div className='w-8 h-8'>
+        <img className='object-contain' src={user.picture} alt={user.name} />
+      </div>
 
       <div>
-        <span className='block'>{user.name}</span>
+        <span className='block text-sm'>{user.name}</span>
         <span className='block text-xs'>{user.email}</span>
       </div>
     </div>
