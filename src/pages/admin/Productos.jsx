@@ -110,6 +110,7 @@ function Tienda() {
       <HeaderPanel>
         <h1 className='text-4xl font-bold'>Productos</h1>
         <button
+          className='bg-pink-400 text-white'
           onClick={() => {
             setSelectId(null);
             reset();
@@ -117,34 +118,37 @@ function Tienda() {
             changeName('Agregar');
           }}
         >
-          Nuevo producto
+          + Nuevo producto
         </button>
       </HeaderPanel>
 
       <DataHeader>
         <li>#</li>
-        <li className='w-80'>Titulo</li>
-        <li className='w-40 pl-3 border-l-1'>Estado</li>
-        <li className='w-40 pl-3 border-l-1'>Precio (bs)</li>
-        <li className='w-40 pl-3 border-l-1'>Accion</li>
+        <li className='w-80 pl-3 border-l-1 border-gray-300'>Titulo</li>
+        <li className='w-40 pl-3 border-l-1 border-gray-300'>Estado</li>
+        <li className='w-40 pl-3 border-l-1 border-gray-300'>Precio (bs)</li>
+        <li className='w-40 pl-3 border-l-1 border-gray-300'>Accion</li>
       </DataHeader>
 
       <ul className='flex flex-col-reverse'>
         {libros.map((libro, i) => (
           <ItemCard key={libro._id}>
             <span>{i}</span>
-            <div className='flex items-center gap-2 w-80 h-full'>
-              <img
-                className='object-contain h-full border'
-                src={libro.imagen}
-                alt='Imagen del producto'
-              />
+
+            <div className='w-80 h-full pl-3 flex items-center gap-2'>
+              <div className='w-14 h-full flex justify-center'>
+                <img
+                  className='object-contain h-full rounded-2xl'
+                  src={libro.imagen}
+                  alt='Imagen del producto'
+                />
+              </div>
               <span>{libro.nombre}</span>
             </div>
-            <span className='w-40'>{libro.estado}</span>
-            <span className='w-40'>{libro.precio}</span>
+            <span className='w-40 pl-3'>{libro.estado}</span>
+            <span className='w-40 pl-3'>{libro.precio}</span>
 
-            <div className='flex justify-between w-40 gap-1'>
+            <div className='pl-3 flex justify-between w-40 gap-1'>
               <button
                 onClick={() => {
                   setSelectId(libro._id);
