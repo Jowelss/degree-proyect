@@ -15,10 +15,15 @@ import Qr from '../Qr';
 import Logo from '../../../assets/Autentica2.png';
 
 import Profile from '../../../auth/Profile';
+import LogoutButton from '../../../auth/LogoutButton';
 
 function SideBar() {
   const [isOpenQr, setOpenQr] = useState(false);
   const handleClick = () => setOpenQr(!isOpenQr);
+
+  const [openProfile, setOpenProfile] = useState(false);
+
+  const showLogout = () => setOpenProfile(!openProfile);
 
   return (
     <aside className='p-4 overflow-hidden flex flex-col justify-between rounded-xl border border-gray-300'>
@@ -71,15 +76,22 @@ function SideBar() {
         </ul>
       </div>
 
-      <div className='py-3 px-4 flex items-center gap-4 rounded-xl border border-gray-300'>
-        <Profile />
-        <CgArrowsExchangeAltV className='text-4xl' />
+      <div
+        onClick={showLogout}
+        className='py-3 px-4 rounded-xl border border-gray-300'
+      >
+        <div className='mb-2 flex items-center gap-4'>
+          <Profile />
+          <CgArrowsExchangeAltV className='text-4xl' />
+        </div>
+
+        {openProfile && <LogoutButton />}
       </div>
 
       <Qr classState={isOpenQr ? 'block' : 'hidden'} setOpen={setOpenQr}>
-        <div className='flex justify-end my-3 mr-3'>
+        <div className='flex justify-end mb-3'>
           <button title='Eliminar' onClick={handleClick}>
-            <MdClose className='text-4xl' />
+            <MdClose className='text-lg' />
           </button>
         </div>
       </Qr>

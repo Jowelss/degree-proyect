@@ -127,7 +127,7 @@ function Tienda() {
         <li className='w-80 pl-3 border-l-1 border-gray-300'>Titulo</li>
         <li className='w-40 pl-3 border-l-1 border-gray-300'>Estado</li>
         <li className='w-40 pl-3 border-l-1 border-gray-300'>Precio (bs)</li>
-        <li className='w-40 pl-3 border-l-1 border-gray-300'>Accion</li>
+        <li className='w-40 pl-3 border-l-1 border-gray-300'>Acción</li>
       </DataHeader>
 
       <ul className='flex flex-col-reverse'>
@@ -172,11 +172,12 @@ function Tienda() {
       </ul>
 
       <ModalDelete classState={stateButton}>
-        <div className='border p-4 rounded-2xl bg-white'>
-          <h2>¿Estas seguro que quieres eliminar este producto?</h2>
+        <div className='p-4 bg-white rounded-xl border border-gray-300'>
+          <h2>¿Estas segura que quieres eliminar este producto?</h2>
 
-          <div className='flex justify-center gap-2'>
+          <div className='mt-2 flex justify-center gap-2'>
             <button
+              className='bg-pink-400 text-white'
               onClick={() => {
                 Delete(selectId, setLibros, libros, 'libros');
                 handleClickDelete();
