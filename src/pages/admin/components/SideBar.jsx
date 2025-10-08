@@ -78,7 +78,7 @@ function SideBar() {
 
       <div
         onClick={showLogout}
-        className='py-3 px-4 rounded-xl border border-gray-300'
+        className='py-3 px-4 rounded-xl border border-gray-300 cursor-pointer'
       >
         <div className='mb-2 flex items-center gap-4'>
           <Profile />

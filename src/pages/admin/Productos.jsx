@@ -123,11 +123,8 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li>#</li>
-        <li className='w-80 pl-3 border-l-1 border-gray-300'>Titulo</li>
-        <li className='w-40 pl-3 border-l-1 border-gray-300'>Estado</li>
-        <li className='w-40 pl-3 border-l-1 border-gray-300'>Precio (bs)</li>
-        <li className='w-40 pl-3 border-l-1 border-gray-300'>Acción</li>
+        <li>Estado</li>
+        <li>Precio (bs)</li>
       </DataHeader>
 
       <ul className='flex flex-col-reverse'>
@@ -135,7 +132,7 @@ function Tienda() {
           <ItemCard key={libro._id}>
             <span>{i}</span>
 
-            <div className='w-80 h-full pl-3 flex items-center gap-2'>
+            <div className='flex items-center'>
               <div className='w-14 h-full flex justify-center'>
                 <img
                   className='object-contain h-full rounded-2xl'
@@ -145,10 +142,10 @@ function Tienda() {
               </div>
               <span>{libro.nombre}</span>
             </div>
-            <span className='w-40 pl-3'>{libro.estado}</span>
-            <span className='w-40 pl-3'>{libro.precio}</span>
+            <span>{libro.estado}</span>
+            <span>{libro.precio}</span>
 
-            <div className='pl-3 flex justify-between w-40 gap-1'>
+            <div>
               <button
                 onClick={() => {
                   setSelectId(libro._id);

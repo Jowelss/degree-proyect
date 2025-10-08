@@ -103,32 +103,30 @@ function Eventos() {
       </HeaderPanel>
 
       <DataHeader>
-        <li className='w-40'>Imagen</li>
-        <li className='w-40'>Nombre</li>
-        <li className='w-40'>Hora</li>
-        <li className='w-40'>Fecha</li>
-        <li className='w-40'>Ubicación</li>
-        <li className='w-40'>Accion</li>
+        <li>Hora</li>
+        <li>Fecha</li>
+        <li>Ubicación</li>
       </DataHeader>
 
-      <ul className='flex flex-col gap-2 p-4'>
-        {eventos.map((evento) => (
+      <ul className='flex flex-col gap-2'>
+        {eventos.map((evento, i) => (
           <ItemCard key={evento._id}>
-            <div className='flex justify-center w-40 h-full'>
+            <span>{i}</span>
+            <div className='pl-3 flex items-center gap-2 w-80 h-full'>
               <img
                 className='object-contain h-full'
                 src={evento.imagen}
                 alt='Imagen del evento'
               />
+              <span>{evento.nombre}</span>
             </div>
-            <span className='w-40'>{evento.nombre}</span>
-            <span className='w-40'>{evento.hora}</span>
-            <span className='w-40'>
+            <span className='w-40 pl-3'>{evento.hora}</span>
+            <span className='w-40 pl-3'>
               {new Date(evento.fecha).toLocaleDateString()}
             </span>
-            <span className='w-40'>{evento.ubicacion}</span>
+            <span className='w-40 pl-3'>{evento.ubicacion}</span>
 
-            <div className='flex justify-center w-40 gap-1'>
+            <div className='pl-3 flex w-40 gap-1'>
               <button
                 onClick={() => {
                   setSelectId(evento._id);

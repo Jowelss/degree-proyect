@@ -147,8 +147,6 @@ function Pay() {
               </div>
             </div>
 
-            <div></div>
-
             <form onSubmit={BuyProducts}>
               <div>
                 <label>Nombre</label>
