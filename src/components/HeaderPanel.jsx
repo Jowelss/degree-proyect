@@ -1,6 +1,6 @@
 export function HeaderPanel({ children }) {
   return (
-    <div className='flex justify-between items-center text-black mb-4'>
+    <div className='mb-6 flex justify-between items-center text-black'>
       {children}
     </div>
   );

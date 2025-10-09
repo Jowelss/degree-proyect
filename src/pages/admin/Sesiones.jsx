@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Modal } from '../../components/Modal.jsx';
 import { Panel } from '../../components/Panel.jsx';
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
+import { DataHeader } from '../../components/DataHeader.jsx';
 
 function Reuniones() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,9 +21,15 @@ function Reuniones() {
   return (
     <Panel className='w-[900px] border'>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>Sesiones</h1>
-        <button onClick={handleClick}>Abrir Modal</button>
+        <h1 className='text-4xl font-bold'>SESIONES</h1>
+        <button className='bg-pink-400 text-white' onClick={handleClick}>
+          + Nueva Sesion
+        </button>
       </HeaderPanel>
+
+      <DataHeader>
+        <li>Integrantes</li>
+      </DataHeader>
 
       <Modal classState={state} onClosed={handleClick}>
         <div className='flex justify-between items-center mb-3'>
@@ -55,7 +62,7 @@ function Reuniones() {
             type='submit'
             className='block p-2 bg-blue-500 mt-2 cursor-pointer'
           >
-            Agregar a tienda
+            Crear sesion
           </button>
         </form>
       </Modal>

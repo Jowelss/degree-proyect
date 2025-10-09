@@ -8,6 +8,7 @@ import { Modal } from '../../components/Modal.jsx';
 import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
+import { DataHeader } from '../../components/DataHeader.jsx';
 // end
 
 // services
@@ -78,7 +79,7 @@ function Blog() {
   return (
     <Panel>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>Blog</h1>
+        <h1 className='text-4xl font-bold'>BLOG</h1>
 
         <button
           onClick={() => {
@@ -88,25 +89,32 @@ function Blog() {
             changeName('Publicar');
           }}
         >
-          Publicar
+          + Nuevo Post
         </button>
       </HeaderPanel>
 
-      <ul className='flex flex-col gap-2 p-4'>
-        {posts.map((post) => (
-          <ItemCard key={post._id}>
-            <div className='flex justify-center w-40 h-full'>
-              <img
-                className='object-contain h-full'
-                src={post.imagen}
-                alt='Imagen del producto'
-              />
-            </div>
-            <span className='w-40'>{post.titulo}</span>
-            <span className='w-40'>{post.mensaje}</span>
-            <span className='w-40'>{post.tipo}</span>
+      <DataHeader>
+        <li>Tipo</li>
+      </DataHeader>
 
-            <div className='flex justify-center w-40 gap-1'>
+      <ul className='flex flex-col'>
+        {posts.map((post, i) => (
+          <ItemCard key={post._id}>
+            <div className='flex items-center gap-3'>
+              <span className='mr-3'>{i}</span>
+
+              <div className='w-24 h-full'>
+                <img
+                  className=' object-contain h-full rounded-2xl'
+                  src={post.imagen}
+                  alt='Imagen del producto'
+                />
+              </div>
+
+              <span>{post.titulo}</span>
+            </div>
+            <span>{post.tipo}</span>
+            <div>
               <button
                 onClick={() => {
                   setSelectId(post._id);

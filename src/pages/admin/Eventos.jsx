@@ -89,7 +89,7 @@ function Eventos() {
   return (
     <Panel>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>Eventos</h1>
+        <h1 className='text-4xl font-bold'>EVENTOS</h1>
         <button
           onClick={() => {
             setSelectId(null);
@@ -98,7 +98,7 @@ function Eventos() {
             changeName('Nuevo Evento');
           }}
         >
-          Agregar Evento
+          + Nuevo Evento
         </button>
       </HeaderPanel>
 
@@ -108,25 +108,26 @@ function Eventos() {
         <li>Ubicación</li>
       </DataHeader>
 
-      <ul className='flex flex-col gap-2'>
+      <ul className='flex flex-col'>
         {eventos.map((evento, i) => (
           <ItemCard key={evento._id}>
-            <span>{i}</span>
-            <div className='pl-3 flex items-center gap-2 w-80 h-full'>
-              <img
-                className='object-contain h-full'
-                src={evento.imagen}
-                alt='Imagen del evento'
-              />
+            <div className='flex items-center gap-3'>
+              <span className='mr-3'>{i}</span>
+
+              <div className='w-14 h-full flex justify-center'>
+                <img
+                  className='object-contain h-full rounded-2xl'
+                  src={evento.imagen}
+                  alt='Imagen del producto'
+                />
+              </div>
               <span>{evento.nombre}</span>
             </div>
-            <span className='w-40 pl-3'>{evento.hora}</span>
-            <span className='w-40 pl-3'>
-              {new Date(evento.fecha).toLocaleDateString()}
-            </span>
-            <span className='w-40 pl-3'>{evento.ubicacion}</span>
+            <span>{evento.hora}</span>
+            <span>{new Date(evento.fecha).toLocaleDateString()}</span>
+            <span>{evento.ubicacion}</span>
 
-            <div className='pl-3 flex w-40 gap-1'>
+            <div>
               <button
                 onClick={() => {
                   setSelectId(evento._id);

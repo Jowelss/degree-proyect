@@ -89,8 +89,10 @@ function SideBar() {
       </div>
 
       <Qr classState={isOpenQr ? 'block' : 'hidden'} setOpen={setOpenQr}>
-        <div className='flex justify-end mb-3'>
-          <button title='Eliminar' onClick={handleClick}>
+        <div className='relative flex justify-center mb-3'>
+          <h1 className='text-lg'>CODIGO QR DE PAGO</h1>
+
+          <button className='absolute right-0' onClick={handleClick}>
             <MdClose className='text-lg' />
           </button>
         </div>

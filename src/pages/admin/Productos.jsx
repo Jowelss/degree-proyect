@@ -108,7 +108,7 @@ function Tienda() {
   return (
     <Panel>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>Productos</h1>
+        <h1 className='text-4xl font-bold'>LIBROS</h1>
         <button
           className='bg-pink-400 text-white'
           onClick={() => {
@@ -118,7 +118,7 @@ function Tienda() {
             changeName('Agregar');
           }}
         >
-          + Nuevo producto
+          + Nuevo Libro
         </button>
       </HeaderPanel>
 
@@ -130,9 +130,9 @@ function Tienda() {
       <ul className='flex flex-col-reverse'>
         {libros.map((libro, i) => (
           <ItemCard key={libro._id}>
-            <span>{i}</span>
+            <div className='flex items-center gap-3'>
+              <span className='mr-3'>{i}</span>
 
-            <div className='flex items-center'>
               <div className='w-14 h-full flex justify-center'>
                 <img
                   className='object-contain h-full rounded-2xl'
@@ -142,6 +142,7 @@ function Tienda() {
               </div>
               <span>{libro.nombre}</span>
             </div>
+
             <span>{libro.estado}</span>
             <span>{libro.precio}</span>
 
