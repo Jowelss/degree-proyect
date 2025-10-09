@@ -34,11 +34,21 @@ export default function RoleRedirect() {
           <div className='w-16 rounded-full bg-white p-2'>
             <img src={Logo} alt='Autentica' />
           </div>
+
+          <ul className='flex gap-3'>
+            <li>Blog</li>
+            <li>Contacto</li>
+          </ul>
+
           <div>
             <LoginButton />
           </div>
         </header>
       </Header>
+
+      <main className='h-screen flex justify-center items-center'>
+        <h1 className='text-6xl'>@ AUTENTICA Love Self</h1>
+      </main>
     </>
   );
 }

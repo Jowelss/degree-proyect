@@ -1,20 +1,26 @@
 import { useState } from 'react';
 
+// icons
 import { HiQrCode } from 'react-icons/hi2';
-import { MdClose } from 'react-icons/md';
+import { MdClose, MdEvent } from 'react-icons/md';
 import { RiBookShelfLine } from 'react-icons/ri';
-import { MdEvent } from 'react-icons/md';
 import { TbBrandBlogger } from 'react-icons/tb';
 import { FaRegStar } from 'react-icons/fa';
 import { HiOutlineVideoCamera } from 'react-icons/hi';
 import { CgArrowsExchangeAltV } from 'react-icons/cg';
-import { SideBarLink } from '../../../components/SideBarLink';
+// end
 
-import Qr from '../Qr';
+// image
 import Logo from '../../../assets/Autentica2.png';
+// end
 
+// auth
 import Profile from '../../../auth/Profile';
 import LogoutButton from '../../../auth/LogoutButton';
+// end
+
+import Qr from '../Qr';
+import { SideBarLink } from '../../../components/SideBarLink';
 
 function SideBar() {
   const [isOpenQr, setOpenQr] = useState(false);
