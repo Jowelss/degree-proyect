@@ -44,8 +44,18 @@ function Reuniones() {
           </div>
 
           <div>
-            <label>Imagen</label>
-            <input type='text' {...register('imagen')} />
+            <label>Cantidad de integrantes</label>
+            <input type='number' {...register('integrantes')} />
+          </div>
+
+          <div>
+            <label>Vinculo de la reunion</label>
+            <input type='text' {...register('link')} />
+          </div>
+
+          <div>
+            <label>Fecha</label>
+            <input type='text' {...register('fecha')} hidden />
           </div>
 
           <div>
@@ -54,8 +64,8 @@ function Reuniones() {
           </div>
 
           <div>
-            <label>Cantidad de integrantes</label>
-            <input type='number' {...register('integrantes')} />
+            <label>Imagen</label>
+            <input type='text' {...register('imagen')} />
           </div>
 
           <button

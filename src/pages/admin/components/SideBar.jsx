@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { useState } from 'react';
 
 import { HiQrCode } from 'react-icons/hi2';
@@ -10,6 +8,7 @@ import { TbBrandBlogger } from 'react-icons/tb';
 import { FaRegStar } from 'react-icons/fa';
 import { HiOutlineVideoCamera } from 'react-icons/hi';
 import { CgArrowsExchangeAltV } from 'react-icons/cg';
+import { SideBarLink } from '../../../components/SideBarLink';
 
 import Qr from '../Qr';
 import Logo from '../../../assets/Autentica2.png';
@@ -35,39 +34,38 @@ function SideBar() {
         </div>
 
         <ul className='flex gap-2 flex-col justify-around'>
-          <li className='sidebar_item flex items-center gap-2'>
-            <RiBookShelfLine className='text-lg' />
-            <Link className='w-full' to={'/dashboard/productos'}>
-              Libros
-            </Link>
-          </li>
-          <li className='sidebar_item flex items-center gap-2'>
-            <MdEvent className='text-lg' />
-            <Link className='w-full' to={'/dashboard/eventos'}>
-              Eventos
-            </Link>
-          </li>
-          <li className='sidebar_item flex items-center gap-2'>
-            <TbBrandBlogger className='text-lg' />
-            <Link className='w-full' to={'/dashboard/blog'}>
-              Blog
-            </Link>
-          </li>
-          <li className='sidebar_item flex items-center gap-2'>
-            <FaRegStar className='text-lg' />
-            <Link className='w-full' to={'/dashboard/suscripciones'}>
-              Suscripciones
-            </Link>
-          </li>
-          <li className='sidebar_item flex items-center gap-2'>
-            <HiOutlineVideoCamera className='text-lg' />
-            <Link className='w-full' to={'/dashboard/sesiones'}>
-              Sesiones
-            </Link>
-          </li>
+          <SideBarLink
+            to={'/dashboard/productos'}
+            icon={RiBookShelfLine}
+            label={'Libros'}
+          />
+
+          <SideBarLink
+            to={'/dashboard/eventos'}
+            icon={MdEvent}
+            label={'Eventos'}
+          />
+
+          <SideBarLink
+            to={'/dashboard/blog'}
+            icon={TbBrandBlogger}
+            label={'Blog'}
+          />
+
+          <SideBarLink
+            to={'/dashboard/suscripciones'}
+            icon={FaRegStar}
+            label={'Suscripciones'}
+          />
+
+          <SideBarLink
+            to={'/dashboard/sesiones'}
+            icon={HiOutlineVideoCamera}
+            label={'Sesiones'}
+          />
 
           <li
-            className='sidebar_item flex items-center gap-2'
+            className='p_rounded_cursor-item flex items-center gap-2 hover:bg-gray-200 '
             onClick={handleClick}
           >
             <HiQrCode className='text-lg' />

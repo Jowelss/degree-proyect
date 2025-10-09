@@ -1,1 +1,3 @@
 bg-pink-400
+
+hover:bg-gray-200
