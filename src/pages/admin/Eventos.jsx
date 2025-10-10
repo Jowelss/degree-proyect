@@ -198,7 +198,7 @@ function Eventos() {
 
           <div>
             <label>Hora</label>
-            <input aria-label='time' type='time' {...register('hora')} />
+            <input type='time' {...register('hora')} />
           </div>
 
           <div>
