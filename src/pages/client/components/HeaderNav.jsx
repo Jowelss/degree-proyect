@@ -1,20 +1,29 @@
-import { Link } from 'react-router-dom';
+import { SideBarLink } from '../../../components/SideBarLink';
 
 function HeaderBar() {
   return (
     <ul className='flex gap-10 p-2 rounded-2xl border'>
-      <li>
-        <Link to={'/landing/tiendaCliente'}>Tienda</Link>
-      </li>
-      <li>
-        <Link to={'/landing/blogclient'}>Blog</Link>
-      </li>
-      <li>
-        <Link to={'/landing/eventosclient'}>Eventos</Link>
-      </li>
-      <li>
-        <Link to={'/landing/tiendaCliente/history'}>Historial</Link>
-      </li>
+      <SideBarLink
+        to={'/landing/tiendaCliente'}
+        icon={'sexo'}
+        label={'Tienda'}
+      />
+
+      <SideBarLink to={'/landing/blogclient'} icon={'sexo'} label={'Blog'} />
+
+      <SideBarLink
+        to={'/landing/eventosclient'}
+        icon={'sexo'}
+        label={'Eventos'}
+      />
+
+      <SideBarLink to={'/landing/sesiones'} icon={'sexo'} label={'Sesiones'} />
+
+      <SideBarLink
+        to={'/landing/tiendaCliente/history'}
+        icon={'sexo'}
+        label={'Historial'}
+      />
     </ul>
   );
 }

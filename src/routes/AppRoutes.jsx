@@ -20,6 +20,7 @@ import BlogClient from '../pages/client/BlogClient.jsx';
 import EventosClient from '../pages/client/EventosClient.jsx';
 import Pay from '../pages/client/Pay.jsx';
 import History from '../pages/client/History.jsx';
+import SesionesClient from '../pages/client/SesionesClient.jsx';
 
 function AppRoutes() {
   return useRoutes([
@@ -54,6 +55,7 @@ function AppRoutes() {
         { path: 'eventosclient', element: <EventosClient /> },
         { path: 'tiendacliente/pay', element: <Pay /> },
         { path: 'tiendaCliente/history', element: <History /> },
+        { path: 'sesiones', element: <SesionesClient /> },
       ],
     },
   ]);
