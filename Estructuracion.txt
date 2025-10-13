@@ -11,3 +11,7 @@ BLOG
   8. Testimonios – historias de personas que participaron en sesiones o clubes.
   9. Noticias – actualizaciones, cambios en servicios o lanzamientos.
  10. Detrás de escena – bitácora personal, cómo se crean los espacios.
+
+ IDEAS:
+
+ Funcion para aplicar descuentos a clientes especificos

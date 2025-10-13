@@ -21,7 +21,7 @@ export default function RoleRedirect() {
         navigate('/dashboard/productos', { replace: true });
       } else {
         // Si no es admin, lo tratamos como cliente
-        navigate('/landing', { replace: true });
+        navigate('/landing/tiendaCliente', { replace: true });
       }
     }
   }, [isAuthenticated, isLoading, user, navigate]);

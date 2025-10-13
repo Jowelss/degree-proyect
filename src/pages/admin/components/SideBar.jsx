@@ -8,6 +8,8 @@ import { TbBrandBlogger } from 'react-icons/tb';
 import { FaRegStar } from 'react-icons/fa';
 import { HiOutlineVideoCamera } from 'react-icons/hi';
 import { CgArrowsExchangeAltV } from 'react-icons/cg';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
 // end
 
 // image
@@ -40,6 +42,21 @@ function SideBar() {
         </div>
 
         <ul className='flex gap-2 flex-col justify-around'>
+          <div className='grid grid-flow-col auto-cols-fr'>
+            <li
+              className='p_rounded_cursor-item flex justify-center hover:bg-gray-200'
+              onClick={handleClick}
+            >
+              <HiQrCode className='text-lg' />
+            </li>
+            <li className='p_rounded_cursor-item flex justify-center hover:bg-gray-200'>
+              <IoMdNotificationsOutline className='text-lg' />
+            </li>
+            <li className='p_rounded_cursor-item flex justify-center hover:bg-gray-200'>
+              <MdDarkMode className='text-lg' />
+            </li>
+          </div>
+
           <SideBarLink
             to={'/dashboard/productos'}
             icon={RiBookShelfLine}
@@ -59,24 +76,16 @@ function SideBar() {
           />
 
           <SideBarLink
-            to={'/dashboard/suscripciones'}
-            icon={FaRegStar}
-            label={'Suscripciones'}
-          />
-
-          <SideBarLink
             to={'/dashboard/sesiones'}
             icon={HiOutlineVideoCamera}
             label={'Sesiones'}
           />
 
-          <li
-            className='p_rounded_cursor-item flex items-center gap-2 hover:bg-gray-200 '
-            onClick={handleClick}
-          >
-            <HiQrCode className='text-lg' />
-            <span>Codigo Qr</span>
-          </li>
+          <SideBarLink
+            to={'/dashboard/suscripciones'}
+            icon={FaRegStar}
+            label={'Suscripciones'}
+          />
         </ul>
       </div>
 
