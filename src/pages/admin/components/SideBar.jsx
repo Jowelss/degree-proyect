@@ -49,11 +49,13 @@ function SideBar() {
             >
               <HiQrCode className='text-lg' />
             </li>
-            <li className='p_rounded_cursor-item flex justify-center hover:bg-gray-200'>
-              <IoMdNotificationsOutline className='text-lg' />
-            </li>
+
             <li className='p_rounded_cursor-item flex justify-center hover:bg-gray-200'>
               <MdDarkMode className='text-lg' />
+            </li>
+
+            <li className='p_rounded_cursor-item flex justify-center hover:bg-gray-200'>
+              <IoMdNotificationsOutline className='text-lg' />
             </li>
           </div>
 
