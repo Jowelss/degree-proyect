@@ -8,18 +8,31 @@ import { DataHeader } from '../../components/DataHeader.jsx';
 import { Fecha } from '../../components/Fecha.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
+import { ModalDelete } from '../../components/ModalDelete.jsx';
 
 import { FaLink } from 'react-icons/fa';
 
 import { Add } from '../../services/Add.jsx';
 import { Get } from '../../services/Get.jsx';
 import { Update } from '../../services/Update.jsx';
+import { Delete } from '../../services/Delete.jsx';
 
 function Reuniones() {
   const [isOpen, setIsOpen] = useState(false);
   const state = isOpen ? 'block' : 'hidden';
 
   const handleClick = () => setIsOpen(!isOpen);
+
+  // Abre y cierra el modalButton
+  const [openButtonDelete, setIsOpenButtonDelete] = useState(false);
+  const stateButton = openButtonDelete ? 'block' : 'hidden';
+
+  const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
+  // end
+
+  //Cambio de nombre
+  const [isnombre, setNombre] = useState('');
+  // end
 
   const [sesion, setSesion] = useState([]);
 
@@ -58,6 +71,16 @@ function Reuniones() {
   });
   // end
 
+  //Actualizar producto
+  const handleEdit = (evento) => {
+    setSelectId(evento._id);
+
+    Object.entries(evento).forEach(([key, value]) => {
+      if (key !== '_id') setValue(key, value);
+    });
+  };
+  // end
+
   return (
     <Panel className='w-[900px] border'>
       <HeaderPanel>
@@ -68,6 +91,7 @@ function Reuniones() {
             setSelectId(null);
             reset();
             handleClick();
+            setNombre('Nueva sesion');
           }}
         >
           + Nueva Sesion
@@ -105,13 +129,51 @@ function Reuniones() {
               <FaLink className='text-ms' />
               Link de la reunion
             </a>
+
+            <div>
+              <button
+                onClick={() => {
+                  setSelectId(item._id);
+                  handleClickDelete();
+                }}
+              >
+                Eliminar
+              </button>
+              <button
+                onClick={() => {
+                  handleClick();
+                  handleEdit(item);
+                  setNombre('Actualizar Sesion');
+                }}
+              >
+                Actualizar
+              </button>
+            </div>
           </ItemCard>
         ))}
       </ul>
 
+      <ModalDelete classState={stateButton}>
+        <div className='border p-4 rounded-2xl'>
+          <h2>¿Estas seguro que quieres eliminar este Evento?</h2>
+
+          <div className='flex justify-center gap-2'>
+            <button
+              onClick={() => {
+                Delete(selectId, setSesion, sesion, 'sesion');
+                handleClickDelete();
+              }}
+            >
+              Confirmar
+            </button>
+            <button onClick={handleClickDelete}>Cancelar</button>
+          </div>
+        </div>
+      </ModalDelete>
+
       <Modal classState={state} onClosed={handleClick}>
         <div className='flex justify-between items-center mb-3'>
-          <span className='text-4xl'>Sesion nueva</span>
+          <span className='text-4xl'>{isnombre}</span>
           <button onClick={handleClick}>Cerrar</button>
         </div>
 
