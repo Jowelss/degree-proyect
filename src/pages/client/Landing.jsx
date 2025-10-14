@@ -31,7 +31,7 @@ function Landing() {
         </header>
       </Header>
 
-      <div className='pt-30 h-[calc(100vh-4rem)] w-full pr-4 pl-4'>
+      <div className='pt-30 h-[calc(100vh-4rem)] pr-4 pl-4'>
         <Outlet />
       </div>
     </>
