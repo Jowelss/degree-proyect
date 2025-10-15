@@ -21,28 +21,32 @@ function Landing() {
           <img src={Logo} alt='Autentica' />
         </div>
 
-        <div className='flex gap-2 items-center'>
+        <div className='flex justify-center items-center'>
           <HeaderNav />
         </div>
 
-        <button>Suscribete</button>
+        <div className='flex gap-2 justify-end items-center'>
+          <button className='max-w-max'>Suscribete</button>
+          <div
+            onClick={() => setOpen(!open)}
+            className='relative cursor-pointer'
+          >
+            <Profile />
 
-        <div onClick={() => setOpen(!open)} className='relative cursor-pointer'>
-          <Profile />
+            {open && (
+              <div className='bg-white border absolute -bottom-23 -left-30'>
+                <SideBarLink
+                  to={'/landing/history'}
+                  icon={'sexo'}
+                  label={'Historial'}
+                />
 
-          {open && (
-            <div className='bg-white border absolute -bottom-23 -left-30'>
-              <SideBarLink
-                to={'/landing/history'}
-                icon={'sexo'}
-                label={'Historial'}
-              />
+                <span>tema</span>
 
-              <span>tema</span>
-
-              <LogoutButton />
-            </div>
-          )}
+                <LogoutButton />
+              </div>
+            )}
+          </div>
         </div>
       </Header>
 
