@@ -1,37 +1,52 @@
 import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
 
 import { Header } from '../../components/Header.jsx';
-import LogoutButton from '../../auth/LogoutButton.jsx';
-import Profile from '../../auth/Profile.jsx';
-import HeaderNav from '../client/components/HeaderNav.jsx';
+import { SideBarLink } from '../../components/SideBarLink.jsx';
+
 import Logo from '../../assets/Autentica2.png';
 
+import LogoutButton from '../../auth/LogoutButton.jsx';
+import Profile from '../../auth/Profile.jsx';
+
+import HeaderNav from '../client/components/HeaderNav.jsx';
+
 function Landing() {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Header>
-        <header className='fixed top-0 h-16 flex justify-between items-center w-full pr-8 pl-8 bg-white'>
-          <div className='w-14'>
-            <img src={Logo} alt='Autentica' />
-          </div>
+        <div className='w-14'>
+          <img src={Logo} alt='Autentica' />
+        </div>
 
-          <div className='flex gap-2 items-center'>
-            <HeaderNav />
-          </div>
+        <div className='flex gap-2 items-center'>
+          <HeaderNav />
+        </div>
 
-          <ul className='flex gap-6'>
-            <li>
-              <h3>tema</h3>
-            </li>
-            <li className='flex'>
+        <button>Suscribete</button>
+
+        <div onClick={() => setOpen(!open)} className='relative cursor-pointer'>
+          <Profile />
+
+          {open && (
+            <div className='bg-white border absolute -bottom-23 -left-30'>
+              <SideBarLink
+                to={'/landing/history'}
+                icon={'sexo'}
+                label={'Historial'}
+              />
+
+              <span>tema</span>
+
               <LogoutButton />
-              <Profile />
-            </li>
-          </ul>
-        </header>
+            </div>
+          )}
+        </div>
       </Header>
 
-      <div className='pt-30 h-[calc(100vh-4rem)] pr-4 pl-4'>
+      <div className='max-w-[1400px] mx-auto mt-20 px-4'>
         <Outlet />
       </div>
     </>

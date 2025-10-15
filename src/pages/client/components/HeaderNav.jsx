@@ -18,12 +18,6 @@ function HeaderBar() {
       />
 
       <SideBarLink to={'/landing/sesiones'} icon={'sexo'} label={'Sesiones'} />
-
-      <SideBarLink
-        to={'/landing/tiendaCliente/history'}
-        icon={'sexo'}
-        label={'Historial'}
-      />
     </ul>
   );
 }

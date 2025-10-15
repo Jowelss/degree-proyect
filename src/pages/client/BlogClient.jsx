@@ -21,9 +21,9 @@ function Blog() {
 
   return (
     <>
-      <div className='flex flex-col-reverse items-center gap-5'>
+      <div className='grid grid-flow-col auto-cols-fr gap-5'>
         {post.map((item) => (
-          <ul className='border w-[800px] p-2 rounded-2xl' key={item._id}>
+          <ul className='border p-2 rounded-2xl' key={item._id}>
             <li className='uppercase text-3xl font-bold mb-2'>{item.titulo}</li>
             <li className='text-xs uppercase font-bold'>{item.tipo}</li>
             <li className=' text-lg break-words mb-8'>{item.mensaje}</li>

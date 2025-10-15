@@ -1,7 +1,7 @@
 export function Header({ children }) {
   return (
-    <div className='flex fixed top-0 w-full justify-center bg-pink-400'>
+    <header className='px-6 py-2 flex justify-between items-center bg-white fixed top-0 z-50 w-full'>
       {children}
-    </div>
+    </header>
   );
 }

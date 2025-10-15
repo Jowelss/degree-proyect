@@ -204,8 +204,8 @@ function TiendaCliente() {
         {status === 'error' && <span>Error al acceder a los productos</span>}
       </div>
 
-      <div className='absolute right-10 top-0'>
-        <button className='relative mt-16' onClick={() => handleClickCart()}>
+      <div className='sticky top-20 left-full max-w-max z-10'>
+        <button className='relative bg-white' onClick={() => handleClickCart()}>
           Carrito
         </button>
 

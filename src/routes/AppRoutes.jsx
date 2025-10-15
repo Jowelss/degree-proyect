@@ -54,7 +54,7 @@ function AppRoutes() {
         { path: 'blogclient', element: <BlogClient /> },
         { path: 'eventosclient', element: <EventosClient /> },
         { path: 'tiendacliente/pay', element: <Pay /> },
-        { path: 'tiendaCliente/history', element: <History /> },
+        { path: 'history', element: <History /> },
         { path: 'sesiones', element: <SesionesClient /> },
       ],
     },

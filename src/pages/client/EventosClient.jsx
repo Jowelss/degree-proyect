@@ -16,33 +16,37 @@ function Eventos() {
   }, []);
 
   return (
-    <div className='flex justify-center'>
+    <>
       {eventos.map((item) => (
         <div
-          className='relative bg-pink-700 w-[1000px] rounded-xl overflow-hidden'
+          className='relative bg-pink-700 rounded-xl overflow-hidden'
           key={item._id}
         >
-          <div className='w-full h-[400px]'>
+          <div className='w-full h-[500px]'>
             <img
               className='object-cover object-center w-full h-full'
               src={item.imagen}
-              alt='sexo'
             />
           </div>
 
-          <div className='p-4 absolute inset-0 flex items-center'>
+          <div className='p-4 absolute inset-0 z-40 flex items-end text-white'>
             <div>
-              <h1 className='block text-6xl'>{item.nombre}</h1>
+              <h1 className='mb-3 text-6xl'>{item.nombre}</h1>
               <p>{item.descripcion}</p>
-              <p>{item.hora}</p>
-              <p>{new Date(item.fecha).toLocaleDateString()}</p>
-              <p>{item.ubicacion}</p>
-              <p>{item.cupos}</p>
+              <div className='text-2xl flex gap-2'>
+                <p>{new Date(item.fecha).toLocaleDateString()}</p>
+                <span>|</span>
+                <p>{item.hora}</p>
+              </div>
+
+              <p className='text-2xl'>{item.ubicacion}</p>
             </div>
+
+            <button>Asistiras?</button>
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 }
 
