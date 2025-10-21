@@ -16,7 +16,7 @@ function Eventos() {
   }, []);
 
   return (
-    <>
+    <div className='grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-5'>
       {eventos.map((item) => (
         <div
           className='relative bg-pink-700 rounded-xl overflow-hidden'
@@ -46,7 +46,7 @@ function Eventos() {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

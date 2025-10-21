@@ -34,7 +34,7 @@ function Landing() {
             <Profile />
 
             {open && (
-              <div className='bg-white border absolute -bottom-23 -left-30'>
+              <div className='bg-gray-200 rounded-xl absolute -bottom-23 -left-30'>
                 <SideBarLink
                   to={'/landing/history'}
                   icon={'sexo'}

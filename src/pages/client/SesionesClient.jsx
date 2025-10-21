@@ -18,7 +18,7 @@ function SesionesClient() {
   }, []);
 
   return (
-    <div className='grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5'>
+    <div className='grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-5'>
       {sesion.map((item) => (
         <div
           className='relative bg-pink-700 rounded-xl overflow-hidden'
@@ -32,7 +32,7 @@ function SesionesClient() {
             />
           </div>
 
-          <div className='p-4 absolute inset-0 flex items-end text-white'>
+          <div className='bg-black/65 p-4 absolute inset-0 flex items-end text-white'>
             <div>
               <h1 className='mb-3 text-6xl'>{item.titulo}</h1>
               <p>{item.descripcion}</p>

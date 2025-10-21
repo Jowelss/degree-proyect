@@ -20,25 +20,25 @@ function Blog() {
   }, []);
 
   return (
-    <>
-      <div className='grid grid-flow-col auto-cols-fr gap-5'>
-        {post.map((item) => (
-          <ul className='border p-2 rounded-2xl' key={item._id}>
+    <div className='flex flex-col gap-5 mx-[100px]'>
+      {post.map((item) => (
+        <ul key={item._id}>
+          <div className='p-3'>
             <li className='uppercase text-3xl font-bold mb-2'>{item.titulo}</li>
             <li className='text-xs uppercase font-bold'>{item.tipo}</li>
-            <li className=' text-lg break-words mb-8'>{item.mensaje}</li>
+            <li className=' text-lg break-words'>{item.mensaje}</li>
+          </div>
 
-            <div className='h-80 flex justify-center bg-fuchsia-300'>
-              <img
-                className='object-contain h-full'
-                src={item.imagen}
-                alt='post'
-              />
-            </div>
-          </ul>
-        ))}
-      </div>
-    </>
+          <div className='h-100 flex justify-center bg-fuchsia-300'>
+            <img
+              className='object-cover h-full w-full'
+              src={item.imagen}
+              alt='post'
+            />
+          </div>
+        </ul>
+      ))}
+    </div>
   );
 }
 
