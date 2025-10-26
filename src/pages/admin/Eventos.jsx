@@ -114,9 +114,9 @@ function Eventos() {
             <div className='flex items-center gap-3'>
               <span className='mr-3'>{i}</span>
 
-              <div className='w-14 h-full flex justify-center'>
+              <div className='w-14 h-full flex justify-center rounded-2xl overflow-hidden'>
                 <img
-                  className='object-contain h-full rounded-2xl'
+                  className='object-contain h-full'
                   src={evento.imagen}
                   alt='Imagen del producto'
                 />
