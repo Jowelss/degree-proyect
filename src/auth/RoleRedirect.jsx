@@ -5,6 +5,8 @@ import LoginButton from './LoginButton';
 import { Header } from '../components/Header';
 import Logo from '../assets/Autentica2.png';
 
+import meidy from '../assets/meidy.jpg';
+
 export default function RoleRedirect() {
   const { isAuthenticated, user, isLoading } = useAuth0();
   const navigate = useNavigate();
@@ -46,8 +48,13 @@ export default function RoleRedirect() {
         </header>
       </Header>
 
-      <main className='h-screen flex justify-center items-center'>
-        <h1 className='text-6xl'>@ AUTENTICA Love Self</h1>
+      <main>
+        <div className='h-[500px] w-full rounded-b-lg'>
+          <img
+            className='w-full h-full object-cover rounded-b-2xl'
+            src={meidy}
+          />
+        </div>
       </main>
     </>
   );
