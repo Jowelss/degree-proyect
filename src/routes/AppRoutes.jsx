@@ -9,7 +9,6 @@ import Productos from '../pages/admin/Productos.jsx';
 import Eventos from '../pages/admin/Eventos.jsx';
 import Blog from '../pages/admin/Blog.jsx';
 import Sesiones from '../pages/admin/Sesiones.jsx';
-import Suscripciones from '../pages/admin/Suscripciones.jsx';
 // end
 
 import RoleRedirect from '../auth/RoleRedirect.jsx';
@@ -37,7 +36,6 @@ function AppRoutes() {
         { path: 'productos', element: <Productos /> },
         { path: 'eventos', element: <Eventos /> },
         { path: 'blog', element: <Blog /> },
-        { path: 'suscripciones', element: <Suscripciones /> },
         { path: 'sesiones', element: <Sesiones /> },
       ],
     },

@@ -5,7 +5,6 @@ import { HiQrCode } from 'react-icons/hi2';
 import { MdClose, MdEvent } from 'react-icons/md';
 import { RiBookShelfLine } from 'react-icons/ri';
 import { TbBrandBlogger } from 'react-icons/tb';
-import { FaRegStar } from 'react-icons/fa';
 import { HiOutlineVideoCamera } from 'react-icons/hi';
 import { CgArrowsExchangeAltV } from 'react-icons/cg';
 import { IoMdNotificationsOutline } from 'react-icons/io';
@@ -81,12 +80,6 @@ function SideBar() {
             to={'/dashboard/sesiones'}
             icon={HiOutlineVideoCamera}
             label={'Sesiones'}
-          />
-
-          <SideBarLink
-            to={'/dashboard/suscripciones'}
-            icon={FaRegStar}
-            label={'Suscripciones'}
           />
         </ul>
       </div>

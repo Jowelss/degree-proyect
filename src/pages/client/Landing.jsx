@@ -29,7 +29,6 @@ function Landing() {
         </div>
 
         <div className='flex gap-2 justify-end items-center'>
-          <button className='max-w-max'>Suscribete</button>
           <div
             onClick={() => setOpen(!open)}
             className='relative cursor-pointer'
