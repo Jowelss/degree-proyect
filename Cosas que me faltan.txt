@@ -4,9 +4,6 @@ POR HACER:
 - Separar el Inicio del archivo de auth0
 - Hacer funcionar los link a blog y contacto del header del Inicio
 - Hacer el footer lo mas basico posible
-- Crear la db para asistencias a eventos y si es posible crear un voucher
+- Crear la db para asistencias a eventos y si es posible crear un ticket
 - Lograr que en eventos se pueda hacer la vista previa del evento con la el numero de participantes que dieron click a asistir a evento.
 -ESTILOS A TODO EN GENERAL
-
-POR VERSE:
-- Las suscripciones estan por verse porque me parece innecesario

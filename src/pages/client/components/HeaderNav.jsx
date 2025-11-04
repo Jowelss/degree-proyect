@@ -1,4 +1,4 @@
-import { SideBarLink } from '../../../components/SideBarLink';
+import { SideBarLink } from '../components/SideBarLink';
 
 import { RiBookShelfLine } from 'react-icons/ri';
 import { MdClose, MdEvent } from 'react-icons/md';
@@ -7,7 +7,7 @@ import { HiOutlineVideoCamera } from 'react-icons/hi';
 
 function HeaderBar() {
   return (
-    <ul className='flex gap-2 rounded-2xl'>
+    <ul className='flex gap-2 rounded-2xl font-medium'>
       <SideBarLink
         to={'/landing/tiendaCliente'}
         icon={RiBookShelfLine}
