@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from 'react';
 
 import { Header } from '../../components/Header.jsx';
@@ -13,6 +14,10 @@ import HeaderNav from '../client/components/HeaderNav.jsx';
 
 function Landing() {
   const [open, setOpen] = useState(false);
+
+  const { user } = useAuth0();
+
+  console.log(user);
 
   return (
     <>
