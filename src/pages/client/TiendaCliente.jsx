@@ -271,7 +271,7 @@ function TiendaCliente() {
       </ModalCart>
 
       {/* Carts views products */}
-      <div className='grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5'>
+      <div className='grid grid-cols-[repeat(auto-fit,minmax(200px,300px))] gap-5'>
         {products.map((item) => (
           <ProductCard key={item._id} item={item} onClick={setIsOpen} />
         ))}
@@ -332,6 +332,25 @@ function TiendaCliente() {
                         <span>{fountItem?.cantidad}</span>
 
                         <button onClick={() => addToCart(item)}>Agregar</button>
+
+                        <div className='flex justify-around mt-3'>
+                          <button
+                            onClick={() =>
+                              isAddCart.length > 0 &&
+                              navigate('/landing/tiendacliente/pay', {
+                                state: {
+                                  cart: isAddCart,
+                                  total: isTotal,
+                                  producto: cosos,
+                                },
+                              })
+                            }
+                          >
+                            Ir a pagar
+                          </button>
+
+                          <span>Total: {isTotal}</span>
+                        </div>
                       </div>
                     ) : (
                       <button onClick={() => addToCart(item)}>

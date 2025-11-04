@@ -14,11 +14,16 @@ function Pay() {
 
   const [status, setStatus] = useState('idle');
   const [voucher, setVoucher] = useState(null);
+  const [voucherError, setVoucherError] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
   const { cart, total, producto } = location.state || {
     cart: [],
@@ -34,7 +39,35 @@ function Pay() {
     cantidad: item.cantidad,
   }));
 
+  const onDrop = async (acceptedFiles) => {
+    setStatus('loading');
+    setVoucherError(false);
+
+    const formData = new FormData();
+    formData.append('file', acceptedFiles[0]);
+    formData.append('upload_preset', 'autentica_loveSelf');
+
+    try {
+      const res = await axios.post(
+        'https://api.cloudinary.com/v1_1/drazdkofq/image/upload',
+        formData
+      );
+
+      setVoucher(res.data.secure_url);
+      setStatus('ready');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
   const BuyProducts = handleSubmit(async (data) => {
+    if (!voucher) {
+      setVoucherError(true);
+      return;
+    }
+
     try {
       const orden = {
         userId: user.sub,
@@ -57,6 +90,30 @@ function Pay() {
       }
 
       await Add(orden, 'orden');
+
+      const mensaje = `
+Hola, soy ${data.nombre}.
+Quiero confirmar mi compra.
+
+📦 Productos:
+${items
+  .map((item) => `- ${item.nombre} x${item.cantidad} — ${item.precio} Bs`)
+  .join('\n')}
+
+💰 Total: ${total} Bs
+
+🧾 Comprobante: ${voucher}
+    `;
+
+      const numeroAutentica = '59167465939';
+
+      const urlWhatsapp = `https://wa.me/${numeroAutentica}?text=${encodeURIComponent(
+        mensaje
+      )}`;
+
+      window.open(urlWhatsapp, '_blank');
+
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
@@ -75,27 +132,6 @@ function Pay() {
     getQr();
   }, []);
   // end
-
-  const onDrop = async (acceptedFiles) => {
-    setStatus('loading');
-    const formData = new FormData();
-    formData.append('file', acceptedFiles[0]);
-    formData.append('upload_preset', 'autentica_loveSelf');
-
-    try {
-      const res = await axios.post(
-        'https://api.cloudinary.com/v1_1/drazdkofq/image/upload',
-        formData
-      );
-
-      setVoucher(res.data.secure_url);
-      setStatus('ready');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
     <div className='flex justify-center items-center'>
@@ -145,17 +181,28 @@ function Pay() {
                   />
                 )}
               </div>
+
+              {voucherError && (
+                <p className='text-red-500 text-sm mt-1'>
+                  Debes subir tu comprobante de pago.
+                </p>
+              )}
             </div>
 
             <form onSubmit={BuyProducts}>
               <div>
                 <label>Nombre</label>
-                <input type='text' {...register('nombre')} />
-              </div>
-
-              <div>
-                <label>Numero de celular</label>
-                <input type='number' {...register('telefono')} />
+                <input
+                  type='text'
+                  {...register('nombre', {
+                    required: 'Debes ingresar tu nombre.',
+                  })}
+                />
+                {errors.nombre && (
+                  <p className='text-red-500 text-sm mt-1'>
+                    {errors.nombre.message}
+                  </p>
+                )}
               </div>
 
               <button type='submit'>Enviar</button>
