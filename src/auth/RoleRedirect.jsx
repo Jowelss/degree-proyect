@@ -51,39 +51,43 @@ export default function RoleRedirect() {
       </Header>
 
       <main>
-        <div className='h-[500px] w-full rounded-b-lg'>
+        <div className='h-[500px] w-full rounded-b-lg flex items-center justify-center relative'>
           <img
             className='w-full h-full object-cover rounded-b-2xl'
             src={meidy}
           />
+          <span className='absolute text-6xl font-bold text-pink-400'>
+            @AUTENTICA SELF LOVE
+          </span>
         </div>
 
-        <div className='w-[800px] h-[460px] mx-auto my-10 flex items-center gap-3 border rounded-3xl overflow-hidden'>
+        <div className='w-[800px] h-[400px] mx-auto my-10 flex items-center gap-3 rounded-3xl overflow-hidden shadow-[0_0_10px_2px_rgba(0,0,0,0.1)]'>
           <div className='min-w-[400px] h-full'>
             <img className='object-cover w-full h-full' src={Mei} />
           </div>
 
           <div className='p-2'>
-            <span className='text-2xl block font-bold mb-3'>
+            <span className='text-2xl block font-bold text-pink-400'>
               MEIDY GODOY (FUNDADORA)
             </span>
             <p>
-              "Auténtica es un espacio creado para quienes buscan conectar con
-              su esencia y vivir desde la autenticidad. Aquí encontrarás una
-              combinación de tienda, eventos y blog, diseñados para inspirarte,
-              motivarte y acompañarte en tu proceso personal. Nuestra misión es
-              ofrecerte un lugar donde puedas descubrir productos con propósito,
-              participar en experiencias significativas y formar parte de una
-              comunidad que valora la conexión real y el crecimiento interior.
-              Detrás de este proyecto está MEIDY GODOY, una mujer apasionada por
-              el bienestar, la creatividad y el desarrollo personal, que soñó
-              con construir un espacio digital que refleje lo que somos: únicos,
-              imperfectos y profundamente valiosos."
+              "Auténtica Self Love es un espacio creado para quienes buscan
+              conectar con su esencia y vivir desde la autenticidad. Aquí
+              encontrarás una combinación de tienda, eventos y blog, diseñados
+              para inspirarte, motivarte y acompañarte en tu proceso personal.
+              Nuestra misión es ofrecerte un lugar donde puedas descubrir
+              productos con propósito, participar en experiencias significativas
+              y formar parte de una comunidad que valora la conexión real y el
+              crecimiento interior. Detrás de este proyecto está MEIDY GODOY,
+              una mujer apasionada por el bienestar, la creatividad y el
+              desarrollo personal, que soñó con construir un espacio digital que
+              refleje lo que somos: únicos, imperfectos y profundamente
+              valiosos."
             </p>
           </div>
         </div>
 
-        <p className='text-center mb-10 text-lg'>
+        <p className='mb-10 py-4 text-center text-lg text-white font-bold bg-pink-400'>
           “Auténtica nació para recordarte que ser tú mismo siempre será tu
           mayor fortaleza.”
         </p>
