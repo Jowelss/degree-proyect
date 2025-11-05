@@ -20,36 +20,38 @@ function Landing() {
   return (
     <>
       <Header>
-        <div className='w-14'>
-          <img src={Logo} alt='Autentica' />
-        </div>
-
-        <div className='flex justify-center items-center'>
-          <HeaderNav />
-        </div>
-
-        <div className='flex gap-2 justify-end items-center'>
-          <div
-            onClick={() => setOpen(!open)}
-            className='relative cursor-pointer'
-          >
-            <Profile />
-
-            {open && (
-              <div className='bg-gray-200 rounded-xl absolute -bottom-23 -left-30'>
-                <SideBarLink
-                  to={'/landing/history'}
-                  icon={'sexo'}
-                  label={'Historial'}
-                />
-
-                <span>tema</span>
-
-                <LogoutButton />
-              </div>
-            )}
+        <header className='grid grid-flow-col auto-cols-fr'>
+          <div className='w-14'>
+            <img src={Logo} alt='Autentica' />
           </div>
-        </div>
+
+          <div className='flex justify-center items-center'>
+            <HeaderNav />
+          </div>
+
+          <div className='flex gap-2 justify-end items-center'>
+            <div
+              onClick={() => setOpen(!open)}
+              className='relative cursor-pointer'
+            >
+              <Profile />
+
+              {open && (
+                <div className='bg-gray-200 rounded-xl absolute -bottom-23 -left-30'>
+                  <SideBarLink
+                    to={'/landing/history'}
+                    icon={'sexo'}
+                    label={'Historial'}
+                  />
+
+                  <span>tema</span>
+
+                  <LogoutButton />
+                </div>
+              )}
+            </div>
+          </div>
+        </header>
       </Header>
 
       <div className='max-w-[1400px] mx-auto mt-20 px-4'>

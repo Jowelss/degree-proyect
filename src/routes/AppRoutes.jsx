@@ -2,7 +2,6 @@ import { useRoutes } from 'react-router-dom';
 import RequireAuth from '../auth/RequireAuth.jsx'; //Ojito
 
 import Dashboard from '../pages/admin/Dashboard.jsx';
-import Inicio from '../pages/admin/Inicio.jsx';
 
 // Dashboard item
 import Productos from '../pages/admin/Productos.jsx';

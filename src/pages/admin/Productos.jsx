@@ -125,6 +125,7 @@ function Tienda() {
       <DataHeader>
         <li>Estado</li>
         <li>Precio (bs)</li>
+        <li>Cantidad</li>
       </DataHeader>
 
       <ul className='flex flex-col-reverse'>
@@ -145,6 +146,7 @@ function Tienda() {
 
             <span>{libro.estado}</span>
             <span>{libro.precio}</span>
+            <span>{libro.cantidad}</span>
 
             <div>
               <button
