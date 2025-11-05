@@ -95,7 +95,8 @@ function Inicio() {
           </Swiper>
         </div>
       </main>
-      <footer className='w-full mt-10 py-10 px-10 flex justify-between items-center bg-pink-400'>
+
+      <footer className='w-full mt-10 py-10 flex justify-around items-center bg-pink-400'>
         <div>
           <div className='w-20 mb-3'>
             <img src={LogoFooter} />
