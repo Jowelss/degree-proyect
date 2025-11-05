@@ -1,6 +1,12 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+
+import { FaInstagram, FaTiktok, FaYoutube, FaFacebook } from 'react-icons/fa';
+
 import { Header } from './components/Header.jsx';
 import LoginButton from './auth/LoginButton.jsx';
 import Logo from './assets/Autentica2.png';
+import LogoFooter from './assets/Autentica3.png';
 
 import meidy from './assets/meidy.jpg';
 import Mei from './assets/Mei.jpg';
@@ -18,7 +24,7 @@ function Inicio() {
             <img src={Logo} alt='Autentica' />
           </div>
 
-          <ul className='flex items-center gap-6 text-white'>
+          <ul className='flex items-center gap-6 text-pink-400'>
             <li>Blog</li>
             <li>Contacto</li>
             <LoginButton />
@@ -37,15 +43,16 @@ function Inicio() {
           </span>
         </div>
 
-        <div className='w-[800px] h-[400px] mx-auto my-10 flex items-center gap-3 rounded-2xl overflow-hidden bg-white/50'>
+        <div className='w-[900px] h-[400px] mx-auto my-10 flex items-center gap-3 rounded-2xl overflow-hidden bg-white/50'>
           <div className='min-w-[400px] h-full'>
             <img className='object-cover w-full h-full' src={Mei} />
           </div>
 
           <div className='p-2'>
-            <span className='text-2xl block font-bold text-pink-400'>
+            <span className='mb-4 text-2xl block font-bold text-pink-400'>
               MEIDY GODOY (FUNDADORA)
             </span>
+
             <p>
               "Auténtica Self Love es un espacio creado para quienes buscan
               conectar con su esencia y vivir desde la autenticidad. Aquí
@@ -63,18 +70,77 @@ function Inicio() {
           </div>
         </div>
 
-        <p className='mb-10 py-4 text-center text-lg text-white font-bold bg-pink-400'>
+        <p className='max-w-max mx-auto px-4 rounded-2xl mb-10 py-2 text-center text-lg text-white font-medium bg-pink-400'>
           “Auténtica nació para recordarte que ser tú mismo siempre será tu
           mayor fortaleza.”
         </p>
 
-        <div className='grid grid-cols-5 auto-rows-[150px]'>
-          {Object.values(images).map((img, i) => (
-            <img key={i} src={img.default} />
-          ))}
+        <div className='w-full'>
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={2} // cuántas imágenes visibles a la vez
+            loop={true} // ciclo infinito
+            autoplay={{
+              delay: 0, // sin pausa entre imágenes
+              disableOnInteraction: false,
+            }}
+            speed={6000} // velocidad del desplazamiento (más alto = más lento)
+            className='mySwiper'
+          >
+            {Object.values(images).map((src, i) => (
+              <SwiperSlide key={i}>
+                <img src={src.default} className='w-full h-120 object-cover' />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </main>
-      <footer></footer>
+      <footer className='w-full mt-10 py-10 px-10 flex justify-between items-center bg-pink-400'>
+        <div>
+          <div className='w-20 mb-3'>
+            <img src={LogoFooter} />
+          </div>
+
+          <h2 className='pero text-white'>@Autentica Self Love</h2>
+        </div>
+
+        <div>
+          <ul className='flex justify-between mb-5'>
+            <a
+              href='https://www.facebook.com/share/19LTMSZgFq/'
+              target='_blank'
+            >
+              <FaFacebook className='text-2xl text-white' />
+            </a>
+
+            <a
+              href='https://www.instagram.com/autentica_selflove?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='
+              target='_blank'
+            >
+              <FaInstagram className='text-2xl text-white' />
+            </a>
+            <a
+              href='https://www.tiktok.com/@autentica_selflove?_r=1&_t=ZM-919hylo6JDA'
+              target='_blank'
+            >
+              <FaTiktok className='text-2xl text-white' />
+            </a>
+            <a
+              href='https://youtube.com/@autenticacomunidad?si=H6XneD0abbwI9CTj'
+              target='_blank'
+            >
+              <FaYoutube className='text-2xl text-white' />
+            </a>
+          </ul>
+
+          <a
+            className='text-1xl text-white font-medium'
+            href='mailto:autentica.comunidad@gmail.com'
+          >
+            autentica.comunidad@gmail.com
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
