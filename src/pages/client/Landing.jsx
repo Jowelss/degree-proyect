@@ -18,7 +18,7 @@ function Landing() {
   // const { user } = useAuth0();
 
   return (
-    <>
+    <div>
       <Header>
         <header className='grid grid-flow-col auto-cols-fr'>
           <div className='w-14'>
@@ -37,10 +37,12 @@ function Landing() {
               <Profile />
 
               {open && (
-                <div className='bg-gray-200 rounded-xl absolute -bottom-23 -left-30'>
+                <div className='w-50 p-2 flex flex-col items-center gap-3 bg-black/20 rounded-2xl absolute -bottom-26 -left-50'>
                   <SideBarLink to={'/landing/history'} label={'Historial'} />
 
-                  <span>tema</span>
+                  <button className='bg-fuchsia-500 rounded-2xl px-1'>
+                    tema
+                  </button>
 
                   <LogoutButton />
                 </div>
@@ -53,7 +55,7 @@ function Landing() {
       <div className='max-w-[1400px] mx-auto mt-20 px-4'>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
 

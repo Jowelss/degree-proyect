@@ -7,6 +7,10 @@ import { Modal } from '../../components/Modal.jsx';
 import ProductCard from '../../components/ProductCard';
 // end
 
+// icons
+import { LuShoppingCart } from 'react-icons/lu';
+// end
+
 // services
 import { Get } from '../../services/Get.jsx';
 // end
@@ -204,13 +208,13 @@ function TiendaCliente() {
         {status === 'error' && <span>Error al acceder a los productos</span>}
       </div>
 
-      <div className='sticky top-20 left-full max-w-max z-10'>
-        <button className='relative bg-white' onClick={() => handleClickCart()}>
-          Carrito
+      <div className='flex items-center p-3 rounded-full text-white sticky top-20 left-full max-w-max h-full bg-pink-400 z-10'>
+        <button className='relative' onClick={() => handleClickCart()}>
+          <LuShoppingCart className='text-2xl' />
         </button>
 
         {isAddCart.length > 0 && (
-          <span className='absolute bottom-[-9px] left-[-7px] flex items-center justify-center w-5 h-5 rounded-full bg-red-800'>
+          <span className='absolute bottom-[-4px] left-[-4px] flex items-center justify-center w-5 h-5 rounded-full bg-white text-pink-400 font-medium'>
             {isAddCart.length}
           </span>
         )}
@@ -218,7 +222,10 @@ function TiendaCliente() {
 
       {/* Modal del carrito */}
       <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
-        <button className='mb-3' onClick={() => handleClickCart()}>
+        <button
+          className='w-full mb-3 text-end'
+          onClick={() => handleClickCart()}
+        >
           Cerrar
         </button>
 

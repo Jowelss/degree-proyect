@@ -16,7 +16,7 @@ button {
 }
 
 .p_rounded_cursor-item {
-  @apply cursor-pointer py-1 px-5 rounded-4xl;
+  @apply cursor-pointer;
 }
 
 .hover_item {

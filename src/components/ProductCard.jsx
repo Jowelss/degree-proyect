@@ -2,17 +2,18 @@ const ProductCard = ({ item, onClick }) => {
   const isOutOfStock = item.estado !== 'Disponible';
 
   return (
-    <div className='relative rounded-2xl overflow-hidden bg-[#e2e2e2]'>
+    <div className='relative rounded-2xl overflow-hidden bg-[#e2e2e2] font-medium'>
       {isOutOfStock && (
         <div className='flex items-center justify-center absolute inset-0 bg-black/80 z-10 text-white'>
-          <span>AGOTADO</span>
+          <span className='font-medium'>AGOTADO</span>
         </div>
       )}
+
       <ul
         className='cursor-pointer'
         onClick={() => (isOutOfStock ? null : onClick(item))}
       >
-        <div className='flex justify-center w-full h-60 mb-1 bg-fuchsia-300'>
+        <div className='flex justify-center w-full h-60 bg-fuchsia-300'>
           <img
             className='object-cover h-full w-full'
             src={item.imagen}
@@ -20,15 +21,14 @@ const ProductCard = ({ item, onClick }) => {
           />
         </div>
 
-        <div>
-          <div>
-            <span>
-              {item.nombre} - {item.autor}
-            </span>
-          </div>
-          <span>{item.precio}bs</span>
+        <div className='p-2'>
+          <span>
+            {item.nombre} - {item.autor}
+          </span>
 
-          <li className='text-center'>{item.cantidad} disponibles</li>
+          <span className='block'>{item.precio}bs</span>
+
+          <span className='block'>{item.cantidad} disponibles</span>
         </div>
       </ul>
     </div>
