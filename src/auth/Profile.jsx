@@ -10,11 +10,6 @@ function Profile() {
       <div className='w-8 h-8 rounded-full overflow-hidden'>
         <img className='object-contain' src={user.picture} alt={user.name} />
       </div>
-
-      <div>
-        <span className='block text-sm select-none'>{user.name}</span>
-        <span className='block text-xs select-none'>{user.email}</span>
-      </div>
     </div>
   );
 }

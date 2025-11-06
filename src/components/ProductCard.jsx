@@ -21,10 +21,13 @@ const ProductCard = ({ item, onClick }) => {
         </div>
 
         <div>
-          <div className='flex justify-between'>
-            <li>{item.nombre}</li>
-            <li>{item.precio}bs</li>
+          <div>
+            <span>
+              {item.nombre} - {item.autor}
+            </span>
           </div>
+          <span>{item.precio}bs</span>
+
           <li className='text-center'>{item.cantidad} disponibles</li>
         </div>
       </ul>

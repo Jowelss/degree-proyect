@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { MdSaveAlt } from 'react-icons/md';
-import { MdDeleteOutline } from 'react-icons/md';
 
 import axios from 'axios';
 
@@ -107,7 +105,6 @@ export default function Qr({ children, classState, setOpen }) {
               setOpen(false);
             }}
           >
-            <MdSaveAlt className='text-lg' />
             <span>Guardar</span>
           </button>
 
@@ -116,7 +113,6 @@ export default function Qr({ children, classState, setOpen }) {
             title='Eliminar Qr'
             onClick={handleClickDelete}
           >
-            <MdDeleteOutline className='text-lg' />
             <span>Eliminar</span>
           </button>
         </div>

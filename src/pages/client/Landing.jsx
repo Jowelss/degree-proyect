@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 
 import { Header } from '../../components/Header.jsx';
-import { SideBarLink } from '../../components/SideBarLink.jsx';
+import { SideBarLink } from './components/SideBarLink.jsx';
 
 import Logo from '../../assets/Autentica2.png';
 
@@ -38,11 +38,7 @@ function Landing() {
 
               {open && (
                 <div className='bg-gray-200 rounded-xl absolute -bottom-23 -left-30'>
-                  <SideBarLink
-                    to={'/landing/history'}
-                    icon={'sexo'}
-                    label={'Historial'}
-                  />
+                  <SideBarLink to={'/landing/history'} label={'Historial'} />
 
                   <span>tema</span>
 

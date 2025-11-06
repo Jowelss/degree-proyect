@@ -1,36 +1,15 @@
 import { SideBarLink } from '../components/SideBarLink';
 
-import { RiBookShelfLine } from 'react-icons/ri';
-import { MdClose, MdEvent } from 'react-icons/md';
-import { TbBrandBlogger } from 'react-icons/tb';
-import { HiOutlineVideoCamera } from 'react-icons/hi';
-
 function HeaderBar() {
   return (
     <ul className='flex gap-2 rounded-2xl font-medium'>
-      <SideBarLink
-        to={'/landing/tiendaCliente'}
-        icon={RiBookShelfLine}
-        label={'Tienda'}
-      />
+      <SideBarLink to={'/landing/tiendaCliente'} label={'Tienda'} />
 
-      <SideBarLink
-        to={'/landing/blogclient'}
-        icon={TbBrandBlogger}
-        label={'Blog'}
-      />
+      <SideBarLink to={'/landing/blogclient'} label={'Blog'} />
 
-      <SideBarLink
-        to={'/landing/eventosclient'}
-        icon={MdEvent}
-        label={'Eventos'}
-      />
+      <SideBarLink to={'/landing/eventosclient'} label={'Eventos'} />
 
-      <SideBarLink
-        to={'/landing/sesiones'}
-        icon={HiOutlineVideoCamera}
-        label={'Sesiones'}
-      />
+      <SideBarLink to={'/landing/sesiones'} label={'Sesiones'} />
     </ul>
   );
 }

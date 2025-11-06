@@ -16,17 +16,24 @@ const images = import.meta.glob('./assets/*.{jpg,jpeg}', {
 });
 
 function Inicio() {
+  const numeroAutentica = import.meta.env.VITE_NUMBER_AUTENTICA;
+
+  const urlWhatsapp = `https://wa.me/${numeroAutentica}`;
+
   return (
     <div className='bg-zinc-100'>
       <Header>
-        <header className='max-w-[1500px] mx-auto flex justify-between items-center px-6 py-2 font-medium bg-black/30 rounded-2xl'>
+        <header className='max-w-[1500px] mx-auto flex justify-between items-center px-6 py-2 font-medium bg-white/90 rounded-2xl'>
           <div className='w-16 rounded-full bg-white p-2'>
             <img src={Logo} alt='Autentica' />
           </div>
 
           <ul className='flex items-center gap-6 text-pink-400'>
             <li>Blog</li>
-            <li>Contacto</li>
+            <a href={urlWhatsapp} target='_blank'>
+              Contacto
+            </a>
+
             <LoginButton />
           </ul>
         </header>
@@ -43,7 +50,7 @@ function Inicio() {
           </span>
         </div>
 
-        <div className='w-[900px] h-[400px] mx-auto my-10 flex items-center gap-3 rounded-2xl overflow-hidden bg-white/50'>
+        <div className='w-[900px] h-[400px] mx-auto my-10 flex items-center gap-3 rounded-2xl overflow-hidden bg-white/100'>
           <div className='min-w-[400px] h-full'>
             <img className='object-cover w-full h-full' src={Mei} />
           </div>

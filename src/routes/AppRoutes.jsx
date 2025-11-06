@@ -50,10 +50,18 @@ function AppRoutes() {
         { path: 'tiendaCliente', element: <TiendaCliente /> },
         { path: 'blogclient', element: <BlogClient /> },
         { path: 'eventosclient', element: <EventosClient /> },
-        { path: 'tiendacliente/pay', element: <Pay /> },
         { path: 'history', element: <History /> },
         { path: 'sesiones', element: <SesionesClient /> },
       ],
+    },
+
+    {
+      path: '/landing/tiendacliente/pay',
+      element: (
+        <RequireAuth>
+          <Pay />
+        </RequireAuth>
+      ),
     },
   ]);
 }

@@ -7,7 +7,7 @@ function LoginButton() {
 
   return (
     <button
-      className='select-none border-2 px-2 py-1 rounded-full border-white text-white font-medium'
+      className='select-none px-2 py-1 rounded-4xl bg-pink-400 text-white font-medium'
       onClick={() => loginWithRedirect()}
     >
       Inicia sesión

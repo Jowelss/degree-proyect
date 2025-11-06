@@ -21,7 +21,7 @@ import LogoutButton from '../../../auth/LogoutButton';
 // end
 
 import Qr from '../Qr';
-import { SideBarLink } from '../../../components/SideBarLink';
+import { SideBarLink } from './SideBarLink';
 
 function SideBar() {
   const [isOpenQr, setOpenQr] = useState(false);
@@ -32,7 +32,7 @@ function SideBar() {
   const showLogout = () => setOpenProfile(!openProfile);
 
   return (
-    <aside className='p-4 overflow-hidden flex flex-col justify-between rounded-xl border border-gray-300'>
+    <aside className='min-w-[260px] p-4 overflow-hidden flex flex-col justify-between rounded-xl border border-gray-300'>
       <div>
         <div className='flex items-center gap-1.5 mb-5'>
           <img className='w-7' src={Logo} alt='Logo' />
@@ -98,7 +98,7 @@ function SideBar() {
 
       <Qr classState={isOpenQr ? 'block' : 'hidden'} setOpen={setOpenQr}>
         <div className='relative flex justify-center mb-3'>
-          <h1 className='text-lg'>CODIGO QR DE PAGO</h1>
+          <span className='text-lg font-medium'>CODIGO QR DE PAGO</span>
 
           <button className='absolute right-0' onClick={handleClick}>
             <MdClose className='text-lg' />

@@ -27,10 +27,6 @@ button {
   @apply w-full h-40 flex items-center justify-center border;
 }
 
-button {
-  @apply rounded-xl border border-gray-300 py-1 px-1.5;
-}
-
 .pero {
   font-family: 'Momo Signature', cursive;
 }

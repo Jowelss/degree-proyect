@@ -105,7 +105,7 @@ ${items
 🧾 Comprobante: ${voucher}
     `;
 
-      const numeroAutentica = '59167465939';
+      const numeroAutentica = import.meta.env.VITE_NUMBER_AUTENTICA;
 
       const urlWhatsapp = `https://wa.me/${numeroAutentica}?text=${encodeURIComponent(
         mensaje
@@ -134,7 +134,7 @@ ${items
   // end
 
   return (
-    <div className='flex justify-center items-center'>
+    <div className='min-h-screen flex justify-center items-center'>
       <div>
         <button className='mb-2' onClick={() => navigate(-1)}>
           Cancelar compra
