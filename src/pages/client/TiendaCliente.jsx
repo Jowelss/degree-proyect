@@ -9,6 +9,8 @@ import ProductCard from '../../components/ProductCard';
 
 // icons
 import { LuShoppingCart } from 'react-icons/lu';
+import { IoIosAdd, IoIosRemove, IoIosClose } from 'react-icons/io';
+
 // end
 
 // services
@@ -208,8 +210,8 @@ function TiendaCliente() {
         {status === 'error' && <span>Error al acceder a los productos</span>}
       </div>
 
-      <div className='flex items-center p-3 rounded-full text-white sticky top-20 left-full max-w-max h-full bg-pink-400 z-10'>
-        <button className='relative' onClick={() => handleClickCart()}>
+      <div className='flex items-center text-white sticky top-20 left-full rounded-full max-w-max h-full bg-pink-400 z-10'>
+        <button className='relative p-3' onClick={() => handleClickCart()}>
           <LuShoppingCart className='text-2xl' />
         </button>
 
@@ -290,80 +292,104 @@ function TiendaCliente() {
         {products.map(
           (item) =>
             item._id === isOpen._id && (
-              <div className='max-w-full flex gap-3' key={item._id}>
-                <div className='flex justify-center min-w-100 h-100 bg-fuchsia-300'>
+              <div className='max-w-full max-h-max flex gap-3' key={item._id}>
+                <div className='min-w-100 flex items-center bg-pink-400 p-2'>
                   <img
-                    className='object-contain h-full'
+                    className='object-contain h-90 w-full'
                     src={item.imagen}
                     alt='Imagen'
                   />
                 </div>
-                <div className='flex-1 overflow-hidden'>
+
+                <div className='text-black/90 flex-1 overflow-hidden p-2'>
                   <div className='text-end'>
-                    <button onClick={() => setIsOpen(false)}>Cerrar</button>
-                  </div>
-
-                  <div className='break-words'>
-                    <span className='block text-4xl font-extrabold mb-2'>
-                      {item.nombre}
-                    </span>
-                    <p className='mb-2'>{item.sinopsis}</p>
-                    <span>Autor: {item.autor}</span>
-                  </div>
-
-                  <div className='max-w-max flex gap-2 mb-2'>
-                    <span className='border'>{item.tapa}</span>
-                    <span className='border'>{item.hoja}</span>
-                  </div>
-
-                  <span className='border'>{item.genero}</span>
-
-                  <div className='flex items-end gap-10'>
-                    <div>
-                      <span className='text-7xl font-bold'>{item.precio}</span>
-                      <span className='text-2xl font-semibold'>bs</span>
-                    </div>
-
-                    <span className='text-2xl font-bold'>
-                      Disponibles: {item.cantidad}
-                    </span>
+                    <button onClick={() => setIsOpen(false)}>
+                      <IoIosClose />
+                    </button>
                   </div>
 
                   <div>
-                    {fountItem?.cantidad > 0 ? (
+                    <div className='break-words'>
+                      <span className='block text-3xl font-bold'>
+                        {item.nombre}
+                      </span>
+
+                      <span className='font-medium text-pink-400'>
+                        {item.autor}
+                      </span>
+
+                      <p className='my-2 text-gray-800'>{item.sinopsis}</p>
+                    </div>
+
+                    <div className='flex gap-2 font-medium'>
+                      <span className='px-2 py-1 bg-gray-100 rounded-xl'>
+                        {item.tapa}
+                      </span>
+
+                      <span className='px-2 py-1 bg-gray-100 rounded-xl'>
+                        {item.hoja}
+                      </span>
+
+                      <span className='px-2 py-1 bg-gray-100 rounded-xl'>
+                        {item.genero}
+                      </span>
+                    </div>
+
+                    <div className='mt-3 pl-3 flex items-end gap-5 font-medium'>
                       <div>
-                        <button onClick={() => decreaseQuantity(item)}>
-                          Quitar
-                        </button>
-
-                        <span>{fountItem?.cantidad}</span>
-
-                        <button onClick={() => addToCart(item)}>Agregar</button>
-
-                        <div className='flex justify-around mt-3'>
-                          <button
-                            onClick={() =>
-                              isAddCart.length > 0 &&
-                              navigate('/landing/tiendacliente/pay', {
-                                state: {
-                                  cart: isAddCart,
-                                  total: isTotal,
-                                  producto: cosos,
-                                },
-                              })
-                            }
-                          >
-                            Ir a pagar
-                          </button>
-
-                          <span>Total: {isTotal}</span>
-                        </div>
+                        <span className='text-4xl'>{item.precio}</span>
+                        <span className='text-2xl'>bs</span>
                       </div>
-                    ) : (
-                      <button onClick={() => addToCart(item)}>
-                        Agregar al carrito
-                      </button>
-                    )}
+
+                      <span>Stock: {item.cantidad}</span>
+                    </div>
+
+                    <div className='mt-4 mx-3 mb-2'>
+                      {fountItem?.cantidad > 0 ? (
+                        <div className='flex justify-between items-center'>
+                          <div className='max-w-max px-2 py-1 flex items-center gap-4 bg-gray-100 rounded-xl'>
+                            <button onClick={() => decreaseQuantity(item)}>
+                              <IoIosRemove className='text-2xl' />
+                            </button>
+
+                            <span className='font-medium'>
+                              {fountItem?.cantidad}
+                            </span>
+
+                            <button onClick={() => addToCart(item)}>
+                              <IoIosAdd className='text-2xl' />
+                            </button>
+                          </div>
+
+                          <div className='flex items-center gap-6 font-medium'>
+                            <button
+                              className='bg-gray-100'
+                              onClick={() =>
+                                isAddCart.length > 0 &&
+                                navigate('/landing/tiendacliente/pay', {
+                                  state: {
+                                    cart: isAddCart,
+                                    total: isTotal,
+                                    producto: cosos,
+                                  },
+                                })
+                              }
+                            >
+                              Ir a pagar
+                            </button>
+
+                            <span>Total: {isTotal}</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <button
+                          className='px-2 py-1 rounded-xl font-medium bg-pink-400 text-white '
+                          onClick={() => addToCart(item)}
+                        >
+                          Agregar al carrito
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
