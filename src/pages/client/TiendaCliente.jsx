@@ -210,7 +210,7 @@ function TiendaCliente() {
         {status === 'error' && <span>Error al acceder a los productos</span>}
       </div>
 
-      <div className='flex items-center text-white sticky top-20 left-full rounded-full max-w-max h-full bg-pink-400 z-10'>
+      <div className='flex items-center text-white sticky top-25 left-full rounded-full max-w-max h-full bg-pink-400 z-10'>
         <button className='relative p-3' onClick={() => handleClickCart()}>
           <LuShoppingCart className='text-2xl' />
         </button>
@@ -234,7 +234,7 @@ function TiendaCliente() {
         {/* Si no hay productos en el carrito muestra el mensaje caso contrario muestra los productos */}
         <div>
           {isAddCart.length === 0 ? (
-            <div className='h-20 flex items-center justify-center'>
+            <div className='h-20 flex items-center justify-center text-gray-400'>
               <span>No hay productos agregados</span>
             </div>
           ) : (
@@ -243,7 +243,7 @@ function TiendaCliente() {
                 (item) =>
                   item.cantidad > 0 && (
                     <div
-                      className='flex justify-between items-center border'
+                      className='p-2 flex justify-between items-center bg-white rounded-2xl'
                       key={item._id}
                     >
                       <span>{item.nombre}</span>
@@ -251,7 +251,7 @@ function TiendaCliente() {
                       <span>{item.precio}bs</span>
 
                       <button
-                        className='bg-red-900'
+                        className='text-pink-500 py-1 px-2 bg-gray-200 rounded-2xl'
                         onClick={() => deleteProduct(item)}
                       >
                         Eliminar
@@ -265,6 +265,7 @@ function TiendaCliente() {
 
         <div className='flex justify-around mt-3'>
           <button
+            className='py-1 px-2 bg-pink-400 rounded-2xl text-white'
             onClick={() =>
               isAddCart.length > 0 &&
               navigate('/landing/tiendacliente/pay', {
@@ -363,7 +364,7 @@ function TiendaCliente() {
 
                           <div className='flex items-center gap-6 font-medium'>
                             <button
-                              className='bg-gray-100'
+                              className='py-1 px-2 rounded-2xl text-pink-500 bg-gray-100'
                               onClick={() =>
                                 isAddCart.length > 0 &&
                                 navigate('/landing/tiendacliente/pay', {

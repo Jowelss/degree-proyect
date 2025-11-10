@@ -20,9 +20,9 @@ function Blog() {
   }, []);
 
   return (
-    <div className='flex flex-col gap-5 mx-[100px]'>
+    <div className='flex flex-col items-center mx-auto gap-5 mt-10'>
       {post.map((item) => (
-        <ul key={item._id}>
+        <ul className='max-w-680 bg-white' key={item._id}>
           <div className='p-3'>
             <li className='uppercase text-3xl font-bold mb-2'>{item.titulo}</li>
             <li className='text-xs uppercase font-bold'>{item.tipo}</li>

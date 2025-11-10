@@ -2,7 +2,7 @@ const ProductCard = ({ item, onClick }) => {
   const isOutOfStock = item.estado !== 'Disponible';
 
   return (
-    <div className='relative rounded-2xl overflow-hidden bg-[#e2e2e2] font-medium'>
+    <div className='relative rounded-2xl overflow-hidden bg-white font-medium'>
       {isOutOfStock && (
         <div className='flex items-center justify-center absolute inset-0 bg-black/80 z-10 text-white'>
           <span className='font-medium'>AGOTADO</span>

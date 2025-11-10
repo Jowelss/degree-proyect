@@ -18,9 +18,9 @@ function Landing() {
   // const { user } = useAuth0();
 
   return (
-    <div>
+    <div className='bg-gray-100 min-h-screen'>
       <Header>
-        <header className='grid grid-flow-col auto-cols-fr'>
+        <header className='py-2 px-3 rounded-2xl grid grid-flow-col auto-cols-fr bg-white'>
           <div className='w-14'>
             <img src={Logo} alt='Autentica' />
           </div>
@@ -52,7 +52,7 @@ function Landing() {
         </header>
       </Header>
 
-      <div className='max-w-[1400px] mx-auto mt-20 px-4'>
+      <div className='max-w-[1400px] mx-auto pt-20 px-4'>
         <Outlet />
       </div>
     </div>

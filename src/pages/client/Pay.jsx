@@ -134,15 +134,22 @@ ${items
   // end
 
   return (
-    <div className='min-h-screen flex justify-center items-center'>
+    <div className='min-h-screen flex justify-center items-center bg-gray-100 font-medium text-black/90'>
       <div>
-        <button className='mb-2' onClick={() => navigate(-1)}>
+        <button
+          className='mb-4 py-1 px-2 bg-gray-200 text-pink-500 rounded-2xl'
+          onClick={() => navigate(-1)}
+        >
           Cancelar compra
         </button>
 
         <div className='flex gap-5'>
-          <div className='h-[400px] flex justify-center bg-fuchsia-300 p-1'>
-            <img className='object-contain h-full' src={qr} alt='Qr' />
+          <div className='h-[400px] p-3 flex justify-center rounded-2xl bg-pink-300'>
+            <img
+              className='object-contain h-full w-full rounded-2xl'
+              src={qr}
+              alt='Qr'
+            />
           </div>
 
           <div>
@@ -153,7 +160,7 @@ ${items
                     (item) =>
                       item.cantidad > 0 && (
                         <div
-                          className='flex justify-between items-center border'
+                          className='p-2 flex justify-between items-center bg-white rounded-2xl'
                           key={item._id}
                         >
                           <span>{item.nombre}</span>
@@ -167,7 +174,10 @@ ${items
             </div>
 
             <div className='w-[400px] mb-3'>
-              <div {...getRootProps()} className='drop-imagen'>
+              <div
+                {...getRootProps()}
+                className='drop-imagen bg-white rounded-2xl text-gray-400'
+              >
                 <input {...getInputProps()} />
                 {status === 'idle' && (
                   <span>Agrega tu comprobante de pago</span>
@@ -183,37 +193,43 @@ ${items
               </div>
 
               {voucherError && (
-                <p className='text-red-500 text-sm mt-1'>
-                  Debes subir tu comprobante de pago.
+                <p className='pl-2 text-red-500 text-sm mt-1'>
+                  Debes subir tu comprobante de pago*
                 </p>
               )}
             </div>
 
             <form onSubmit={BuyProducts}>
-              <div>
-                <label>Nombre</label>
+              <div className='mb-5'>
+                <label className='text-pink-500'>Nombre</label>
                 <input
                   type='text'
                   {...register('nombre', {
-                    required: 'Debes ingresar tu nombre.',
+                    required: 'Debes ingresar tu nombre*',
                   })}
                 />
                 {errors.nombre && (
-                  <p className='text-red-500 text-sm mt-1'>
+                  <p className='pl-2 text-red-500 text-sm mt-1'>
                     {errors.nombre.message}
                   </p>
                 )}
               </div>
 
-              <button type='submit'>Enviar</button>
+              <div className='mb-3 flex justify-around items-center'>
+                <button
+                  className='text-pink-500 py-1 px-2 bg-gray-200 rounded-2xl'
+                  type='submit'
+                >
+                  Finalizar compra
+                </button>
+
+                <span>TOTAL: {total}</span>
+              </div>
             </form>
 
-            <span>TOTAL: {total}</span>
-
-            <span className=' block w-100'>
-              La confirmación de tu compra puede demorar maximo 24horas, deja tu
-              numero de telefono o correo electronico para contactarnos contigo.
-            </span>
+            <small className='block w-100 text-gray-400'>
+              La confirmación de tu compra puede demorar máximo 24 horas.
+            </small>
           </div>
         </div>
       </div>
