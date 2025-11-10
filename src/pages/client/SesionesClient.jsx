@@ -18,10 +18,10 @@ function SesionesClient() {
   }, []);
 
   return (
-    <div className='grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-5'>
+    <div className='mt-11 grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-5'>
       {sesion.map((item) => (
         <div
-          className='relative bg-pink-700 rounded-xl overflow-hidden'
+          className='relative bg-pink-700 rounded-2xl overflow-hidden'
           key={item._id}
         >
           <div className='w-full h-[500px]'>

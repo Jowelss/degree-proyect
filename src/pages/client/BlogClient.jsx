@@ -20,9 +20,9 @@ function Blog() {
   }, []);
 
   return (
-    <div className='flex flex-col items-center mx-auto gap-5 mt-10'>
+    <div className='mt-11 grid grid-cols-[repeat(auto-fit,minmax(200px,1000px))] justify-center gap-5 '>
       {post.map((item) => (
-        <ul className='max-w-680 bg-white' key={item._id}>
+        <ul className='bg-white rounded-2xl overflow-hidden' key={item._id}>
           <div className='p-3'>
             <li className='uppercase text-3xl font-bold mb-2'>{item.titulo}</li>
             <li className='text-xs uppercase font-bold'>{item.tipo}</li>

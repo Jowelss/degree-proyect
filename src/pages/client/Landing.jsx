@@ -41,7 +41,7 @@ function Landing() {
                   <SideBarLink to={'/landing/history'} label={'Historial'} />
 
                   <button className='bg-fuchsia-500 rounded-2xl px-1'>
-                    tema
+                    teme
                   </button>
 
                   <LogoutButton />

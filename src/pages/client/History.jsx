@@ -24,23 +24,33 @@ function History() {
   }, [history]);
 
   return (
-    <div className='flex flex-wrap gap-2'>
-      {history.map((item) => (
-        <ul className='border max-w-max flex items-center gap-3' key={item._id}>
-          <li>
-            <div className='w-20 h-20'>
-              <img
-                className='object-contain h-full'
-                src={item.imagen}
-                alt='Imagen'
-              />
+    <div className='mt-11 max-w-max mx-auto font-medium'>
+      <span className='block mb-3 text-4xl'>HISTORIAL</span>
+
+      <div className='flex flex-col items-center gap-2'>
+        {history.map((item) => (
+          <ul
+            className='w-200 flex items-center gap-3 bg-white rounded-2xl overflow-hidden'
+            key={item._id}
+          >
+            <li>
+              <div className='w-20 h-20'>
+                <img
+                  className='object-contain h-full'
+                  src={item.imagen}
+                  alt='Imagen'
+                />
+              </div>
+            </li>
+
+            <div className='w-full p-2 flex justify-between'>
+              <li>{item.nombre}</li>
+              <li>x{item.cantidad}</li>
+              <li>{item.precio}bs</li>
             </div>
-          </li>
-          <li>{item.nombre}</li>
-          <li>x{item.cantidad}</li>
-          <li>{item.precio}bs</li>
-        </ul>
-      ))}
+          </ul>
+        ))}
+      </div>
     </div>
   );
 }
