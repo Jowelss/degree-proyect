@@ -55,12 +55,12 @@ function Inicio() {
             <img className='object-cover w-full h-full' src={Mei} />
           </div>
 
-          <div className='p-2'>
-            <span className='mb-4 text-2xl block font-bold text-pink-400'>
+          <div className='p-2 font-medium'>
+            <span className='mb-2 text-2xl block text-pink-400'>
               MEIDY GODOY (FUNDADORA)
             </span>
 
-            <p>
+            <p className='text-gray-700'>
               "Auténtica Self Love es un espacio creado para quienes buscan
               conectar con su esencia y vivir desde la autenticidad. Aquí
               encontrarás una combinación de tienda, eventos y blog, diseñados
@@ -68,16 +68,15 @@ function Inicio() {
               Nuestra misión es ofrecerte un lugar donde puedas descubrir
               productos con propósito, participar en experiencias significativas
               y formar parte de una comunidad que valora la conexión real y el
-              crecimiento interior. Detrás de este proyecto está MEIDY GODOY,
-              una mujer apasionada por el bienestar, la creatividad y el
-              desarrollo personal, que soñó con construir un espacio digital que
-              refleje lo que somos: únicos, imperfectos y profundamente
-              valiosos."
+              crecimiento interior. Detrás de este proyecto estoy yo, una mujer
+              apasionada por el bienestar, la creatividad y el desarrollo
+              personal, que soñó con construir un espacio digital que refleje lo
+              que somos: únicos, imperfectos y profundamente valiosos."
             </p>
           </div>
         </div>
 
-        <p className='max-w-max mx-auto px-4 rounded-2xl mb-10 py-2 text-center text-lg text-white font-medium bg-pink-400'>
+        <p className='max-w-max mx-auto px-4 rounded-2xl mb-10 py-2 text-center text-sx text-white font-medium bg-pink-400'>
           “Auténtica nació para recordarte que ser tú mismo siempre será tu
           mayor fortaleza.”
         </p>

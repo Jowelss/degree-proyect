@@ -9,7 +9,7 @@ import ProductCard from '../../components/ProductCard';
 
 // icons
 import { LuShoppingCart } from 'react-icons/lu';
-import { IoIosAdd, IoIosRemove, IoIosClose } from 'react-icons/io';
+import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
 
 // end
 
@@ -224,12 +224,11 @@ function TiendaCliente() {
 
       {/* Modal del carrito */}
       <ModalCart classState={isOpenCart ? 'block' : 'hidden'}>
-        <button
-          className='w-full mb-3 text-end'
-          onClick={() => handleClickCart()}
-        >
-          Cerrar
-        </button>
+        <div className='text-end'>
+          <button onClick={() => handleClickCart()}>
+            <IoClose className='text-2xl bg-pink-400 text-white rounded-full' />
+          </button>
+        </div>
 
         {/* Si no hay productos en el carrito muestra el mensaje caso contrario muestra los productos */}
         <div>
@@ -305,7 +304,7 @@ function TiendaCliente() {
                 <div className='text-black/90 flex-1 overflow-hidden p-2'>
                   <div className='text-end'>
                     <button onClick={() => setIsOpen(false)}>
-                      <IoIosClose />
+                      <IoClose className='text-2xl bg-pink-400 rounded-full text-white' />
                     </button>
                   </div>
 
@@ -350,21 +349,21 @@ function TiendaCliente() {
                         <div className='flex justify-between items-center'>
                           <div className='max-w-max px-2 py-1 flex items-center gap-4 bg-gray-100 rounded-xl'>
                             <button onClick={() => decreaseQuantity(item)}>
-                              <IoIosRemove className='text-2xl' />
+                              <IoRemove className='text-2xl text-gray-700' />
                             </button>
 
-                            <span className='font-medium'>
+                            <span className='font-bold text-pink-400'>
                               {fountItem?.cantidad}
                             </span>
 
                             <button onClick={() => addToCart(item)}>
-                              <IoIosAdd className='text-2xl' />
+                              <IoAdd className='text-2xl text-gray-700' />
                             </button>
                           </div>
 
                           <div className='flex items-center gap-6 font-medium'>
                             <button
-                              className='py-1 px-2 rounded-2xl text-pink-500 bg-gray-100'
+                              className='py-1 px-2 font-bold rounded-2xl text-pink-400 bg-gray-100'
                               onClick={() =>
                                 isAddCart.length > 0 &&
                                 navigate('/landing/tiendacliente/pay', {
@@ -384,7 +383,7 @@ function TiendaCliente() {
                         </div>
                       ) : (
                         <button
-                          className='px-2 py-1 rounded-xl font-medium bg-pink-400 text-white '
+                          className='px-2 py-1 rounded-xl font-bold bg-pink-400 text-white '
                           onClick={() => addToCart(item)}
                         >
                           Agregar al carrito

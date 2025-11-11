@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useForm } from 'react-hook-form';
 
+import { IoMdArrowRoundBack } from 'react-icons/io';
+
 import axios from 'axios';
 import { Get } from '../../services/Get';
 import { Add } from '../../services/Add';
@@ -60,7 +62,7 @@ function Pay() {
     }
   };
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const BuyProducts = handleSubmit(async (data) => {
     if (!voucher) {
@@ -135,15 +137,15 @@ ${items
 
   return (
     <div className='min-h-screen flex justify-center items-center bg-gray-100 font-medium text-black/90'>
-      <div>
-        <button
-          className='mb-4 py-1 px-2 bg-gray-200 text-pink-500 rounded-2xl'
-          onClick={() => navigate(-1)}
-        >
-          Cancelar compra
-        </button>
-
-        <div className='flex gap-5'>
+      <div className='flex items-center gap-5'>
+        <div>
+          <button
+            className='mb-4 py-1 px-2 flex gap-1 items-center bg-gray-200 text-pink-500 rounded-2xl'
+            onClick={() => navigate(-1)}
+          >
+            <IoMdArrowRoundBack />
+            <span>Cancelar</span>
+          </button>
           <div className='h-[400px] p-3 flex justify-center rounded-2xl bg-pink-300'>
             <img
               className='object-contain h-full w-full rounded-2xl'
@@ -151,86 +153,92 @@ ${items
               alt='Qr'
             />
           </div>
+        </div>
 
-          <div>
-            <div className='mb-5'>
-              {
-                <div className='flex flex-col gap-3'>
-                  {cart.map(
-                    (item) =>
-                      item.cantidad > 0 && (
-                        <div
-                          className='p-2 flex justify-between items-center bg-white rounded-2xl'
-                          key={item._id}
-                        >
-                          <span>{item.nombre}</span>
-                          <span>x{item.cantidad}</span>
-                          <span>{item.precio}bs</span>
-                        </div>
-                      )
-                  )}
-                </div>
-              }
+        <div>
+          <div className='w-[400px] h-[300px] mb-3'>
+            <div
+              {...getRootProps()}
+              className={`
+                  ${
+                    isDragActive
+                      ? 'border-pink-400 bg-blue-50'
+                      : 'border-gray-300'
+                  }
+                   drop-imagen bg-white rounded-2xl text-gray-400`}
+            >
+              <input {...getInputProps()} />
+              {status === 'idle' && (
+                <span>Agrega/Arrastra tu comprobante de pago</span>
+              )}
+              {status === 'loading' && <span>Cargando</span>}
+              {status === 'ready' && (
+                <img
+                  className='object-contain h-full'
+                  src={voucher}
+                  alt='Voucher'
+                />
+              )}
             </div>
 
-            <div className='w-[400px] mb-3'>
-              <div
-                {...getRootProps()}
-                className='drop-imagen bg-white rounded-2xl text-gray-400'
-              >
-                <input {...getInputProps()} />
-                {status === 'idle' && (
-                  <span>Agrega tu comprobante de pago</span>
-                )}
-                {status === 'loading' && <span>Cargando</span>}
-                {status === 'ready' && (
-                  <img
-                    className='object-contain h-full'
-                    src={voucher}
-                    alt='Voucher'
-                  />
-                )}
-              </div>
+            {voucherError && (
+              <p className='pl-2 text-red-500 text-sm mt-1'>
+                Debes subir tu comprobante de pago*
+              </p>
+            )}
+          </div>
 
-              {voucherError && (
+          <form onSubmit={BuyProducts}>
+            <div className='mb-5'>
+              <label className='text-pink-500'>Nombre</label>
+              <input
+                className='border-gray-200 py-1 px-3 text-gray-600 bg-white rounded-2xl max-w-70 focus:border-pink-400 focus:outline-none'
+                type='text'
+                {...register('nombre', {
+                  required: 'Debes ingresar tu nombre*',
+                })}
+              />
+              {errors.nombre && (
                 <p className='pl-2 text-red-500 text-sm mt-1'>
-                  Debes subir tu comprobante de pago*
+                  {errors.nombre.message}
                 </p>
               )}
             </div>
 
-            <form onSubmit={BuyProducts}>
-              <div className='mb-5'>
-                <label className='text-pink-500'>Nombre</label>
-                <input
-                  type='text'
-                  {...register('nombre', {
-                    required: 'Debes ingresar tu nombre*',
-                  })}
-                />
-                {errors.nombre && (
-                  <p className='pl-2 text-red-500 text-sm mt-1'>
-                    {errors.nombre.message}
-                  </p>
-                )}
-              </div>
+            <div className='mb-3 flex justify-around items-center'>
+              <button
+                className='text-pink-500 py-1 px-2 bg-gray-200 rounded-2xl'
+                type='submit'
+              >
+                Finalizar compra
+              </button>
 
-              <div className='mb-3 flex justify-around items-center'>
-                <button
-                  className='text-pink-500 py-1 px-2 bg-gray-200 rounded-2xl'
-                  type='submit'
-                >
-                  Finalizar compra
-                </button>
+              <span>TOTAL: {total}</span>
+            </div>
+          </form>
 
-                <span>TOTAL: {total}</span>
-              </div>
-            </form>
-
-            <small className='block w-100 text-gray-400'>
-              La confirmación de tu compra puede demorar máximo 24 horas.
-            </small>
-          </div>
+          <small className='block w-100 text-gray-400'>
+            La confirmación de tu compra puede demorar máximo 24 horas.
+          </small>
+        </div>
+        <div className='w-40 mb-5'>
+          {
+            <div className='flex flex-col gap-3'>
+              {cart.map(
+                (item) =>
+                  item.cantidad > 0 && (
+                    <div
+                      className='p-2 flex justify-between items-center bg-white rounded-2xl'
+                      key={item._id}
+                    >
+                      <span>{item.nombre}</span>
+                      <span>x{item.cantidad}</span>
+                      <span>{item.precio}bs</span>
+                    </div>
+                  )
+              )}
+            </div>
+          }
         </div>
       </div>
     </div>
