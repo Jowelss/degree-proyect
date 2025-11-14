@@ -7,7 +7,7 @@ function LogoutButton() {
 
   return (
     <button
-      className='px-2 bg-pink-400 rounded-2xl p-1 text-white font-medium'
+      className='py-1 px-2 mt-2 bg-pink-400 rounded-2xl text-white font-medium'
       onClick={() =>
         logout({ logoutParams: { returnTo: window.location.origin } })
       }

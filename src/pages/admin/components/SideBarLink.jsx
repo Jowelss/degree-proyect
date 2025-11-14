@@ -5,7 +5,7 @@ export function SideBarLink({ to, icon: Icon, label }) {
     <li className='list-none'>
       <NavLink
         className={({ isActive }) =>
-          `p_rounded_cursor-item flex items-center gap-2 ${
+          `p_rounded_cursor-item py-2 px-2 flex items-center gap-2 rounded-2xl ${
             isActive ? 'bg-pink-400 text-white' : 'hover:bg-gray-200'
           }`
         }
