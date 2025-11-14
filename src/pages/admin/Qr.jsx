@@ -65,7 +65,7 @@ export default function Qr({ children, classState, setOpen }) {
     }
   };
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   useEffect(() => {
     fecthQr();
@@ -75,13 +75,19 @@ export default function Qr({ children, classState, setOpen }) {
     <div
       className={`${classState} fixed inset-0 flex justify-center items-center bg-[#00000091]`}
     >
-      <div className='w-[500px] p-3 bg-white rounded-xl border border-gray-300'>
+      <div className='w-110 p-3 bg-white rounded-2xl'>
         {children}
 
-        <div className='rounded-xl border border-gray-300 overflow-hidden'>
+        <div className='h-100'>
           <div
             {...getRootProps()}
-            className='w-full min-h-[400px] drop-imagen cursor-pointer bg-white border-none'
+            className={`
+              drop-imagen text-gray-400 bg-white
+                ${
+                  isDragActive
+                    ? 'border-pink-400 bg-blue-50'
+                    : 'border-gray-300'
+                }`}
           >
             <input {...getInputProps()} />
 
@@ -89,7 +95,7 @@ export default function Qr({ children, classState, setOpen }) {
 
             {qr && (
               <img
-                className='object-contain h-full'
+                className='object-contain w-full h-full'
                 src={qr[0].imagen}
                 alt='Qr'
               />
@@ -97,7 +103,7 @@ export default function Qr({ children, classState, setOpen }) {
           </div>
         </div>
 
-        <div className='flex justify-around mt-3'>
+        <div className='flex justify-around mt-3 font-medium'>
           <button
             className='flex items-center gap-1'
             title='Guardar Qr'
@@ -105,7 +111,9 @@ export default function Qr({ children, classState, setOpen }) {
               setOpen(false);
             }}
           >
-            <span>Guardar</span>
+            <span className='py-1 px-2 rounded-2xl bg-pink-400 text-white'>
+              Guardar
+            </span>
           </button>
 
           <button
@@ -113,23 +121,34 @@ export default function Qr({ children, classState, setOpen }) {
             title='Eliminar Qr'
             onClick={handleClickDelete}
           >
-            <span>Eliminar</span>
+            <span className='py-1 px-2 rounded-2xl bg-pink-400 text-white'>
+              Eliminar
+            </span>
           </button>
         </div>
 
         <ModalDelete classState={openDelete ? 'block' : 'hidden'}>
-          <div className='border p-4 rounded-2xl bg-white'>
-            <h2>¿Estas seguro que quieres eliminar este QR?</h2>
+          <div className='p-4 rounded-2xl bg-white'>
+            <span className='block mb-3'>
+              ¿Estas seguro que quieres eliminar este QR?
+            </span>
 
-            <div className='flex justify-center gap-2'>
+            <div className='flex justify-center gap-10'>
               <button
+                className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {
                   deleteQr(), handleClickDelete();
                 }}
               >
                 Eliminar
               </button>
-              <button onClick={handleClickDelete}>Cancelar</button>
+
+              <button
+                className='py-1 px-2 rounded-2xl bg-gray-200'
+                onClick={handleClickDelete}
+              >
+                Cancelar
+              </button>
             </div>
           </div>
         </ModalDelete>
