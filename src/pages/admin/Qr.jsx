@@ -16,7 +16,7 @@ export default function Qr({ children, classState, setOpen }) {
 
   const [qr, setQr] = useState(null);
 
-  const [state, setState] = useState('Agrega una imagen');
+  const [state, setState] = useState('Agregar Qr');
 
   const show = qr ? 'hidden' : 'block';
 
@@ -82,10 +82,10 @@ export default function Qr({ children, classState, setOpen }) {
           <div
             {...getRootProps()}
             className={`
-              drop-imagen text-gray-400 bg-white
+              drop-imagen text-gray-400 border rounded-2xl
                 ${
                   isDragActive
-                    ? 'border-pink-400 bg-blue-50'
+                    ? 'border-pink-400 bg-pink-100 text-pink-400'
                     : 'border-gray-300'
                 }`}
           >

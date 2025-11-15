@@ -24,7 +24,7 @@ button {
 }
 
 .drop-imagen {
-  @apply w-full h-full flex items-center justify-center text-center;
+  @apply w-full h-full flex items-center justify-center;
 }
 
 .pero {

@@ -168,26 +168,30 @@ ${items
           </div>
 
           <div className='flex items-center p-2 bg-white rounded-2xl'>
-            <div className='h-[400px] p-3 flex justify-center'>
-              <img
-                className='object-contain h-full w-full rounded-2xl'
-                src={qr}
-                alt='Qr'
-              />
+            <div className='w-60 h-[400px] p-3 flex items-center justify-center'>
+              {qr ? (
+                <img
+                  className='object-contain h-full w-full rounded-2xl'
+                  src={qr}
+                  alt='Qr'
+                />
+              ) : (
+                <span className='text-gray-400'>El Qr no esta disponible</span>
+              )}
             </div>
           </div>
 
           <div className='p-2 bg-white rounded-2xl'>
-            <div className='max-w-90 h-[300px] mb-3'>
+            <div className='w-90 h-60 mb-3'>
               <div
                 {...getRootProps()}
                 className={`
                 ${
                   isDragActive
-                    ? 'border-pink-400 bg-blue-50'
+                    ? 'border-pink-400 bg-pink-100 text-pink-400'
                     : 'border-gray-300'
                 }
-                  drop-imagen bg-white rounded-2xl text-gray-400`}
+                  drop-imagen rounded-2xl text-gray-400 border`}
               >
                 <input {...getInputProps()} />
                 {status === 'idle' && (
