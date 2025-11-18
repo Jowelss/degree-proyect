@@ -112,24 +112,26 @@ function Eventos() {
       <ul className='flex flex-col'>
         {eventos.map((evento, i) => (
           <ItemCard key={evento._id}>
-            <div className='flex items-center gap-3'>
-              <span className='mr-3'>{i}</span>
+            <div className='flex gap-2 items-center col-span-2'>
+              <span className='min-w-7 text-center'>{i}</span>
 
-              <div className='w-14 h-full flex justify-center rounded-2xl overflow-hidden'>
+              <div className='w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
                 <img
-                  className='object-contain h-full'
+                  className='object-contain w-full h-full'
                   src={evento.imagen}
                   alt='Imagen del producto'
                 />
               </div>
               <span>{evento.nombre}</span>
             </div>
+
             <span>{evento.hora}</span>
             <span>{new Date(evento.fecha).toLocaleDateString()}</span>
             <span>{evento.ubicacion}</span>
 
-            <div>
+            <div className='flex gap-2'>
               <button
+                className='py-1 px-2 bg-gray-200 rounded-2xl'
                 onClick={() => {
                   setSelectId(evento._id);
                   handleClickDelete();
@@ -138,6 +140,7 @@ function Eventos() {
                 Eliminar
               </button>
               <button
+                className='py-1 px-2 bg-pink-400 text-white rounded-2xl'
                 onClick={() => {
                   handleClick();
                   handleEdit(evento);
@@ -152,11 +155,12 @@ function Eventos() {
       </ul>
 
       <ModalDelete classState={stateButton}>
-        <div className='border p-4 rounded-2xl'>
+        <div className='p-4 bg-white rounded-2xl'>
           <h2>¿Estas seguro que quieres eliminar este Evento?</h2>
 
-          <div className='flex justify-center gap-2'>
+          <div className='mt-2 flex justify-center gap-2'>
             <button
+              className='py-1 px-2 bg-pink-400 text-white rounded-2xl'
               onClick={() => {
                 Delete(selectId, setEventos, eventos, 'eventos');
                 handleClickDelete();
@@ -164,7 +168,12 @@ function Eventos() {
             >
               Confirmar
             </button>
-            <button onClick={handleClickDelete}>Cancelar</button>
+            <button
+              className='py-1 px-2 bg-gray-200 rounded-2xl'
+              onClick={handleClickDelete}
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </ModalDelete>

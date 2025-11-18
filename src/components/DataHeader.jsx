@@ -1,12 +1,12 @@
 export function DataHeader({ children }) {
   return (
-    <ul className='mb-4 pb-2 grid grid-flow-col auto-cols-fr gap-4 border-b-1 border-gray-300'>
-      <div className='flex gap-3'>
-        <li className='mr-3'>#</li>
+    <ul className='mb-4 pb-2 grid auto-cols-fr grid-flow-col gap-1 border-b-1 border-gray-200 select-none'>
+      <div className='flex gap-2 col-span-2'>
+        <li className='min-w-7 text-center'>#</li>
         <li>Titulo</li>
       </div>
       {children}
-      <li>Acción</li>
+      <li className='text-center'>Acción</li>
     </ul>
   );
 }

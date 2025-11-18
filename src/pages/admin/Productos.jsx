@@ -125,30 +125,33 @@ function Tienda() {
       </HeaderPanel>
 
       <DataHeader>
-        <li>Estado</li>
-        <li>Precio (bs)</li>
-        <li>Cantidad</li>
+        <li className='text-center'>Estado</li>
+        <li className='text-center'>Precio (bs)</li>
+        <li className='text-center'>Cantidad</li>
       </DataHeader>
 
       <ul className='flex flex-col-reverse'>
         {libros.map((libro, i) => (
           <ItemCard key={libro._id}>
-            <div className='flex items-center gap-3'>
-              <span className='mr-3'>{i}</span>
+            <div className='flex items-center gap-2 col-span-2'>
+              <span className='min-w-7 text-center'>{i}</span>
 
-              <div className='w-14 h-full flex justify-center'>
+              <div className='min-w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
                 <img
-                  className='object-contain h-full rounded-2xl'
+                  className='object-contain w-full h-full'
                   src={libro.imagen}
                   alt='Imagen del producto'
                 />
               </div>
-              <span>{libro.nombre}</span>
+
+              <span className='whitespace-nowrap overflow-hidden'>
+                {libro.nombre}
+              </span>
             </div>
 
-            <span>{libro.estado}</span>
-            <span>{libro.precio}</span>
-            <span>{libro.cantidad}</span>
+            <span className='text-center'>{libro.estado}</span>
+            <span className='text-center'>{libro.precio}</span>
+            <span className='text-center'>{libro.cantidad}</span>
 
             <div className='flex gap-2'>
               <button
@@ -176,12 +179,12 @@ function Tienda() {
       </ul>
 
       <ModalDelete classState={stateButton}>
-        <div className='p-4 bg-white rounded-xl border border-gray-300'>
-          <h2>¿Estas segura que quieres eliminar este producto?</h2>
+        <div className='p-4 bg-white rounded-2xl'>
+          <h2>¿Estas segura que quieres eliminar este libro?</h2>
 
           <div className='mt-2 flex justify-center gap-2'>
             <button
-              className='bg-pink-400 text-white'
+              className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
               onClick={() => {
                 Delete(selectId, setLibros, libros, 'libros');
                 handleClickDelete();
@@ -189,7 +192,12 @@ function Tienda() {
             >
               Confirmar
             </button>
-            <button onClick={handleClickDelete}>Cancelar</button>
+            <button
+              className='py-1 px-2 rounded-2xl bg-gray-300'
+              onClick={handleClickDelete}
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </ModalDelete>
