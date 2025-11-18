@@ -18,11 +18,14 @@ export function Fecha({ setValue, initialDate }) {
     setValue('fecha', date);
   };
   return (
-    <DatePicker
-      selected={startDate}
-      onChange={handleChange}
-      dateFormat={'dd/MM/yyyy'}
-      placeholderText='Seleccionar fecha'
-    />
+    <div className='w-27'>
+      <DatePicker
+        className='coso'
+        selected={startDate}
+        onChange={handleChange}
+        dateFormat={'dd/MM/yyyy'}
+        placeholderText='Seleccionar fecha'
+      />
+    </div>
   );
 }

@@ -43,7 +43,7 @@ export function DropImagen({ setValue, children }) {
                     ? 'border-pink-400 bg-pink-100 text-pink-400'
                     : 'border-gray-300'
                 }
-                  w-60 h-full flex items-center justify-center rounded-2xl text-gray-400 border`}
+                 w-full h-full flex items-center justify-center rounded-2xl text-gray-400 border`}
     >
       <input {...getInputProps()} />
       <span className={`${show} select-none`}>{isEstado}</span>

@@ -342,7 +342,7 @@ function Tienda() {
             </div>
 
             <button
-              className='py-1 px-2 mt-8 ml-10 rounded-2xl text-white bg-pink-400'
+              className='py-1 px-2 rounded-2xl text-white bg-pink-400'
               onClick={handleClick}
               type='submit'
             >
