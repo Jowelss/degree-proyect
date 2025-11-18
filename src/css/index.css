@@ -3,6 +3,12 @@
 @import 'swiper/css';
 @import 'swiper/css/autoplay';
 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 label {
   @apply block;
 }
@@ -29,4 +35,8 @@ button {
 
 .pero {
   font-family: 'Momo Signature', cursive;
+}
+
+.coso {
+  @apply border-2 border-gray-200 py-1 px-3 text-gray-600 bg-white rounded-2xl focus:border-pink-400 focus:outline-none;
 }

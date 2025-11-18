@@ -86,7 +86,7 @@ function Reuniones() {
       <HeaderPanel>
         <h1 className='text-4xl font-bold'>SESIONES</h1>
         <button
-          className='bg-pink-400 text-white'
+          className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
           onClick={() => {
             setSelectId(null);
             reset();

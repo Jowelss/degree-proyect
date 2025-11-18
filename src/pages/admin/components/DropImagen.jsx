@@ -27,7 +27,7 @@ export function DropImagen({ setValue, children }) {
     }
   };
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   useEffect(() => {
     //Si el formulario se cierra el nombre del estado cambia
@@ -35,9 +35,18 @@ export function DropImagen({ setValue, children }) {
   }, [children]);
 
   return (
-    <div {...getRootProps()} className='drop-imagen'>
+    <div
+      {...getRootProps()}
+      className={`
+                ${
+                  isDragActive
+                    ? 'border-pink-400 bg-pink-100 text-pink-400'
+                    : 'border-gray-300'
+                }
+                  w-60 h-full flex items-center justify-center rounded-2xl text-gray-400 border`}
+    >
       <input {...getInputProps()} />
-      <span className={show}>{isEstado}</span>
+      <span className={`${show} select-none`}>{isEstado}</span>
       {children}
     </div>
   );

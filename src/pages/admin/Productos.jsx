@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
+
 // componentes
 import { Modal } from '../../components/Modal.jsx';
 import { Panel } from '../../components/Panel.jsx';
@@ -110,7 +112,7 @@ function Tienda() {
       <HeaderPanel>
         <h1 className='text-4xl font-bold'>LIBROS</h1>
         <button
-          className='bg-pink-400 text-white'
+          className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
           onClick={() => {
             setSelectId(null);
             reset();
@@ -148,8 +150,9 @@ function Tienda() {
             <span>{libro.precio}</span>
             <span>{libro.cantidad}</span>
 
-            <div>
+            <div className='flex gap-2'>
               <button
+                className='py-1 px-2 rounded-2xl bg-gray-200'
                 onClick={() => {
                   setSelectId(libro._id);
                   handleClickDelete();
@@ -158,6 +161,7 @@ function Tienda() {
                 Eliminar
               </button>
               <button
+                className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {
                   handleClick();
                   handleEdit(libro);
@@ -191,110 +195,153 @@ function Tienda() {
       </ModalDelete>
 
       <Modal classState={state}>
-        <div className='flex justify-between items-center mb-3'>
-          <span className='text-4xl'>Producto</span>
-          <button onClick={handleClick}>Cerrar</button>
+        <div className='w-[850px] text-black/90'>
+          <div className='flex justify-between items-center mb-3'>
+            <span className='text-4xl'>Nuevo Libro</span>
+
+            <button onClick={handleClick}>
+              <IoClose className='text-2xl bg-pink-400 rounded-full text-white' />
+            </button>
+          </div>
+
+          <form onSubmit={onSubmit}>
+            <div className='flex gap-4 justify-between'>
+              <div className='w-140'>
+                <div className='flex gap-2 justify-between'>
+                  <div className='flex-1'>
+                    <label className='pl-2'>Nombre</label>
+                    <input
+                      className='coso'
+                      type='text'
+                      {...register('nombre')}
+                    />
+                  </div>
+
+                  <div className='flex-1'>
+                    <label className='pl-2'>Autor/a</label>
+                    <input
+                      className='coso'
+                      type='text'
+                      {...register('autor')}
+                    />
+                  </div>
+                </div>
+
+                <div className='col-span-2 mt-3'>
+                  <label>¿De que trata?</label>
+                  <textarea
+                    className='coso w-full h-20 resize-none'
+                    type='text'
+                    rows={2}
+                    {...register('sinopsis')}
+                  />
+                </div>
+
+                <div className='mt-3 flex gap-2'>
+                  <div className='w-30'>
+                    <label className='pl-2'>Inversión</label>
+                    <input
+                      className='coso text-center'
+                      type='number'
+                      {...register('precio')}
+                    />
+                  </div>
+
+                  <div className='w-30'>
+                    <label className='pl-2'>Stock</label>
+                    <input
+                      className='coso text-center'
+                      type='number'
+                      {...register('cantidad')}
+                    />
+                  </div>
+
+                  <div>
+                    <label>¿Como es este ejemplar?</label>
+
+                    <div className='flex gap-2'>
+                      <select
+                        className='coso'
+                        type='text'
+                        {...register('tapa')}
+                      >
+                        <option value=''>Seleccionar</option>
+
+                        <option value='Tapa dura'>Tapa dura</option>
+                        <option value='Tapa flexible'>Tapa flexible</option>
+                      </select>
+
+                      <select
+                        className='coso'
+                        type='text'
+                        {...register('hoja')}
+                      >
+                        <option value=''>Seleccionar</option>
+
+                        <option value='Hoja ahuesada'>Hoja ahuesada</option>
+                        <option value='Hoja blanca'>Hoja blanca</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='mt-3'>
+                  <label className='pl-2'>Género</label>
+
+                  <select className='coso' type='text' {...register('genero')}>
+                    <option value=''>Seleccionar</option>
+
+                    <option value='Crecimiento personal'>
+                      Crecimiento personal
+                    </option>
+                    <option value='Crecimiento profesional'>
+                      Crecimiento profesional
+                    </option>
+                    <option value='Espiritualidad y bienestar'>
+                      Espiritualidad y bienestar
+                    </option>
+                    <option value='Salud y bienestar'>Salud y bienestar</option>
+                    <option value='Amor y relaciones'>Amor y relaciones</option>
+                    <option value='Educación y aprendizaje'>
+                      Educación y aprendizaje
+                    </option>
+                    <option value='Novelas'>Novelas</option>
+                    <option value='Ficcion'>Ficción</option>
+                    <option value='Infantiles'>Infantiles</option>
+                    <option value='Adolescentes / Jovenes'>
+                      Adolescentes / Jóvenes
+                    </option>
+                    <option value='Familia y crianza'>Familia y crianza</option>
+                    <option>Otro</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className='pl-2'>Imagen</label>
+
+                <input {...register('imagen')} hidden />
+                <DropImagen setValue={setValue}>
+                  {imagenURL && (
+                    <img
+                      src={imagenURL}
+                      alt='Imagen'
+                      className='object-contain h-full w-full'
+                    />
+                  )}
+                </DropImagen>
+              </div>
+            </div>
+
+            <button
+              className='py-1 px-2 mt-8 ml-10 rounded-2xl text-white bg-pink-400'
+              onClick={handleClick}
+              type='submit'
+            >
+              {isNombre}
+            </button>
+          </form>
         </div>
-
-        <form onSubmit={onSubmit}>
-          <div>
-            <label>Nombre</label>
-            <input type='text' {...register('nombre')} />
-          </div>
-
-          <div>
-            <label>Autor/a</label>
-            <input type='text' {...register('autor')} />
-          </div>
-
-          <div className='flex justify-between flex-wrap items-center'>
-            <div className='flex'>
-              <label>Inversión</label>
-              <input type='number' {...register('precio')} />
-            </div>
-
-            <div className='flex items-center'>
-              <label>Género</label>
-
-              <select className='border' type='text' {...register('genero')}>
-                <option value=''>Seleccionar</option>
-
-                <option value='Crecimiento personal'>
-                  Crecimiento personal
-                </option>
-                <option value='Crecimiento profesional'>
-                  Crecimiento profesional
-                </option>
-                <option value='Espiritualidad y bienestar'>
-                  Espiritualidad y bienestar
-                </option>
-                <option value='Salud y bienestar'>Salud y bienestar</option>
-                <option value='Amor y relaciones'>Amor y relaciones</option>
-                <option value='Educación y aprendizaje'>
-                  Educación y aprendizaje
-                </option>
-                <option value='Novelas'>Novelas</option>
-                <option value='Ficcion'>Ficción</option>
-                <option value='Infantiles'>Infantiles</option>
-                <option value='Adolescentes / Jovenes'>
-                  Adolescentes / Jóvenes
-                </option>
-                <option value='Familia y crianza'>Familia y crianza</option>
-                <option>Otro</option>
-              </select>
-            </div>
-
-            <div>
-              <label>Cantidad</label>
-              <input type='number' {...register('cantidad')} />
-            </div>
-
-            <div className='flex items-center gap-1.5 '>
-              <label>¿Como es este ejemplar?</label>
-              <select className='border' type='text' {...register('tapa')}>
-                <option value=''>Seleccionar</option>
-
-                <option value='Tapa dura'>Tapa dura</option>
-                <option value='Tapa flexible'>Tapa flexible</option>
-              </select>
-
-              <select className='border' type='text' {...register('hoja')}>
-                <option value=''>Seleccionar</option>
-
-                <option value='Hoja ahuesada'>Hoja ahuesada</option>
-                <option value='Hoja blanca'>Hoja blanca</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label>¿De que trata?</label>
-            <textarea
-              className='border w-full'
-              type='text'
-              rows={2}
-              {...register('sinopsis')}
-            />
-          </div>
-
-          <div>
-            <label>Imagen</label>
-            <input {...register('imagen')} hidden />
-            <DropImagen setValue={setValue}>
-              {imagenURL && (
-                <img
-                  src={imagenURL}
-                  alt='Imagen'
-                  className='object-contain h-full'
-                />
-              )}
-            </DropImagen>
-          </div>
-
-          <button onClick={handleClick} type='submit'>
-            {isNombre}
-          </button>
-        </form>
       </Modal>
     </Panel>
   );

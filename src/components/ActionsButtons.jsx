@@ -5,7 +5,7 @@ export default function ActionsButtons({
   onModalDelete,
 }) {
   return (
-    <div>
+    <div className='flex gap-2'>
       <button
         onClick={() => {
           onDelete(item._id);
