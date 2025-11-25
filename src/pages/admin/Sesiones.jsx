@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
+
 import { Modal } from '../../components/Modal.jsx';
 import { Panel } from '../../components/Panel.jsx';
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
@@ -99,39 +101,49 @@ function Reuniones() {
       </HeaderPanel>
 
       <DataHeader>
-        <li>Fecha</li>
-        <li>Hora</li>
-        <li>Vinculo</li>
+        <li className='text-center'>Fecha</li>
+        <li className='text-center'>Hora</li>
+        <li className='text-center col-span-2'>Vinculo</li>
       </DataHeader>
 
       <ul className='flex flex-col'>
         {sesion.map((item, i) => (
           <ItemCard key={item._id}>
-            <div className='flex items-center gap-3'>
-              <span className='mr-3'>{i}</span>
+            <div className='flex items-center gap-2 col-span-2'>
+              <span className='min-w-7 text-center'>{i}</span>
 
-              <div className='w-14 h-full flex justify-center'>
+              <div className='w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
                 <img
-                  className='object-contain h-full rounded-2xl'
+                  className='object-contain w-full h-full'
                   src={item.imagen}
                   alt='Imagen del producto'
                 />
               </div>
-              <span>{item.titulo}</span>
-            </div>
-            <span>{new Date(item.fecha).toLocaleDateString()}</span>
-            <span>{item.hora}</span>
-            <a
-              className='flex items-center gap-1.5 hover:text-pink-700'
-              target='_blank'
-              href={item.link}
-            >
-              <FaLink className='text-ms' />
-              Link de la reunion
-            </a>
 
-            <div>
+              <span className='whitespace-nowrap overflow-hidden'>
+                {item.titulo}
+              </span>
+            </div>
+            <span className='text-center'>{item.hora}</span>
+
+            <span className='text-center'>
+              {new Date(item.fecha).toLocaleDateString()}
+            </span>
+
+            <div className='w-full flex justify-center col-span-2'>
+              <a
+                className='flex items-center justify-center gap-1.5 hover:text-pink-700 whitespace-nowrap overflow-hidden'
+                target='_blank'
+                href={item.link}
+              >
+                <FaLink className='text-ms' />
+                Link de la reunion
+              </a>
+            </div>
+
+            <div className='flex gap-2 justify-center col-span-2'>
               <button
+                className='py-1 px-2 rounded-2xl bg-gray-200'
                 onClick={() => {
                   setSelectId(item._id);
                   handleClickDelete();
@@ -140,6 +152,7 @@ function Reuniones() {
                 Eliminar
               </button>
               <button
+                className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {
                   handleClick();
                   handleEdit(item);
@@ -154,11 +167,12 @@ function Reuniones() {
       </ul>
 
       <ModalDelete classState={stateButton}>
-        <div className='border p-4 rounded-2xl'>
-          <h2>¿Estas seguro que quieres eliminar este Evento?</h2>
+        <div className='border p-4 rounded-2xl bg-white'>
+          <h2>¿Estas seguro que quieres eliminar esta sesion?</h2>
 
-          <div className='flex justify-center gap-2'>
+          <div className='mt-2 flex justify-center gap-2'>
             <button
+              className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
               onClick={() => {
                 Delete(selectId, setSesion, sesion, 'sesion');
                 handleClickDelete();
@@ -166,7 +180,12 @@ function Reuniones() {
             >
               Confirmar
             </button>
-            <button onClick={handleClickDelete}>Cancelar</button>
+            <button
+              className='py-1 px-2 rounded-2xl bg-gray-200'
+              onClick={handleClickDelete}
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </ModalDelete>
@@ -174,53 +193,74 @@ function Reuniones() {
       <Modal classState={state} onClosed={handleClick}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>{isnombre}</span>
-          <button onClick={handleClick}>Cerrar</button>
+
+          <button onClick={handleClick}>
+            <IoClose className='text-2xl bg-pink-400 rounded-full text-white' />
+          </button>
         </div>
 
         <form onSubmit={onSubmit}>
-          <div>
-            <label>Titulo</label>
-            <input type='text' {...register('titulo')} />
-          </div>
+          <div className='w-200 flex gap-3'>
+            <div className='min-w-100'>
+              <div>
+                <label className='pl-2'>Titulo</label>
+                <input className='coso' type='text' {...register('titulo')} />
+              </div>
 
-          <div>
-            <label>Vinculo de la reunion</label>
-            <input type='text' {...register('link')} />
-          </div>
+              <div className='mt-3'>
+                <label className='pl-2'>Vinculo de la reunion</label>
+                <input className='coso' type='text' {...register('link')} />
+              </div>
 
-          <div>
-            <label>Fecha</label>
-            <Fecha setValue={setValue} initialDate={fecha} />
-            <input type='text' {...register('fecha')} hidden />
-          </div>
-
-          <div>
-            <label>Hora</label>
-            <input type='time' {...register('hora')} />
-          </div>
-
-          <div>
-            <label>Descripción</label>
-            <input type='text' {...register('descripcion')} />
-          </div>
-
-          <div>
-            <label>Imagen</label>
-            <input type='text' {...register('imagen')} hidden />
-            <DropImagen setValue={setValue}>
-              {imagenUrl && (
-                <img
-                  className='object-contain h-full'
-                  src={imagenUrl}
-                  alt='Imagen'
+              <div className='mt-3'>
+                <label className='pl-2'>Descripción</label>
+                <input
+                  className='coso'
+                  type='text'
+                  {...register('descripcion')}
                 />
-              )}
-            </DropImagen>
-          </div>
+              </div>
 
-          <button onClick={handleClick} type='submit'>
-            Crear sesion
-          </button>
+              <div className='mt-3 flex gap-2'>
+                <div>
+                  <label className='pl-2'>Fecha</label>
+                  <Fecha setValue={setValue} initialDate={fecha} />
+                  <input type='text' {...register('fecha')} hidden />
+                </div>
+
+                <div>
+                  <label className='pl-2'>Hora</label>
+                  <input className='coso' type='time' {...register('hora')} />
+                </div>
+              </div>
+
+              <button
+                className='px-2 py-1 bg-pink-400 text-white rounded-2xl mt-3'
+                onClick={handleClick}
+                type='submit'
+              >
+                Crear sesion
+              </button>
+            </div>
+
+            <div className='w-full'>
+              <label className='pl-2'>Imagen</label>
+
+              <input {...register('imagen')} hidden />
+
+              <div className='w-full h-80'>
+                <DropImagen setValue={setValue}>
+                  {imagenUrl && (
+                    <img
+                      src={imagenUrl}
+                      alt='Imagen del evento'
+                      className='object-contain h-full w-full'
+                    />
+                  )}
+                </DropImagen>
+              </div>
+            </div>
+          </div>
         </form>
       </Modal>
     </Panel>

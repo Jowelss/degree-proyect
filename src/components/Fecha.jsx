@@ -18,7 +18,7 @@ export function Fecha({ setValue, initialDate }) {
     setValue('fecha', date);
   };
   return (
-    <div className='w-27'>
+    <div className='w-43'>
       <DatePicker
         className='coso'
         selected={startDate}

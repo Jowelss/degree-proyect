@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
+
 // Componentes
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { Panel } from '../../components/Panel.jsx';
@@ -95,18 +97,18 @@ function Blog() {
       </HeaderPanel>
 
       <DataHeader>
-        <li>Tipo</li>
+        <li className='col-span-2 text-center'>Tipo</li>
       </DataHeader>
 
       <ul className='flex flex-col'>
         {posts.map((post, i) => (
           <ItemCard key={post._id}>
-            <div className='flex items-center gap-3'>
-              <span className='mr-3'>{i}</span>
+            <div className='flex items-center gap-2'>
+              <span className='min-w-7 text-center'>{i}</span>
 
-              <div className='w-24 h-full'>
+              <div className='w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
                 <img
-                  className=' object-contain h-full rounded-2xl'
+                  className='object-contain w-full h-full'
                   src={post.imagen}
                   alt='Imagen del producto'
                 />
@@ -114,9 +116,12 @@ function Blog() {
 
               <span>{post.titulo}</span>
             </div>
-            <span>{post.tipo}</span>
-            <div>
+
+            <span className='text-center'>{post.tipo}</span>
+
+            <div className='flex justify-center gap-2'>
               <button
+                className='px-2 py-1 bg-gray-100 rounded-2xl'
                 onClick={() => {
                   setSelectId(post._id);
                   handleClickDelete();
@@ -124,7 +129,9 @@ function Blog() {
               >
                 Eliminar
               </button>
+
               <button
+                className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
                 onClick={() => {
                   handleClick();
                   handleEdit(post);
@@ -142,8 +149,9 @@ function Blog() {
         <div className='border p-4 rounded-2xl bg-white'>
           <h2>¿Estas seguro que quieres eliminar este producto?</h2>
 
-          <div className='flex justify-center gap-2'>
+          <div className='mt-3 flex justify-center gap-2'>
             <button
+              className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
               onClick={() => {
                 Delete(selectId, setPosts, posts, 'posts');
                 handleClickDelete();
@@ -151,7 +159,12 @@ function Blog() {
             >
               Confirmar
             </button>
-            <button onClick={handleClickDelete}>Cancelar</button>
+            <button
+              className='px-2 py-1 bg-gray-100 rounded-2xl'
+              onClick={handleClickDelete}
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </ModalDelete>
@@ -159,58 +172,70 @@ function Blog() {
       <Modal classState={state} onClosed={handleClick}>
         <div className='flex justify-between items-center mb-3'>
           <span className='text-4xl'>Nuevo Post</span>
-          <button onClick={handleClick}>Cerrar</button>
+
+          <button onClick={handleClick}>
+            <IoClose className='text-2xl bg-pink-400 rounded-full text-white' />
+          </button>
         </div>
         <form onSubmit={onSubmit}>
-          <div>
-            <label>Titulo</label>
-            <input type='text' {...register('titulo')} />
-          </div>
+          <div className='w-[750px] flex gap-4'>
+            <div className='min-w-80'>
+              <div>
+                <label className='pl-2'>Titulo</label>
+                <input className='coso' type='text' {...register('titulo')} />
+              </div>
 
-          <div className='mb-1.5'>
-            <label>Mensaje</label>
-            <input type='text' {...register('mensaje')} />
-          </div>
-
-          <div className='flex gap-1.5'>
-            <label>Tipo de publicacion</label>
-
-            <select className='border' type='text' {...register('tipo')}>
-              <option value='eventos'>Eventos</option>
-              <option value='club de lectura'>Club de lectura</option>
-              <option value='puro amor'>Puro amor</option>
-              <option value='coaching'>Coaching</option>
-              <option value='vida autentica'>Vida autentica</option>
-              <option value='testimonios'>Testimonios</option>
-              <option value='noticias'>Noticias</option>
-              <option value='detras de escena'>Detras de escena</option>
-            </select>
-          </div>
-
-          <div className='flex gap-1.5'>
-            <label>Comentarios</label>
-            <select className='border'>
-              <option value='activado'>Activado</option>
-              <option value='desactivado'>Desactivado</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Imagen</label>
-            <input {...register('imagen')} hidden />
-            <DropImagen setValue={setValue}>
-              {imagenURL && (
-                <img
-                  src={imagenURL}
-                  alt='Imagen'
-                  className='object-contain h-full'
+              <div className='mt-2'>
+                <label className='pl-2'>Mensaje</label>
+                <textarea
+                  className='coso resize-none w-full'
+                  rows={6}
+                  type='text'
+                  {...register('mensaje')}
                 />
-              )}
-            </DropImagen>
+              </div>
+
+              <div>
+                <label className='pl-2'>Tipo</label>
+
+                <select className='coso' type='text' {...register('tipo')}>
+                  <option value='eventos'>Eventos</option>
+                  <option value='club de lectura'>Club de lectura</option>
+                  <option value='puro amor'>Puro amor</option>
+                  <option value='coaching'>Coaching</option>
+                  <option value='vida autentica'>Vida autentica</option>
+                  <option value='testimonios'>Testimonios</option>
+                  <option value='noticias'>Noticias</option>
+                  <option value='detras de escena'>Detras de escena</option>
+                </select>
+              </div>
+
+              <button
+                className='px-2 py-1 bg-pink-400 rounded-2xl text-white mt-2'
+                onClick={handleClick}
+                type='submit'
+              >
+                {isNombre}
+              </button>
+            </div>
+
+            <div className='w-full'>
+              <label className='pl-2'>Imagen</label>
+
+              <input {...register('imagen')} hidden />
+              <div className='w-full h-90'>
+                <DropImagen setValue={setValue}>
+                  {imagenURL && (
+                    <img
+                      className='object-contain h-full w-full'
+                      src={imagenURL}
+                      alt='Imagen del evento'
+                    />
+                  )}
+                </DropImagen>
+              </div>
+            </div>
           </div>
-          <button onClick={handleClick} type='submit'>
-            {isNombre}
-          </button>
         </form>
       </Modal>
     </Panel>
