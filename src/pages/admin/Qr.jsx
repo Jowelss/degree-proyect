@@ -82,7 +82,7 @@ export default function Qr({ children, classState, setOpen }) {
           <div
             {...getRootProps()}
             className={`
-              drop-imagen text-gray-400 border rounded-2xl
+              drop-imagen text-gray-400
                 ${
                   isDragActive
                     ? 'border-pink-400 bg-pink-100 text-pink-400'
@@ -133,7 +133,7 @@ export default function Qr({ children, classState, setOpen }) {
               ¿Estas seguro que quieres eliminar este QR?
             </span>
 
-            <div className='flex justify-center gap-10'>
+            <div className='flex justify-center gap-3'>
               <button
                 className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 // auth
-import { useAuth0 } from '@auth0/auth0-react';
 import LogoutButton from '../../../auth/LogoutButton';
 // end
 
@@ -9,7 +8,6 @@ import LogoutButton from '../../../auth/LogoutButton';
 import { HiQrCode } from 'react-icons/hi2';
 import { LuCalendarHeart, LuText, LuBookMarked, LuVideo } from 'react-icons/lu';
 import { MdClose } from 'react-icons/md';
-import { CgArrowsExchangeAltV } from 'react-icons/cg';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 // end
@@ -22,14 +20,8 @@ import Qr from '../Qr';
 import { SideBarLink } from './SideBarLink';
 
 function SideBar() {
-  const { user } = useAuth0();
-
   const [isOpenQr, setOpenQr] = useState(false);
   const handleClick = () => setOpenQr(!isOpenQr);
-
-  const [openProfile, setOpenProfile] = useState(false);
-
-  const showLogout = () => setOpenProfile(!openProfile);
 
   return (
     <aside className='min-w-[260px] p-4 overflow-hidden flex flex-col justify-between rounded-2xl bg-white font-medium text-black/90'>
@@ -37,7 +29,7 @@ function SideBar() {
         <div className='flex items-center gap-1.5 mb-5'>
           <img className='w-7' src={Logo} alt='Logo' />
 
-          <h2 className='font-bold text-lg'>AUTENTICA</h2>
+          <h2 className='pero font-bold text-lg text-pink-400'>AUTÉNTICA</h2>
         </div>
 
         <div className='mb-3 grid grid-flow-col auto-cols-fr'>
@@ -80,33 +72,15 @@ function SideBar() {
         </ul>
       </div>
 
-      <div
-        onClick={showLogout}
-        className='py-3 px-4 rounded-xl border border-gray-300 cursor-pointer'
-      >
-        <div className='flex justify-between items-center gap-4'>
-          <div className='flex items-center gap-1.5'>
-            <div className='w-8 h-8 rounded-full overflow-hidden'>
-              <img
-                className='object-contain'
-                src={user.picture}
-                alt={user.name}
-              />
-            </div>
-
-            <div>
-              <span className='font-medium'>{user.name}</span>
-            </div>
-          </div>
-          <CgArrowsExchangeAltV className='text-2xl text-gray-700' />
-        </div>
-
-        {openProfile && <LogoutButton />}
+      <div>
+        <LogoutButton />
       </div>
 
       <Qr classState={isOpenQr ? 'block' : 'hidden'} setOpen={setOpenQr}>
         <div className='relative flex justify-center mb-3'>
-          <span className='text-lg font-medium'>CODIGO QR DE PAGO</span>
+          <span className='text-lg font-bold text-pink-400 uppercase'>
+            Código QR de pago
+          </span>
 
           <button className='absolute right-0' onClick={handleClick}>
             <MdClose className='text-lg' />

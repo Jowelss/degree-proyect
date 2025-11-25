@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
+
 import { Modal } from '../../components/Modal.jsx';
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { Panel } from '../../components/Panel.jsx';
@@ -121,6 +123,7 @@ function Eventos() {
                   alt='Imagen del producto'
                 />
               </div>
+
               <span className='whitespace-nowrap overflow-hidden'>
                 {evento.nombre}
               </span>
@@ -132,7 +135,7 @@ function Eventos() {
               {evento.ubicacion}
             </span>
 
-            <div className='flex gap-2'>
+            <div className='flex justify-center gap-2 col-span-2'>
               <button
                 className='py-1 px-2 bg-gray-200 rounded-2xl'
                 onClick={() => {
@@ -185,7 +188,9 @@ function Eventos() {
         <div className='w-240'>
           <div className='flex justify-between items-center mb-3'>
             <span className='text-4xl'>{isnombre}</span>
-            <button onClick={handleClick}>Cerrar</button>
+            <button onClick={handleClick}>
+              <IoClose className='text-2xl bg-pink-400 rounded-full text-white' />
+            </button>
           </div>
 
           <form onSubmit={onSubmit}>

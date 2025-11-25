@@ -9,6 +9,30 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
+@layer utilities {
+  .fade-right {
+    position: relative;
+  }
+
+  .fade-right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* width: 20px; */
+    height: 100%;
+    /* De transparente a el color del fondo (blanco en este ejemplo) */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+    pointer-events: none;
+  }
+}
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
 label {
   @apply block;
 }
@@ -26,7 +50,7 @@ button {
 }
 
 .hover_item {
-  @apply hover:bg-gray-200;
+  @apply hover:bg-gray-100;
 }
 
 .drop-imagen {
@@ -34,7 +58,7 @@ button {
 }
 
 .pero {
-  font-family: 'Momo Signature', cursive;
+  font-family: 'Pacifico', cursive;
 }
 
 .coso {

@@ -5,8 +5,9 @@ export function DataHeader({ children }) {
         <li className='min-w-7 text-center'>#</li>
         <li>Titulo</li>
       </div>
+
       {children}
-      <li className='text-center'>Acción</li>
+      <li className='text-center col-span-2'>Acción</li>
     </ul>
   );
 }

@@ -24,7 +24,7 @@ function Inicio() {
     <div className='bg-zinc-100'>
       <Header>
         <header className='max-w-[1500px] mx-auto flex justify-between items-center px-6 py-2 font-medium bg-white/90 rounded-2xl'>
-          <div className='w-16 rounded-full bg-white p-2'>
+          <div className='w-16 p-2 rounded-full bg-white'>
             <img src={Logo} alt='Autentica' />
           </div>
 
@@ -45,8 +45,8 @@ function Inicio() {
             className='w-full h-full object-cover rounded-b-2xl'
             src={meidy}
           />
-          <span className='pero absolute text-6xl font-bold text-pink-400'>
-            @AUTENTICA SELF LOVE
+          <span className='pero absolute text-7xl font-bold text-pink-400'>
+            Auténtica Self Love®
           </span>
         </div>
 
@@ -56,9 +56,15 @@ function Inicio() {
           </div>
 
           <div className='p-2 font-medium'>
-            <span className='mb-2 text-2xl block text-pink-400'>
-              MEIDY GODOY (FUNDADORA)
-            </span>
+            <div className='mb-2 flex justify-around items-center'>
+              <span className='pero font-semibold text-2xl block text-pink-400'>
+                Meidy Godoy
+              </span>
+
+              <span className='pero font-semibold text-2xl block text-pink-400'>
+                (Fundadora)
+              </span>
+            </div>
 
             <p className='text-gray-700'>
               "Auténtica Self Love es un espacio creado para quienes buscan
@@ -76,7 +82,7 @@ function Inicio() {
           </div>
         </div>
 
-        <p className='max-w-max mx-auto px-4 rounded-2xl mb-10 py-2 text-center text-sx text-white font-medium bg-pink-400'>
+        <p className='pero max-w-max mx-auto text-2xl px-4 rounded-2xl mb-10 py-2 text-center text-sx text-white font-medium bg-pink-400'>
           “Auténtica nació para recordarte que ser tú mismo siempre será tu
           mayor fortaleza.”
         </p>
@@ -108,7 +114,7 @@ function Inicio() {
             <img src={LogoFooter} />
           </div>
 
-          <h2 className='pero text-white'>@Autentica Self Love</h2>
+          <h2 className='pero text-white text-2xl'>@Auténtica Self Love®</h2>
         </div>
 
         <div>

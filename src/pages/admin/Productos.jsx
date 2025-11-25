@@ -153,7 +153,7 @@ function Tienda() {
             <span className='text-center'>{libro.precio}</span>
             <span className='text-center'>{libro.cantidad}</span>
 
-            <div className='flex gap-2'>
+            <div className='flex justify-center gap-2 col-span-2'>
               <button
                 className='py-1 px-2 rounded-2xl bg-gray-200'
                 onClick={() => {
@@ -323,31 +323,33 @@ function Tienda() {
                     <option>Otro</option>
                   </select>
                 </div>
+
+                <button
+                  className='py-1 px-2 mt-3 rounded-2xl text-white bg-pink-400'
+                  onClick={handleClick}
+                  type='submit'
+                >
+                  {isNombre}
+                </button>
               </div>
 
               <div>
                 <label className='pl-2'>Imagen</label>
 
                 <input {...register('imagen')} hidden />
-                <DropImagen setValue={setValue}>
-                  {imagenURL && (
-                    <img
-                      src={imagenURL}
-                      alt='Imagen'
-                      className='object-contain h-full w-full'
-                    />
-                  )}
-                </DropImagen>
+                <div className='w-70 h-90'>
+                  <DropImagen setValue={setValue}>
+                    {imagenURL && (
+                      <img
+                        src={imagenURL}
+                        alt='Imagen del evento'
+                        className='object-contain h-full w-full'
+                      />
+                    )}
+                  </DropImagen>
+                </div>
               </div>
             </div>
-
-            <button
-              className='py-1 px-2 rounded-2xl text-white bg-pink-400'
-              onClick={handleClick}
-              type='submit'
-            >
-              {isNombre}
-            </button>
           </form>
         </div>
       </Modal>
