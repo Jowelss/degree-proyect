@@ -26,7 +26,7 @@ const ProductCard = ({ item, onClick }) => {
             {item.nombre} - {item.autor}
           </span>
 
-          <span className='block'>{item.precio}bs</span>
+          <span className='block font-bold text-pink-400'>{item.precio}bs</span>
 
           <span className='block'>{item.cantidad} disponibles</span>
         </div>

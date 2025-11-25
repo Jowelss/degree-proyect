@@ -159,7 +159,9 @@ ${items
                       >
                         <span>{item.nombre}</span>
                         <span>x{item.cantidad}</span>
-                        <span>{item.precio}bs</span>
+                        <span className='font-bold text-pink-400'>
+                          {item.precio}bs
+                        </span>
                       </div>
                     )
                 )}
@@ -168,7 +170,7 @@ ${items
           </div>
 
           <div className='flex items-center p-2 bg-white rounded-2xl'>
-            <div className='w-60 h-[400px] p-3 flex items-center justify-center'>
+            <div className='w-80 h-[400px] p-3 flex items-center justify-center'>
               {qr ? (
                 <img
                   className='object-contain h-full w-full rounded-2xl'
@@ -181,8 +183,8 @@ ${items
             </div>
           </div>
 
-          <div className='p-2 bg-white rounded-2xl'>
-            <div className='w-90 h-60 mb-3'>
+          <div className='p-2 bg-white rounded-2xl cursor-pointer'>
+            <div className='w-full h-60 mb-7'>
               <div
                 {...getRootProps()}
                 className={`
@@ -216,7 +218,7 @@ ${items
 
             <form onSubmit={BuyProducts}>
               <div className='mb-5'>
-                <label className='text-pink-500'>Nombre</label>
+                <label className='pl-2 text-pink-400'>Nombre</label>
                 <input
                   className='border-gray-200 py-1 px-3 text-gray-600 bg-white rounded-2xl max-w-70 focus:border-pink-400 focus:outline-none'
                   type='text'
@@ -233,7 +235,7 @@ ${items
 
               <div className='mb-3 flex justify-around items-center'>
                 <button
-                  className='text-pink-500 py-1 px-2 bg-gray-200 rounded-2xl'
+                  className='bg-pink-400 font-bold py-1 px-2 text-white rounded-2xl'
                   type='submit'
                 >
                   Finalizar compra

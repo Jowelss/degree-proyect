@@ -29,22 +29,30 @@ function Eventos() {
             />
           </div>
 
-          <div className='p-4 absolute inset-0 flex items-end text-white font-medium bg-gradient-to-t from-black to-black/10'>
+          <div className='p-4 absolute inset-0 flex items-end text-white bg-gradient-to-t from-black to-black/10'>
             <div>
-              <div className='mb-3'>
-                <h1 className='mb-3 uppercase text-6xl'>{item.nombre}</h1>
-                <p>{item.descripcion}</p>
-              </div>
+              <h1 className='mb-2 text-5xl font-medium text-pink-400'>
+                {item.nombre}
+              </h1>
 
-              <div className='text-2xl flex gap-2'>
-                <p className='text-2xl'>{item.ubicacion}</p>
-                <span>|</span>
-                <p>{new Date(item.fecha).toLocaleDateString()}</p>
-                <p>{item.hora}</p>
+              <div className='p-2 bg-white/10 rounded-2xl'>
+                <p className='mb-1 text-gray-300'>{item.descripcion}</p>
+
+                <div className='flex justify-between items-center'>
+                  <div className='flex gap-2 font-bold text-gray-300'>
+                    <p>{item.ubicacion}</p>
+                    <span className='font-bold text-pink-400'>|</span>
+                    <p>{new Date(item.fecha).toLocaleDateString()}</p>
+                    <span className='font-bold text-pink-400'>|</span>
+                    <p>{item.hora}</p>
+                  </div>
+
+                  <button className='px-2 py-1 bg-pink-400 rounded-2xl'>
+                    Asistir
+                  </button>
+                </div>
               </div>
             </div>
-
-            <button>Asistiras?</button>
           </div>
         </div>
       ))}

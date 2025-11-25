@@ -292,7 +292,7 @@ function TiendaCliente() {
         {products.map(
           (item) =>
             item._id === isOpen._id && (
-              <div className='max-w-full max-h-max flex gap-3' key={item._id}>
+              <div className='w-240 max-h-max flex gap-3' key={item._id}>
                 <div className='min-w-100 flex items-center bg-pink-400 p-2'>
                   <img
                     className='object-contain h-90 w-full'
@@ -321,7 +321,7 @@ function TiendaCliente() {
                       <p className='my-2 text-gray-800'>{item.sinopsis}</p>
                     </div>
 
-                    <div className='flex gap-2 font-medium'>
+                    <div className='flex gap-2 font-bold text-gray-800'>
                       <span className='px-2 py-1 bg-gray-100 rounded-xl'>
                         {item.tapa}
                       </span>
@@ -335,7 +335,7 @@ function TiendaCliente() {
                       </span>
                     </div>
 
-                    <div className='mt-3 pl-3 flex items-end gap-5 font-medium'>
+                    <div className='mt-3 pl-3 flex items-end gap-5 font-bold'>
                       <div>
                         <span className='text-4xl'>{item.precio}</span>
                         <span className='text-2xl'>bs</span>
@@ -378,7 +378,7 @@ function TiendaCliente() {
                               Ir a pagar
                             </button>
 
-                            <span>Total: {isTotal}</span>
+                            <span className='font-bold'>Total: {isTotal}</span>
                           </div>
                         </div>
                       ) : (
