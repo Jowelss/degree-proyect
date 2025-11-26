@@ -24,7 +24,7 @@ function History() {
   }, [history]);
 
   return (
-    <div className='mt-11 max-w-max mx-auto font-medium'>
+    <div className='my-11 max-w-max mx-auto font-medium'>
       <span className='block mb-3 text-4xl'>HISTORIAL</span>
 
       <div className='flex flex-col items-center gap-2'>

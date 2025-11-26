@@ -20,7 +20,7 @@ function Blog() {
   }, []);
 
   return (
-    <div className='mt-11 mb-7 grid grid-cols-[repeat(auto-fit,minmax(200px,1000px))] justify-center gap-5'>
+    <div className='my-11 grid grid-cols-[repeat(auto-fit,minmax(200px,1000px))] justify-center gap-5'>
       {post.map((item) => (
         <ul className='bg-white rounded-2xl overflow-hidden' key={item._id}>
           <div className='p-3'>
