@@ -37,12 +37,8 @@ function Landing() {
               <Profile />
 
               {open && (
-                <div className='w-50 p-2 flex flex-col items-center gap-3 bg-black/20 rounded-2xl absolute -bottom-26 -left-50'>
+                <div className='w-50 p-2 flex flex-col items-center gap-3 bg-black/20 rounded-2xl absolute -bottom-20 -left-48'>
                   <SideBarLink to={'/landing/history'} label={'Historial'} />
-
-                  <button className='bg-fuchsia-500 rounded-2xl px-1'>
-                    teme
-                  </button>
 
                   <LogoutButton />
                 </div>

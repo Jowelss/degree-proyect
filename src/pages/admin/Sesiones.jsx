@@ -112,7 +112,7 @@ function Reuniones() {
             <div className='flex items-center gap-2 col-span-2'>
               <span className='min-w-7 text-center'>{i}</span>
 
-              <div className='w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
+              <div className='min-w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
                 <img
                   className='object-contain w-full h-full'
                   src={item.imagen}
@@ -214,9 +214,10 @@ function Reuniones() {
 
               <div className='mt-3'>
                 <label className='pl-2'>Descripción</label>
-                <input
-                  className='coso'
+                <textarea
+                  className='coso w-full'
                   type='text'
+                  rows={5}
                   {...register('descripcion')}
                 />
               </div>

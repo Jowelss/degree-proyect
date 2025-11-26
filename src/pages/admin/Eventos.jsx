@@ -116,7 +116,7 @@ function Eventos() {
             <div className='flex gap-2 items-center col-span-2'>
               <span className='min-w-7 text-center'>{i}</span>
 
-              <div className='w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
+              <div className='min-w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
                 <img
                   className='object-contain w-full h-full'
                   src={evento.imagen}

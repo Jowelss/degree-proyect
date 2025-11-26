@@ -29,7 +29,6 @@ function Inicio() {
           </div>
 
           <ul className='flex items-center gap-6 text-pink-400'>
-            <li>Blog</li>
             <a href={urlWhatsapp} target='_blank'>
               Contacto
             </a>

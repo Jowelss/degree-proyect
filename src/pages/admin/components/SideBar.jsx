@@ -8,7 +8,6 @@ import LogoutButton from '../../../auth/LogoutButton';
 import { HiQrCode } from 'react-icons/hi2';
 import { LuCalendarHeart, LuText, LuBookMarked, LuVideo } from 'react-icons/lu';
 import { MdClose } from 'react-icons/md';
-import { IoMdNotificationsOutline } from 'react-icons/io';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 // end
 
@@ -38,14 +37,6 @@ function SideBar() {
             onClick={handleClick}
           >
             <HiQrCode className='text-lg' />
-          </li>
-
-          <li className='p_rounded_cursor-item flex justify-center hover:bg-gray-200 p-2 rounded-2xl'>
-            <MdDarkMode className='text-lg' />
-          </li>
-
-          <li className='p_rounded_cursor-item flex justify-center hover:bg-gray-200 p-2 rounded-2xl'>
-            <IoMdNotificationsOutline className='text-lg' />
           </li>
         </div>
 

@@ -147,7 +147,7 @@ ${items
         </button>
 
         <div className='flex flex-wrap justify-center gap-5'>
-          <div className='max-w-100 mb-5'>
+          <div className='w-80 mb-5'>
             {
               <div className='flex flex-col gap-3'>
                 {cart.map(
