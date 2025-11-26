@@ -20,10 +20,10 @@ function Blog() {
   }, []);
 
   return (
-    <div className='my-11 grid grid-cols-[repeat(auto-fit,minmax(200px,1000px))] justify-center gap-5'>
+    <div className='my-11 grid grid-cols-[repeat(auto-fit,minmax(200px,1000px))] justify-center gap-5 text-black/80 '>
       {post.map((item) => (
-        <ul className='bg-white rounded-2xl overflow-hidden' key={item._id}>
-          <div className='p-3'>
+        <ul className=' rounded-2xl overflow-hidden' key={item._id}>
+          <div className='p-3 bg-gradient-to-b from-pink-200 to-white'>
             <li className='uppercase text-3xl font-bold'>{item.titulo}</li>
             <li className='text-[16px] uppercase font-bold text-pink-400'>
               {item.tipo}

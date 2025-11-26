@@ -52,7 +52,7 @@ function Landing() {
         </header>
       </Header>
 
-      <div className='max-w-[1400px] mx-auto pt-20 px-4'>
+      <div className='max-w-[1400px] mx-auto pt-20 px-4 bg-gradient-to-b from-pink-100 to-white'>
         <Outlet />
       </div>
     </div>
