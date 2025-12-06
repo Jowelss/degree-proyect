@@ -11,6 +11,7 @@ import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { DataHeader } from '../../components/DataHeader.jsx';
 import { Fecha } from '../../components/Fecha.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
+import { TitlePanel } from './components/TitlePanel.jsx';
 
 import { Add } from '../../services/Add.jsx';
 import { Get } from '../../services/Get.jsx';
@@ -90,7 +91,8 @@ function Eventos() {
   return (
     <Panel>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>EVENTOS</h1>
+        <TitlePanel text={'EVENTOS'} />
+
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
           onClick={() => {

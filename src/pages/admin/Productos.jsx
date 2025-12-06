@@ -11,6 +11,7 @@ import { ItemCard } from '../../components/ItemCard.jsx';
 import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { DataHeader } from '../../components/DataHeader.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
+import { TitlePanel } from './components/TitlePanel.jsx';
 // end
 
 // Servicios API
@@ -110,7 +111,8 @@ function Tienda() {
   return (
     <Panel>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>LIBROS</h1>
+        <TitlePanel text={'LIBROS'} />
+
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
           onClick={() => {

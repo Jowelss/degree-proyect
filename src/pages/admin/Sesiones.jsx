@@ -11,6 +11,7 @@ import { Fecha } from '../../components/Fecha.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
 import { ModalDelete } from '../../components/ModalDelete.jsx';
+import { TitlePanel } from './components/TitlePanel.jsx';
 
 import { FaLink } from 'react-icons/fa';
 
@@ -86,7 +87,8 @@ function Reuniones() {
   return (
     <Panel className='w-[900px] border'>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>SESIONES</h1>
+        <TitlePanel text={'SESIONES'} />
+
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
           onClick={() => {

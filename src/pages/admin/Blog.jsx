@@ -11,6 +11,7 @@ import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
 import { DataHeader } from '../../components/DataHeader.jsx';
+import { TitlePanel } from './components/TitlePanel.jsx';
 // end
 
 // services
@@ -81,7 +82,7 @@ function Blog() {
   return (
     <Panel>
       <HeaderPanel>
-        <h1 className='text-4xl font-bold'>BLOG</h1>
+        <TitlePanel text={'BLOG'} />
 
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
