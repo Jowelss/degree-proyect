@@ -22,11 +22,10 @@ import { Delete } from '../../services/Delete.jsx';
 // end
 
 function Blog() {
-  // Abrir y cerrar modal
   const [open, setOpen] = useState(false);
-  // end
 
   const [title, setTitle] = useState('');
+  const [buttonTitle, setButtonTitle] = useState('');
 
   const [posts, setPosts] = useState([]);
 
@@ -87,6 +86,7 @@ function Blog() {
             setOpen(true);
             reset();
             setTitle('Nuevo Post');
+            setButtonTitle('Agregar');
           }}
         >
           + Nuevo Post
@@ -132,6 +132,7 @@ function Blog() {
                 onClick={() => {
                   handleEdit(post);
                   setTitle('Actualizar Post');
+                  setButtonTitle('Actualizar');
                   setOpen(true);
                 }}
               >
@@ -205,7 +206,7 @@ function Blog() {
                   className='px-2 py-1 bg-pink-400 rounded-2xl text-white mt-2'
                   type='submit'
                 >
-                  {title}
+                  {buttonTitle}
                 </button>
               </div>
 
