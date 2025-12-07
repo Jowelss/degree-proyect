@@ -91,7 +91,7 @@ function Eventos() {
   return (
     <Panel>
       <HeaderPanel>
-        <TitlePanel text={'EVENTOS'} />
+        <TitlePanel title={'EVENTOS'} />
 
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'

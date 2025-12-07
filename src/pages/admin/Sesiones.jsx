@@ -87,7 +87,7 @@ function Reuniones() {
   return (
     <Panel className='w-[900px] border'>
       <HeaderPanel>
-        <TitlePanel text={'SESIONES'} />
+        <TitlePanel title={'SESIONES'} />
 
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'

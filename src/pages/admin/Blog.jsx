@@ -26,8 +26,7 @@ function Blog() {
   const [open, setOpen] = useState(false);
   // end
 
-  const [isNombre, setIsNombre] = useState('');
-  const changeName = (nombre) => setIsNombre(nombre);
+  const [title, setTitle] = useState('');
 
   const [posts, setPosts] = useState([]);
 
@@ -79,7 +78,7 @@ function Blog() {
   return (
     <Panel>
       <HeaderPanel>
-        <TitlePanel text={'BLOG'} />
+        <TitlePanel title={'BLOG'} />
 
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
@@ -87,7 +86,7 @@ function Blog() {
             setSelectId(null);
             setOpen(true);
             reset();
-            changeName('Publicar');
+            setTitle('Nuevo Post');
           }}
         >
           + Nuevo Post
@@ -132,7 +131,8 @@ function Blog() {
                 className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
                 onClick={() => {
                   handleEdit(post);
-                  changeName('Actualizar');
+                  setTitle('Actualizar Post');
+                  setOpen(true);
                 }}
               >
                 Actualizar
@@ -167,7 +167,7 @@ function Blog() {
       </ModalDelete>
 
       {open && (
-        <ModalItem onClose={setOpen}>
+        <ModalItem onClose={setOpen} title={title}>
           <form onSubmit={onSubmit}>
             <div className='w-[750px] flex gap-4'>
               <div className='min-w-80'>
@@ -205,7 +205,7 @@ function Blog() {
                   className='px-2 py-1 bg-pink-400 rounded-2xl text-white mt-2'
                   type='submit'
                 >
-                  {isNombre}
+                  {title}
                 </button>
               </div>
 

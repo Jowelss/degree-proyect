@@ -111,7 +111,7 @@ function Tienda() {
   return (
     <Panel>
       <HeaderPanel>
-        <TitlePanel text={'LIBROS'} />
+        <TitlePanel title={'LIBROS'} />
 
         <button
           className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
