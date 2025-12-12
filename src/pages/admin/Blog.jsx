@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 
 import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
 
+import ButtonDelete from './components/ButtonDelete.jsx';
+
 // Componentes
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { Panel } from '../../components/Panel.jsx';
-import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
 import { DataHeader } from '../../components/DataHeader.jsx';
@@ -18,7 +19,6 @@ import { ModalItem } from './components/ModalItem.jsx';
 import { Add } from '../../services/Add.jsx';
 import { Update } from '../../services/Update.jsx';
 import { Get } from '../../services/Get.jsx';
-import { Delete } from '../../services/Delete.jsx';
 // end
 
 function Blog() {
@@ -44,11 +44,6 @@ function Blog() {
   }, []);
 
   const [selectId, setSelectId] = useState(null);
-
-  const [openButtonDelete, setIsOpenButtonDelete] = useState(false);
-  const stateButton = openButtonDelete ? 'block' : 'hidden';
-
-  const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
 
   const { register, handleSubmit, setValue, reset, watch } = useForm();
 
@@ -117,15 +112,12 @@ function Blog() {
             <span className='text-center'>{post.tipo}</span>
 
             <div className='flex justify-center gap-2'>
-              <button
-                className='px-2 py-1 bg-gray-100 rounded-2xl'
-                onClick={() => {
-                  setSelectId(post._id);
-                  handleClickDelete();
-                }}
-              >
-                Eliminar
-              </button>
+              <ButtonDelete
+                id={selectId}
+                setPost={setPosts}
+                post={posts}
+                nombre={'posts'}
+              />
 
               <button
                 className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
@@ -143,7 +135,7 @@ function Blog() {
         ))}
       </ul>
 
-      <ModalDelete classState={stateButton}>
+      {/* <ModalDelete classState={stateButton}>
         <div className='border p-4 rounded-2xl bg-white'>
           <h2>¿Estas seguro que quieres eliminar este producto?</h2>
 
@@ -165,7 +157,7 @@ function Blog() {
             </button>
           </div>
         </div>
-      </ModalDelete>
+      </ModalDelete> */}
 
       {open && (
         <ModalItem onClose={setOpen} title={title}>
