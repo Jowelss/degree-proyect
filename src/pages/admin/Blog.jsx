@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
-
-import ButtonDelete from './components/ButtonDelete.jsx';
-
 // Componentes
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { Panel } from '../../components/Panel.jsx';
@@ -19,6 +15,7 @@ import { ModalItem } from './components/ModalItem.jsx';
 import { Add } from '../../services/Add.jsx';
 import { Update } from '../../services/Update.jsx';
 import { Get } from '../../services/Get.jsx';
+import Delete from '../../services/Delete.jsx';
 // end
 
 function Blog() {
@@ -112,12 +109,17 @@ function Blog() {
             <span className='text-center'>{post.tipo}</span>
 
             <div className='flex justify-center gap-2'>
-              <ButtonDelete
-                id={selectId}
-                setPost={setPosts}
-                post={posts}
-                nombre={'posts'}
-              />
+              <Delete
+                id={post._id}
+                setItem={setPosts}
+                name={'posts'}
+                item={posts}
+              >
+                <h2>
+                  ¿ Estas seguro que quieres eliminar este{' '}
+                  <b className='text-pink-400'>POST</b> ?
+                </h2>
+              </Delete>
 
               <button
                 className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
@@ -134,30 +136,6 @@ function Blog() {
           </ItemCard>
         ))}
       </ul>
-
-      {/* <ModalDelete classState={stateButton}>
-        <div className='border p-4 rounded-2xl bg-white'>
-          <h2>¿Estas seguro que quieres eliminar este producto?</h2>
-
-          <div className='mt-3 flex justify-center gap-2'>
-            <button
-              className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
-              onClick={() => {
-                Delete(selectId, setPosts, posts, 'posts');
-                handleClickDelete();
-              }}
-            >
-              Confirmar
-            </button>
-            <button
-              className='px-2 py-1 bg-gray-100 rounded-2xl'
-              onClick={handleClickDelete}
-            >
-              Cancelar
-            </button>
-          </div>
-        </div>
-      </ModalDelete> */}
 
       {open && (
         <ModalItem onClose={setOpen} title={title}>

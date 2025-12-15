@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Get } from '../../services/Get';
 import { Add } from '../../services/Add';
 import { Update } from '../../services/Update';
-import { Delete } from '../../services/Delete';
+import Delete from '../../services/Delete.jsx';
 
 import { ModalDelete } from '../../components/ModalDelete.jsx';
 

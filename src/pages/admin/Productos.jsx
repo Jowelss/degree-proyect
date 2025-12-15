@@ -17,7 +17,7 @@ import { TitlePanel } from './components/TitlePanel.jsx';
 // Servicios API
 import { Get } from '../../services/Get.jsx';
 import { Add } from '../../services/Add.jsx';
-import { Delete } from '../../services/Delete.jsx';
+import Delete from '../../services/Delete.jsx';
 import { Update } from '../../services/Update.jsx';
 // end
 
