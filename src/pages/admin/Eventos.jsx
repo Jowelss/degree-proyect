@@ -138,15 +138,18 @@ function Eventos() {
             </span>
 
             <div className='flex justify-center gap-2 col-span-2'>
-              <button
-                className='py-1 px-2 bg-gray-200 rounded-2xl'
-                onClick={() => {
-                  setSelectId(evento._id);
-                  handleClickDelete();
-                }}
+              <Delete
+                id={evento._id}
+                setItem={setEventos}
+                item={eventos}
+                name={'eventos'}
               >
-                Eliminar
-              </button>
+                <h2>
+                  ¿ Estas seguro que quieres eliminar este{' '}
+                  <b className='text-pink-400'>EVENTO</b> ?
+                </h2>
+              </Delete>
+
               <button
                 className='py-1 px-2 bg-pink-400 text-white rounded-2xl'
                 onClick={() => {

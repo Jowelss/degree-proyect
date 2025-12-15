@@ -7,7 +7,7 @@ export default function Delete({ id, setItem, item, name, children }) {
   async function deletePost() {
     try {
       await axios.delete(`http://localhost:5000/${name}/${id}`);
-      setItem(item.filter((item) => item._id !== id));
+      await setItem(item.filter((item) => item._id !== id));
     } catch (error) {
       console.log(`No se puedo eliminar el producto ${error}`);
     }

@@ -156,15 +156,18 @@ function Tienda() {
             <span className='text-center'>{libro.cantidad}</span>
 
             <div className='flex justify-center gap-2 col-span-2'>
-              <button
-                className='py-1 px-2 rounded-2xl bg-gray-200'
-                onClick={() => {
-                  setSelectId(libro._id);
-                  handleClickDelete();
-                }}
+              <Delete
+                id={libro._id}
+                setItem={setLibros}
+                item={libros}
+                name={'libros'}
               >
-                Eliminar
-              </button>
+                <h2>
+                  ¿ Estas seguro que quieres eliminar este{' '}
+                  <b className='text-pink-400'>LIBRO</b> ?
+                </h2>
+              </Delete>
+
               <button
                 className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {

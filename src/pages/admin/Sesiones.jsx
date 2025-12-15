@@ -144,15 +144,18 @@ function Reuniones() {
             </div>
 
             <div className='flex gap-2 justify-center col-span-2'>
-              <button
-                className='py-1 px-2 rounded-2xl bg-gray-200'
-                onClick={() => {
-                  setSelectId(item._id);
-                  handleClickDelete();
-                }}
+              <Delete
+                id={item._id}
+                setItem={setSesion}
+                item={sesion}
+                name={'sesion'}
               >
-                Eliminar
-              </button>
+                <h2>
+                  ¿ Estas seguro que quieres eliminar esta{' '}
+                  <b className='text-pink-400'>REUNIÓN</b> ?
+                </h2>
+              </Delete>
+
               <button
                 className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {
