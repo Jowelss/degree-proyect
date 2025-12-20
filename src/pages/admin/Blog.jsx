@@ -13,7 +13,7 @@ import { ModalItem } from './components/ModalItem.jsx';
 
 // services
 import { Add } from '../../services/Add.jsx';
-import { Update } from '../../services/Update.jsx';
+import Update from '../../services/Update.jsx';
 import { Get } from '../../services/Get.jsx';
 import Delete from '../../services/Delete.jsx';
 // end
@@ -57,14 +57,6 @@ function Blog() {
 
     fetchPosts();
   });
-
-  const handleEdit = (post) => {
-    setSelectId(post._id);
-
-    Object.entries(post).forEach(([key, value]) => {
-      if (key !== '_id') setValue(key, value);
-    });
-  };
 
   return (
     <Panel>
@@ -121,17 +113,15 @@ function Blog() {
                 </h2>
               </Delete>
 
-              <button
-                className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
-                onClick={() => {
-                  handleEdit(post);
-                  setTitle('Actualizar Post');
-                  setButtonTitle('Actualizar');
-                  setOpen(true);
-                }}
+              <Update
+                id={post._id}
+                nombre={'posts'}
+                item={post}
+                setValue={setValue}
+                setOpen={setOpen}
               >
                 Actualizar
-              </button>
+              </Update>
             </div>
           </ItemCard>
         ))}

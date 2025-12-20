@@ -4,7 +4,7 @@ import { useState } from 'react';
 export default function Delete({ id, setItem, item, name, children }) {
   const [open, setOpen] = useState(false);
 
-  async function deletePost() {
+  async function deleteItem() {
     try {
       await axios.delete(`http://localhost:5000/${name}/${id}`);
       await setItem(item.filter((item) => item._id !== id));
@@ -35,7 +35,7 @@ export default function Delete({ id, setItem, item, name, children }) {
               <button
                 className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
                 onClick={() => {
-                  deletePost();
+                  deleteItem();
                   setOpen(false);
                 }}
               >
