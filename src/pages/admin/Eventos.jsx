@@ -16,7 +16,7 @@ import { TitlePanel } from './components/TitlePanel.jsx';
 import { Add } from '../../services/Add.jsx';
 import { Get } from '../../services/Get.jsx';
 import Delete from '../../services/Delete.jsx';
-import { Update } from '../../services/Update.jsx';
+import Update from '../../services/Update.jsx';
 
 function Eventos() {
   // abrir y cerrar modal

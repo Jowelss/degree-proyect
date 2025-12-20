@@ -18,7 +18,7 @@ import { TitlePanel } from './components/TitlePanel.jsx';
 import { Get } from '../../services/Get.jsx';
 import { Add } from '../../services/Add.jsx';
 import Delete from '../../services/Delete.jsx';
-import { Update } from '../../services/Update.jsx';
+import Update from '../../services/Update.jsx';
 // end
 
 function Tienda() {

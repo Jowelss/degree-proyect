@@ -17,7 +17,7 @@ import { FaLink } from 'react-icons/fa';
 
 import { Add } from '../../services/Add.jsx';
 import { Get } from '../../services/Get.jsx';
-import { Update } from '../../services/Update.jsx';
+import Update from '../../services/Update.jsx';
 import Delete from '../../services/Delete.jsx';
 
 function Reuniones() {
