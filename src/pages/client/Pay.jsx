@@ -9,7 +9,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 import axios from 'axios';
 import { Get } from '../../services/Get';
 import { Add } from '../../services/Add';
-import { Update } from '../../services/Update';
+import Update from '../../services/Update.jsx';
 
 function Pay() {
   const { user } = useAuth0();

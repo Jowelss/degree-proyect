@@ -14,7 +14,6 @@ export default function Update({ id, nombre, data, item, setValue, setOpen }) {
       console.log(error);
     }
   }
-  updateItem();
 
   return (
     <button
@@ -22,6 +21,7 @@ export default function Update({ id, nombre, data, item, setValue, setOpen }) {
       onClick={() => {
         handleEdit(item);
         setOpen(true);
+        updateItem();
       }}
     >
       Actualizar
