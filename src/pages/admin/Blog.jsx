@@ -54,9 +54,18 @@ function Blog() {
     }
 
     reset();
+    setOpen(false);
 
     fetchPosts();
   });
+
+  const handleEdit = (post) => {
+    setSelectId(post._id);
+
+    Object.entries(post).forEach(([key, value]) => {
+      if (key !== '_id') setValue(key, value);
+    });
+  };
 
   return (
     <Panel>
@@ -113,15 +122,16 @@ function Blog() {
                 </h2>
               </Delete>
 
-              <Update
-                id={post._id}
-                nombre={'posts'}
-                item={post}
-                setValue={setValue}
-                setOpen={setOpen}
+              <button
+                className='px-2 py-1 bg-pink-400 text-white rounded-2xl'
+                onClick={() => {
+                  handleEdit(post);
+                  setOpen(true);
+                  setButtonTitle('Actualizar');
+                }}
               >
                 Actualizar
-              </Update>
+              </button>
             </div>
           </ItemCard>
         ))}
