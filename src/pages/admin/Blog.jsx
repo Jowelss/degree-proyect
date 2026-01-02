@@ -27,12 +27,11 @@ function Blog() {
   const [posts, setPosts] = useState([]);
 
   const fetchPosts = async () => {
-    const data = await Get('posts');
-
-    if (data === undefined) {
-      console.log('No funca pa');
-    } else {
+    try {
+      const data = await Get('posts');
       setPosts(data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
