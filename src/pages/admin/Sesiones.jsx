@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { IoClose, IoRemove, IoAdd } from 'react-icons/io5';
-
-import { Modal } from '../../components/Modal.jsx';
 import { Panel } from '../../components/Panel.jsx';
 import { HeaderPanel } from '../../components/HeaderPanel.jsx';
 import { DataHeader } from '../../components/DataHeader.jsx';
 import { Fecha } from '../../components/Fecha.jsx';
 import { DropImagen } from './components/DropImagen.jsx';
 import { ItemCard } from '../../components/ItemCard.jsx';
-import { ModalDelete } from '../../components/ModalDelete.jsx';
 import { TitlePanel } from './components/TitlePanel.jsx';
 
 import { FaLink } from 'react-icons/fa';
@@ -19,23 +15,13 @@ import { Add } from '../../services/Add.jsx';
 import { Get } from '../../services/Get.jsx';
 import Update from '../../services/Update.jsx';
 import Delete from '../../services/Delete.jsx';
+import { ModalItem } from './components/ModalItem.jsx';
 
 function Reuniones() {
-  const [isOpen, setIsOpen] = useState(false);
-  const state = isOpen ? 'block' : 'hidden';
+  const [open, setOpen] = useState(false);
 
-  const handleClick = () => setIsOpen(!isOpen);
-
-  // Abre y cierra el modalButton
-  const [openButtonDelete, setIsOpenButtonDelete] = useState(false);
-  const stateButton = openButtonDelete ? 'block' : 'hidden';
-
-  const handleClickDelete = () => setIsOpenButtonDelete(!openButtonDelete);
-  // end
-
-  //Cambio de nombre
-  const [isnombre, setNombre] = useState('');
-  // end
+  const [title, setTitle] = useState('');
+  const [buttonTitle, setButtonTitle] = useState('');
 
   const [sesion, setSesion] = useState([]);
 
@@ -69,6 +55,7 @@ function Reuniones() {
       await Add(data, 'sesion');
     }
     reset();
+    setOpen(false);
 
     fetchSesion();
   });
@@ -94,8 +81,9 @@ function Reuniones() {
           onClick={() => {
             setSelectId(null);
             reset();
-            handleClick();
-            setNombre('Nueva sesion');
+            setTitle('Nueva sesion');
+            setButtonTitle('Agregar');
+            setOpen(true);
           }}
         >
           + Nueva Sesion
@@ -159,9 +147,10 @@ function Reuniones() {
               <button
                 className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {
-                  handleClick();
                   handleEdit(item);
-                  setNombre('Actualizar Sesion');
+                  setTitle('Actualizar Sesion');
+                  setButtonTitle('Actualizar');
+                  setOpen(true);
                 }}
               >
                 Actualizar
@@ -171,104 +160,73 @@ function Reuniones() {
         ))}
       </ul>
 
-      <ModalDelete classState={stateButton}>
-        <div className='border p-4 rounded-2xl bg-white'>
-          <h2>¿Estas seguro que quieres eliminar esta sesion?</h2>
-
-          <div className='mt-2 flex justify-center gap-2'>
-            <button
-              className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
-              onClick={() => {
-                Delete(selectId, setSesion, sesion, 'sesion');
-                handleClickDelete();
-              }}
-            >
-              Confirmar
-            </button>
-            <button
-              className='py-1 px-2 rounded-2xl bg-gray-200'
-              onClick={handleClickDelete}
-            >
-              Cancelar
-            </button>
-          </div>
-        </div>
-      </ModalDelete>
-
-      <Modal classState={state} onClosed={handleClick}>
-        <div className='flex justify-between items-center mb-3'>
-          <span className='text-4xl'>{isnombre}</span>
-
-          <button onClick={handleClick}>
-            <IoClose className='text-2xl bg-pink-400 rounded-full text-white' />
-          </button>
-        </div>
-
-        <form onSubmit={onSubmit}>
-          <div className='w-200 flex gap-3'>
-            <div className='min-w-100'>
-              <div>
-                <label className='pl-2'>Titulo</label>
-                <input className='coso' type='text' {...register('titulo')} />
-              </div>
-
-              <div className='mt-3'>
-                <label className='pl-2'>Vinculo de la reunion</label>
-                <input className='coso' type='text' {...register('link')} />
-              </div>
-
-              <div className='mt-3'>
-                <label className='pl-2'>Descripción</label>
-                <textarea
-                  className='coso w-full'
-                  type='text'
-                  rows={5}
-                  {...register('descripcion')}
-                />
-              </div>
-
-              <div className='mt-3 flex gap-2'>
+      {open && (
+        <ModalItem onClose={setOpen} title={title}>
+          <form onSubmit={onSubmit}>
+            <div className='w-200 flex gap-3'>
+              <div className='min-w-100'>
                 <div>
-                  <label className='pl-2'>Fecha</label>
-                  <Fecha setValue={setValue} initialDate={fecha} />
-                  <input type='text' {...register('fecha')} hidden />
+                  <label className='pl-2'>Titulo</label>
+                  <input className='coso' type='text' {...register('titulo')} />
                 </div>
 
-                <div>
-                  <label className='pl-2'>Hora</label>
-                  <input className='coso' type='time' {...register('hora')} />
+                <div className='mt-3'>
+                  <label className='pl-2'>Vinculo de la reunion</label>
+                  <input className='coso' type='text' {...register('link')} />
+                </div>
+
+                <div className='mt-3'>
+                  <label className='pl-2'>Descripción</label>
+                  <textarea
+                    className='coso w-full'
+                    type='text'
+                    rows={5}
+                    {...register('descripcion')}
+                  />
+                </div>
+
+                <div className='mt-3 flex gap-2'>
+                  <div>
+                    <label className='pl-2'>Fecha</label>
+                    <Fecha setValue={setValue} initialDate={fecha} />
+                    <input type='text' {...register('fecha')} hidden />
+                  </div>
+
+                  <div>
+                    <label className='pl-2'>Hora</label>
+                    <input className='coso' type='time' {...register('hora')} />
+                  </div>
+                </div>
+
+                <button
+                  className='px-2 py-1 bg-pink-400 text-white rounded-2xl mt-3'
+                  type='submit'
+                >
+                  {buttonTitle}
+                </button>
+              </div>
+
+              <div className='w-full'>
+                <label className='pl-2'>Imagen</label>
+
+                <input {...register('imagen')} hidden />
+
+                <div className='w-full h-80'>
+                  <DropImagen setValue={setValue}>
+                    {imagenUrl && (
+                      <img
+                        src={imagenUrl}
+                        alt='Imagen del evento'
+                        className='object-contain h-full w-full'
+                      />
+                    )}
+                  </DropImagen>
                 </div>
               </div>
-
-              <button
-                className='px-2 py-1 bg-pink-400 text-white rounded-2xl mt-3'
-                onClick={handleClick}
-                type='submit'
-              >
-                Crear sesion
-              </button>
             </div>
-
-            <div className='w-full'>
-              <label className='pl-2'>Imagen</label>
-
-              <input {...register('imagen')} hidden />
-
-              <div className='w-full h-80'>
-                <DropImagen setValue={setValue}>
-                  {imagenUrl && (
-                    <img
-                      src={imagenUrl}
-                      alt='Imagen del evento'
-                      className='object-contain h-full w-full'
-                    />
-                  )}
-                </DropImagen>
-              </div>
-            </div>
-          </div>
-        </form>
-      </Modal>
+          </form>
+        </ModalItem>
+      )}
     </Panel>
   );
 }

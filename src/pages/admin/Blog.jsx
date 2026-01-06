@@ -140,8 +140,8 @@ function Blog() {
       {open && (
         <ModalItem onClose={setOpen} title={title}>
           <form onSubmit={onSubmit}>
-            <div className='w-[750px] flex gap-4'>
-              <div className='min-w-80'>
+            <div className='max-w-screen-lg flex gap-4'>
+              <div>
                 <div>
                   <label className='pl-2'>Titulo</label>
                   <input className='coso' type='text' {...register('titulo')} />
