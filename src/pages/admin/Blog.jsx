@@ -127,6 +127,7 @@ function Blog() {
                   handleEdit(post);
                   setOpen(true);
                   setButtonTitle('Actualizar');
+                  setTitle('Actualizar post');
                 }}
               >
                 Actualizar
