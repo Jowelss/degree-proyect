@@ -77,7 +77,7 @@ function Tienda() {
     }
 
     reset();
-
+    setOpen(false);
     fetchLibros();
   });
   // end
