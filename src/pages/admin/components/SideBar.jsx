@@ -40,7 +40,7 @@ function SideBar() {
           </li>
         </div>
 
-        <ul className='flex flex-col justify-around gap-1'>
+        <ul className='flex flex-col justify-around gap-1 text-pink-400'>
           <SideBarLink
             to={'/dashboard/productos'}
             icon={LuBookMarked}

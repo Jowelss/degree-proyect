@@ -172,9 +172,9 @@ function Tienda() {
       {open && (
         <ModalItem onClose={setOpen} title={title}>
           <form onSubmit={onSubmit}>
-            <div className='w-[850px] text-black/90'>
+            <div className='max-w-[1000px] text-black/90'>
               <div className='flex gap-4 justify-between'>
-                <div className='w-140'>
+                <div className='w-140 text-black/50 font-bold'>
                   <div className='flex gap-2 justify-between'>
                     <div className='flex-1'>
                       <label className='pl-2'>Nombre</label>
