@@ -119,7 +119,7 @@ function Tienda() {
       </DataHeader>
 
       {libros.length === 0 ? (
-        <div className='w-full flex items-center justify-center text-black/60'>
+        <div className='w-full min-h-[300px] flex items-center justify-center text-black/60'>
           <span>Sin productos agregados</span>
         </div>
       ) : (
