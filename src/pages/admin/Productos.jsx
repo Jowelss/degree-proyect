@@ -31,6 +31,7 @@ function Tienda() {
 
   const fetchLibros = async () => {
     const data = await Get('libros');
+    console.log(data);
 
     if (data === undefined) {
       console.log('No funca pa');
@@ -117,57 +118,63 @@ function Tienda() {
         <li className='text-center'>Cantidad</li>
       </DataHeader>
 
-      <ul className='flex flex-col-reverse'>
-        {libros.map((libro, i) => (
-          <ItemCard key={libro._id}>
-            <div className='flex items-center gap-2 col-span-2'>
-              <span className='min-w-7 text-center'>{i}</span>
+      {libros.length === 0 ? (
+        <div className='w-full flex items-center justify-center text-black/60'>
+          <span>Sin productos agregados</span>
+        </div>
+      ) : (
+        <ul className='flex flex-col-reverse'>
+          {libros.map((libro, i) => (
+            <ItemCard key={libro._id}>
+              <div className='flex items-center gap-2 col-span-2'>
+                <span className='min-w-7 text-center'>{i}</span>
 
-              <div className='min-w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
-                <img
-                  className='object-contain w-full h-full'
-                  src={libro.imagen}
-                  alt='Imagen del producto'
-                />
+                <div className='min-w-14 h-14 bg-pink-400 rounded-2xl overflow-hidden'>
+                  <img
+                    className='object-contain w-full h-full'
+                    src={libro.imagen}
+                    alt='Imagen del producto'
+                  />
+                </div>
+
+                <span className='whitespace-nowrap overflow-hidden'>
+                  {libro.nombre}
+                </span>
               </div>
 
-              <span className='whitespace-nowrap overflow-hidden'>
-                {libro.nombre}
-              </span>
-            </div>
+              <span className='text-center'>{libro.estado}</span>
+              <span className='text-center'>{libro.precio}</span>
+              <span className='text-center'>{libro.cantidad}</span>
 
-            <span className='text-center'>{libro.estado}</span>
-            <span className='text-center'>{libro.precio}</span>
-            <span className='text-center'>{libro.cantidad}</span>
+              <div className='flex justify-center gap-2 col-span-2'>
+                <Delete
+                  id={libro._id}
+                  setItem={setLibros}
+                  item={libros}
+                  name={'libros'}
+                >
+                  <h2>
+                    ¿ Estas seguro que quieres eliminar este{' '}
+                    <b className='text-pink-400'>LIBRO</b> ?
+                  </h2>
+                </Delete>
 
-            <div className='flex justify-center gap-2 col-span-2'>
-              <Delete
-                id={libro._id}
-                setItem={setLibros}
-                item={libros}
-                name={'libros'}
-              >
-                <h2>
-                  ¿ Estas seguro que quieres eliminar este{' '}
-                  <b className='text-pink-400'>LIBRO</b> ?
-                </h2>
-              </Delete>
-
-              <button
-                className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
-                onClick={() => {
-                  handleEdit(libro);
-                  setTitle('Actualizar libro');
-                  setButtonTitle('Actualizar');
-                  setOpen(true);
-                }}
-              >
-                Actualizar
-              </button>
-            </div>
-          </ItemCard>
-        ))}
-      </ul>
+                <button
+                  className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
+                  onClick={() => {
+                    handleEdit(libro);
+                    setTitle('Actualizar libro');
+                    setButtonTitle('Actualizar');
+                    setOpen(true);
+                  }}
+                >
+                  Actualizar
+                </button>
+              </div>
+            </ItemCard>
+          ))}
+        </ul>
+      )}
 
       {open && (
         <ModalItem onClose={setOpen} title={title}>

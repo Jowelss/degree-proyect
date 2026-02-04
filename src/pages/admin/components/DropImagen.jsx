@@ -18,7 +18,7 @@ export function DropImagen({ setValue, children }) {
     try {
       const res = await axios.post(
         'https://api.cloudinary.com/v1_1/drazdkofq/image/upload',
-        formData
+        formData,
       );
 
       setValue('imagen', res.data.secure_url);

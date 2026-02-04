@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 export function Fecha({ setValue, initialDate }) {
   const [startDate, setStartDate] = useState(
-    initialDate ? new Date(initialDate) : null
+    initialDate ? new Date(initialDate) : null,
   );
 
   useEffect(() => {
