@@ -52,7 +52,7 @@ function Pay() {
     try {
       const res = await axios.post(
         'https://api.cloudinary.com/v1_1/drazdkofq/image/upload',
-        formData
+        formData,
       );
 
       setVoucher(res.data.secure_url);
@@ -92,28 +92,6 @@ function Pay() {
       }
 
       await Add(orden, 'orden');
-
-      const mensaje = `
-Hola, soy ${data.nombre}.
-Quiero confirmar mi compra.
-
-📦 Productos:
-${items
-  .map((item) => `- ${item.nombre} x${item.cantidad} — ${item.precio} Bs`)
-  .join('\n')}
-
-💰 Total: ${total} Bs
-
-🧾 Comprobante: ${voucher}
-    `;
-
-      const numeroAutentica = import.meta.env.VITE_NUMBER_AUTENTICA;
-
-      const urlWhatsapp = `https://wa.me/${numeroAutentica}?text=${encodeURIComponent(
-        mensaje
-      )}`;
-
-      window.open(urlWhatsapp, '_blank');
 
       navigate(-1);
     } catch (error) {
@@ -163,7 +141,7 @@ ${items
                           {item.precio}bs
                         </span>
                       </div>
-                    )
+                    ),
                 )}
               </div>
             }
