@@ -31,9 +31,9 @@ function SideBar() {
           <h2 className='pero font-bold text-lg text-pink-400'>AUTÉNTICA</h2>
         </div>
 
-        <div className='mb-3 grid grid-flow-col auto-cols-fr'>
+        <div className='mb-3 flex justify-center'>
           <li
-            className='p_rounded_cursor-item flex justify-center hover:bg-gray-200 p-2 rounded-2xl'
+            className='p_rounded_cursor-item flex justify-center hover:bg-gray-200 px-6 py-2 rounded-2xl'
             onClick={handleClick}
           >
             <HiQrCode className='text-lg' />
