@@ -31,7 +31,6 @@ function Tienda() {
 
   const fetchLibros = async () => {
     const data = await Get('libros');
-    console.log(data);
 
     if (data === undefined) {
       console.log('No funca pa');

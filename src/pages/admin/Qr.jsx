@@ -23,16 +23,18 @@ export default function Qr({ children, classState, setOpen }) {
   const fecthQr = async () => {
     const data = await Get('qr');
 
-    if (data.length > 0) {
+    if (data !== undefined) {
       setQr(data);
+    } else {
+      console.log('no hay qr');
     }
   };
 
   const deleteQr = async () => {
     try {
-      await Delete(qr[0]._id, setQr, qr, 'qr'),
+      (await Delete(qr[0]._id, setQr, qr, 'qr'),
         setQr(null),
-        setState('Agrega una imagen');
+        setState('Agrega una imagen'));
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +50,7 @@ export default function Qr({ children, classState, setOpen }) {
     try {
       const res = await axios.post(
         'https://api.cloudinary.com/v1_1/drazdkofq/image/upload',
-        formData
+        formData,
       );
 
       const data = await Get('qr');
@@ -58,8 +60,6 @@ export default function Qr({ children, classState, setOpen }) {
       } else {
         await Add({ imagen: res.data.secure_url }, 'qr');
       }
-
-      fecthQr();
     } catch (error) {
       console.log(error);
     }
@@ -137,7 +137,7 @@ export default function Qr({ children, classState, setOpen }) {
               <button
                 className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
                 onClick={() => {
-                  deleteQr(), handleClickDelete();
+                  (deleteQr(), handleClickDelete());
                 }}
               >
                 Eliminar
