@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import axios from 'axios';
@@ -15,33 +15,53 @@ export default function Qr({ children, classState, setOpen }) {
   const handleClickDelete = () => setOpenDelete(!openDelete);
 
   const [qr, setQr] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState('Agregar Qr');
 
   const show = qr ? 'hidden' : 'block';
 
-  const fecthQr = async () => {
-    const data = await Get('qr');
-
-    if (data !== undefined) {
-      setQr(data);
-    } else {
-      console.log('no hay qr');
+  const fetchQr = useCallback(async () => {
+    try {
+      const data = await Get('qr');
+      if (data && data.length > 0) {
+        setQr(data);
+        setState('QR Cargado');
+      } else {
+        setQr(null);
+        setState('Agregar Qr');
+      }
+    } catch (error) {
+      console.error('Error al obtener QR:', error);
+      setState('Error al cargar QR');
     }
-  };
+  }, []);
 
   const deleteQr = async () => {
     try {
-      (await Delete(qr[0]._id, setQr, qr, 'qr'),
-        setQr(null),
-        setState('Agrega una imagen'));
+      setLoading(true);
+      if (qr && qr[0]?._id) {
+        await Delete(qr[0]._id, setQr, qr, 'qr');
+        setQr(null);
+        setState('QR eliminado. Agregar uno nuevo');
+        handleClickDelete();
+        await fetchQr();
+      }
     } catch (error) {
-      console.log(error);
+      console.error('Error al eliminar QR:', error);
+      setState('Error al eliminar QR');
+    } finally {
+      setLoading(false);
     }
   };
 
   const onDrop = async (acceptedFiles) => {
-    setState('Cargando');
+    if (!acceptedFiles || acceptedFiles.length === 0) {
+      setState('Por favor selecciona una imagen');
+      return;
+    }
+
+    setState('Cargando...');
+    setLoading(true);
 
     const formData = new FormData();
     formData.append('file', acceptedFiles[0]);
@@ -55,21 +75,28 @@ export default function Qr({ children, classState, setOpen }) {
 
       const data = await Get('qr');
 
-      if (data.length > 0) {
+      if (data && data.length > 0) {
         await Update(data[0]._id, 'qr', { imagen: res.data.secure_url });
+        setState('QR actualizado');
       } else {
         await Add({ imagen: res.data.secure_url }, 'qr');
+        setState('QR agregado');
       }
+
+      await fetchQr();
     } catch (error) {
-      console.log(error);
+      console.error('Error al cargar QR:', error);
+      setState('Error: No se pudo cargar la imagen');
+    } finally {
+      setLoading(false);
     }
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   useEffect(() => {
-    fecthQr();
-  }, []);
+    fetchQr();
+  }, [fetchQr]);
 
   return (
     <div
@@ -87,13 +114,14 @@ export default function Qr({ children, classState, setOpen }) {
                   isDragActive
                     ? 'border-pink-400 bg-pink-100 text-pink-400'
                     : 'border-gray-300'
-                }`}
+                }
+                ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
           >
-            <input {...getInputProps()} />
+            <input {...getInputProps()} disabled={loading} />
 
-            <span className={show}>{state}</span>
+            <span className={show}>{loading ? 'Procesando...' : state}</span>
 
-            {qr && (
+            {qr && qr[0]?.imagen && (
               <img
                 className='object-contain w-full h-full'
                 src={qr[0].imagen}
@@ -107,11 +135,14 @@ export default function Qr({ children, classState, setOpen }) {
           <button
             className='flex items-center gap-1'
             title='Guardar Qr'
+            disabled={loading}
             onClick={() => {
               setOpen(false);
             }}
           >
-            <span className='py-1 px-2 rounded-2xl bg-pink-400 text-white'>
+            <span
+              className={`py-1 px-2 rounded-2xl ${loading ? 'bg-gray-300' : 'bg-pink-400'} text-white`}
+            >
               Guardar
             </span>
           </button>
@@ -119,9 +150,12 @@ export default function Qr({ children, classState, setOpen }) {
           <button
             className='flex items-center gap-1.5'
             title='Eliminar Qr'
+            disabled={loading || !qr}
             onClick={handleClickDelete}
           >
-            <span className='py-1 px-2 rounded-2xl bg-pink-400 text-white'>
+            <span
+              className={`py-1 px-2 rounded-2xl ${loading || !qr ? 'bg-gray-300' : 'bg-pink-400'} text-white`}
+            >
               Eliminar
             </span>
           </button>
@@ -136,8 +170,9 @@ export default function Qr({ children, classState, setOpen }) {
             <div className='flex justify-center gap-3'>
               <button
                 className='py-1 px-2 rounded-2xl bg-pink-400 text-white'
-                onClick={() => {
-                  (deleteQr(), handleClickDelete());
+                disabled={loading}
+                onClick={async () => {
+                  await deleteQr();
                 }}
               >
                 Eliminar
@@ -145,6 +180,7 @@ export default function Qr({ children, classState, setOpen }) {
 
               <button
                 className='py-1 px-2 rounded-2xl bg-gray-200'
+                disabled={loading}
                 onClick={handleClickDelete}
               >
                 Cancelar
