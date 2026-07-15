@@ -5,8 +5,8 @@ import axios from 'axios';
 
 import { Get } from '../../services/Get';
 import { Add } from '../../services/Add';
-import Update from '../../services/Update';
-import Delete from '../../services/Delete.jsx';
+import Update from '../../services/Update.jsx';
+import Delete, { DeleteItem } from '../../services/Delete.jsx';
 
 import { ModalDelete } from '../../components/ModalDelete.jsx';
 
@@ -39,8 +39,9 @@ export default function Qr({ children, classState, setOpen }) {
   const deleteQr = async () => {
     try {
       setLoading(true);
+
       if (qr && qr[0]?._id) {
-        await Delete(qr[0]._id, setQr, qr, 'qr');
+        await DeleteItem(qr[0]._id, setQr, qr, 'qr');
         setQr(null);
         setState('QR eliminado. Agregar uno nuevo');
         handleClickDelete();

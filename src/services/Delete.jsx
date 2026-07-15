@@ -1,6 +1,16 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+export async function DeleteItem(id, setItem, item, name) {
+  try {
+    await axios.delete(`http://localhost:5000/${name}/${id}`);
+    setItem(item.filter((it) => it._id !== id));
+  } catch (error) {
+    console.log(`No se pudo eliminar el producto ${error}`);
+    throw error;
+  }
+}
+
 export default function Delete({ id, setItem, item, name, children }) {
   const [open, setOpen] = useState(false);
 
