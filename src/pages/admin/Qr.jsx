@@ -32,7 +32,8 @@ export default function Qr({ children, classState, setOpen }) {
       }
     } catch (error) {
       console.error('Error al obtener QR:', error);
-      setState('Error al cargar QR');
+      setQr(null);
+      setState('No se pudo acceder a la base de datos');
     }
   }, []);
 
@@ -87,7 +88,8 @@ export default function Qr({ children, classState, setOpen }) {
       await fetchQr();
     } catch (error) {
       console.error('Error al cargar QR:', error);
-      setState('Error: No se pudo cargar la imagen');
+      setQr(null);
+      setState('No se pudo acceder a la base de datos');
     } finally {
       setLoading(false);
     }
